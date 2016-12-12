@@ -12,11 +12,14 @@ import transitSystem.TransitTrip;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Created by carlloga on 24/11/16.
  */
 public class TravelTimeFromGoogle {
+
+    private ResourceBundle rb;
 
     private ArrayList<TransitTrip> listOfTrips = new ArrayList<TransitTrip>();
 
@@ -49,7 +52,7 @@ public class TravelTimeFromGoogle {
                     String origin = origLatitude + "," + origLongitude;
                     String destination = destLatitude + "," + destLongitude;
 
-                    GetTransitTravelTime getTransitTravelTime = new GetTransitTravelTime();
+                    GetTransitTravelTime getTransitTravelTime = new GetTransitTravelTime(rb);
 
                     try {
                         DirectionsResult directionsResult = getTransitTravelTime.getTravelTime(origin, destination, timeOfDay);

@@ -1,32 +1,45 @@
+
 import geocoding.Geocode;
 import importOsm.ReadCSVFile;
 import importOsm.ReadXmlFile;
 import transitSystem.TransitLine;
 import transitSystem.TransitStop;
 import transitSystem.TransitTrip;
-import travelTimeFromGoogle.*;
+import travelTimeFromGoogle.LineFrequency;
+import travelTimeFromGoogle.TravelTimeFromGoogle;
 import writeOutputFiles.WriteOutputs;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import com.pb.common.util.ResourceUtil;
+
+
 
 /**
  * Created by carlloga on 21/11/16.
  */
 public class Transit {
 
-
-
+    private ResourceBundle rb;
     private static ArrayList<TransitStop> listOfStops = new ArrayList<TransitStop>();
     private static ArrayList<TransitLine> listOfLines = new ArrayList<TransitLine>();
     private static ArrayList<TransitTrip> listOfTrips = new ArrayList<TransitTrip>();
 
 
+    private Transit (ResourceBundle rb){
+        this.rb=rb;
+    }
+
     public static void main (String[] args){
 
+        File propFile = new File("transit.properties");
+        ResourceBundle rb = ResourceUtil.getPropertyBundle(propFile);
 
        //additional tool to geocode addresses: adress to coordinates
-        //Geocode geocode = new Geocode();
-        //geocode.geocodeAdress();
+        Geocode geocode = new Geocode(rb);
+        geocode.geocodeAdress();
 
         boolean extractXML = false;
         if (extractXML) {

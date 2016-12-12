@@ -12,6 +12,7 @@ import transitSystem.TransitTrip;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Created by carlloga on 29/11/16.
@@ -19,6 +20,8 @@ import java.util.Map;
 public class LineFrequency {
 
     private ArrayList<TransitTrip> listOfTrips = new ArrayList<TransitTrip>();
+
+    private ResourceBundle rb;
 
     public void getLineFrequency(ArrayList<TransitLine> listOfLines) {
 
@@ -56,7 +59,7 @@ public class LineFrequency {
 
                     DateTime timeOfDay = new DateTime(2016, 11, 29, hours, minutes);
 
-                    GetTransitTravelTime getTransitTravelTime = new GetTransitTravelTime();
+                    GetTransitTravelTime getTransitTravelTime = new GetTransitTravelTime(rb);
 
                     try {
                         DirectionsResult directionsResult = getTransitTravelTime.getTravelTime(origin, destination, timeOfDay);
