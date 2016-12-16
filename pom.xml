@@ -28,6 +28,20 @@
             <version>1.2.17</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.orbisgis</groupId>
+            <artifactId>cts</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+
+            <dependency>
+                <groupId> org.apache.cassandra</groupId>
+                <artifactId>cassandra-all</artifactId>
+                <version>0.8.1</version>
+      </dependency>
+
+
     </dependencies>
 
 </project>

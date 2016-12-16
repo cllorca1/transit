@@ -25,7 +25,7 @@ public class WriteStationFile {
             System.out.println("Writing output file for " + listOfStops.size() + " stations.");
 
             for (TransitStop transitStop : listOfStops) {
-                for (String line : transitStop.getLines()) {
+                //for (String line : transitStop.getLines()) {
                     pw.println(transitStop.getStopId() + ";"
                             + transitStop.getStopName() + ";"
                             + transitStop.getLat() + ";"
@@ -33,10 +33,11 @@ public class WriteStationFile {
                             + transitStop.isBus() + ";"
                             + transitStop.isTram() + ";"
                             + transitStop.isSubway() + ";"
-                            + transitStop.isStopPositionFlag()+ ";"
-                            + line + ";"
-                            + transitStop.getLineIds().get(transitStop.getLines().indexOf(line)));
-                }
+                            + transitStop.isStopPositionFlag());
+                            //discarded because lines are not properly assigned
+                            //+ ";" + line + ";"
+                            //+ transitStop.getLineIds().get(transitStop.getLines().indexOf(line)));
+                //}
             }
 
             pw.flush();

@@ -7,6 +7,7 @@ import transitSystem.TransitStop;
 import transitSystem.TransitTrip;
 import travelTimeFromGoogle.LineFrequency;
 import travelTimeFromGoogle.TravelTimeFromGoogle;
+import writeMATSimXMLFiles.TransformCoordinates;
 import writeOutputFiles.WriteOutputs;
 
 import java.io.File;
@@ -37,9 +38,9 @@ public class Transit {
         File propFile = new File("transit.properties");
         ResourceBundle rb = ResourceUtil.getPropertyBundle(propFile);
 
-       //additional tool to geocode addresses: adress to coordinates
-        Geocode geocode = new Geocode(rb);
-        geocode.geocodeAdress();
+       //additional tool to geocode addresses: address to coordinates
+        //Geocode geocode = new Geocode(rb);
+        //geocode.geocodeAdress();
 
         boolean extractXML = false;
         if (extractXML) {
@@ -53,12 +54,13 @@ public class Transit {
 
         }
 
-        boolean readCSV = false;
+        boolean readCSV = true;
         if (readCSV){
             ReadCSVFile readCSVFile = new ReadCSVFile();
             readCSVFile.readCsv();
             listOfStops = readCSVFile.getListOfStops();
             listOfLines = readCSVFile.getListOfLines();
+            listOfTrips = readCSVFile.getListOfTrips();
             System.out.println(listOfStops.size() + " stops read from csv");
             System.out.println(listOfLines.size() + " lines read from csv");
 
@@ -87,6 +89,9 @@ public class Transit {
             System.out.println("Number of trips = " + listOfTrips.size());
             writeOutputs.writeOutputs("./output", listOfStops, listOfLines, listOfTrips);
         }
+
+        TransformCoordinates tc = new TransformCoordinates();
+        tc.transformCoordinates(listOfStops);
 
 
     }

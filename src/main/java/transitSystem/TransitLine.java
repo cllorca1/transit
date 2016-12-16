@@ -44,11 +44,19 @@ public class TransitLine {
     }
 
     public String getFromStop() {
-        return fromStop;
+        if (fromStop!=null) {
+            return fromStop.replace(";", "-");
+        } else{
+        return null;
+        }
     }
 
     public String getToStop() {
-        return toStop;
+        if (toStop!=null) {
+            return toStop.replace(";", "-");
+        } else{
+            return null;
+        }
     }
 
     public boolean isBus() {
@@ -64,7 +72,11 @@ public class TransitLine {
     }
 
     public String getLineName() {
-        return lineName;
+        if (lineName!=null) {
+            return lineName.replace(";", "-");
+        } else{
+            return null;
+        }
     }
 
     public Map<Integer, TransitStop> getStopList() {

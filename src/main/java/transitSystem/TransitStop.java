@@ -10,6 +10,8 @@ public class TransitStop {
     String stopName = null;
     String lat;
     String lon;
+    float x;
+    float y;
     boolean bus;
     boolean tram;
     boolean subway;
@@ -38,7 +40,11 @@ public class TransitStop {
     }
 
     public String getStopName() {
-        return stopName;
+        if (stopName!=null) {
+            return stopName.replace(";", "-");
+        } else{
+            return null;
+        }
     }
 
     public String getLat() {
@@ -72,5 +78,21 @@ public class TransitStop {
 
     public ArrayList<Long> getLineIds() {
         return lineIds;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
     }
 }
