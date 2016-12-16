@@ -23,9 +23,10 @@ import static org.cts.op.transformation.SevenParameterTransformation.createBursa
  */
 public class TransformCoordinates {
 
-    public void transformCoordinates(ArrayList<TransitStop> listOfStops){
+    public void transformCoordinates(TransitStop transitStop){
 
-        for (TransitStop transitStop : listOfStops) {
+        int counter = 0;
+        //for (TransitStop transitStop : listOfStops) {
 
             CRSFactory cRSFactory = new CRSFactory();
             RegistryManager registryManager = cRSFactory.getRegistryManager();
@@ -54,8 +55,18 @@ public class TransformCoordinates {
 
                 transitStop.setX((float)coord[0]);
                 transitStop.setY((float)coord[1]);
+                counter++;
 
-                System.out.println(transitStop.getStopId() + "," + transitStop.getX() + "," +transitStop.getY());
+               // System.out.println(transitStop.getStopId() + "," + transitStop.getX() + "," +transitStop.getY());
+
+
+//                if (counter % 100 == 0) {
+//                    System.out.println("stops already transformed = " + counter);
+//                }
+//							System.out.println("previousSumTravelTimeMin = " + previousSumTravelTimeMin);
+                //}
+                //}
+
 
 
             } catch (IllegalCoordinateException e) {
@@ -65,7 +76,9 @@ public class TransformCoordinates {
 
             }
 
-        }
+        //}
+
+        //System.out.println("Transofrmed coordinates for " + listOfStops.size() + " stops.");
 
 
     }

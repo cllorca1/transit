@@ -317,6 +317,7 @@ public class ReadCSVFile {
             TransitStopToStop transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTime, departureTime);
             Map<Integer,TransitStopToStop> stopToStopMap = new HashMap<Integer, TransitStopToStop>();
             stopToStopMap.put(sequence, transitStopToStop);
+            sequence++;
 
             //read lines 1 to N
 
@@ -331,8 +332,8 @@ public class ReadCSVFile {
                     arrivalTime = Integer.parseInt(currentRow[7]);
 
                     transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTime, departureTime);
-                    sequence++;
                     stopToStopMap.put(sequence, transitStopToStop);
+                    sequence++;
 
                 } else {
                     //found a new transit line

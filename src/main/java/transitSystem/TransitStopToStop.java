@@ -9,6 +9,8 @@ public class TransitStopToStop {
     private int arrivalTime;
     private int departureTime;
 
+
+
     public TransitStopToStop(TransitStop origTransitStop, TransitStop destTransitStop, int arrivalTime, int departureTime) {
         this.origTransitStop = origTransitStop;
         this.destTransitStop = destTransitStop;
@@ -31,4 +33,6 @@ public class TransitStopToStop {
     public TransitStop getDestTransitStop() {
         return destTransitStop;
     }
+
+
 }

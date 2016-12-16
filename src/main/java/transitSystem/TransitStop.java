@@ -16,8 +16,11 @@ public class TransitStop {
     boolean tram;
     boolean subway;
     boolean stopPositionFlag;
+    boolean printXMLNode = false;
     ArrayList<String> lines=new ArrayList<String>();
     ArrayList<Long> lineIds = new ArrayList<Long>();
+
+    int networkLink;
 
     public TransitStop(long stopId, String stopName, String lat, String lon, boolean bus, boolean tram, boolean subway, boolean stopPositionFlag) {
         this.stopId = stopId;
@@ -94,5 +97,21 @@ public class TransitStop {
 
     public void setY(float y) {
         this.y = y;
+    }
+
+    public boolean isPrintXMLNode() {
+        return printXMLNode;
+    }
+
+    public void setPrintXMLNode(boolean printXMLNode) {
+        this.printXMLNode = printXMLNode;
+    }
+
+    public int getNetworkLink() {
+        return networkLink;
+    }
+
+    public void setNetworkLink(int networkLink) {
+        this.networkLink = networkLink;
     }
 }

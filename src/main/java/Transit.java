@@ -8,6 +8,7 @@ import transitSystem.TransitTrip;
 import travelTimeFromGoogle.LineFrequency;
 import travelTimeFromGoogle.TravelTimeFromGoogle;
 import writeMATSimXMLFiles.TransformCoordinates;
+import writeMATSimXMLFiles.WriteXMLRaiFiles;
 import writeOutputFiles.WriteOutputs;
 
 import java.io.File;
@@ -90,9 +91,12 @@ public class Transit {
             writeOutputs.writeOutputs("./output", listOfStops, listOfLines, listOfTrips);
         }
 
-        TransformCoordinates tc = new TransformCoordinates();
-        tc.transformCoordinates(listOfStops);
+        boolean writeMATSimFiles = true;
+        if (writeMATSimFiles) {
 
+            WriteXMLRaiFiles writeXMLRaiFiles = new WriteXMLRaiFiles();
+            writeXMLRaiFiles.writeXMLFiles(listOfStops, listOfLines, listOfTrips);
+        }
 
     }
 
