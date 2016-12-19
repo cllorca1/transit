@@ -1,4 +1,5 @@
 
+
 import geocoding.Geocode;
 import importOsm.ReadCSVFile;
 import importOsm.ReadXmlFile;
@@ -38,6 +39,7 @@ public class Transit {
 
         File propFile = new File("transit.properties");
         ResourceBundle rb = ResourceUtil.getPropertyBundle(propFile);
+
 
        //additional tool to geocode addresses: address to coordinates
         //Geocode geocode = new Geocode(rb);

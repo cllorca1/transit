@@ -31,7 +31,7 @@ public class ReadCSVFile {
         readCsvLines("output/linesListS.csv");
         readCsvLineLinks("output/lineLinksList.csv");
         readCsvStopToStop("output/tripListS.csv");
-        readCsvXYStopCoordinates("output/stationListXY.csv");
+
 
 
     }
@@ -376,9 +376,7 @@ public class ReadCSVFile {
 
     }
 
-    public void readCsvXYStopCoordinates (String fileName){
 
-    }
 
     public ArrayList<TransitStop> getListOfStops() {
         return listOfStops;
