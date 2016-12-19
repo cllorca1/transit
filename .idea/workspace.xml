@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c7cc846-68ef-49cc-95a7-e0afa181f2e2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/AssignOpposing.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/transitSystem/TransitLine.java" afterPath="$PROJECT_DIR$/src/main/java/transitSystem/TransitLine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/transitSystem/TransitTrip.java" afterPath="$PROJECT_DIR$/src/main/java/transitSystem/TransitTrip.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRaiFiles.java" afterPath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRaiFiles.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java" afterPath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java" />
     </list>
     <ignored path="transit.iws" />
@@ -104,8 +100,8 @@
       <file leaf-file-name="WriteXMLRailSchedule.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="60" column="72" selection-start-line="60" selection-start-column="72" selection-end-line="60" selection-end-column="72" />
+            <state relative-caret-position="454">
+              <caret line="71" column="47" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -840,7 +836,14 @@
       <option name="project" value="LOCAL" />
       <updated>1482139632215</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add a function to assign opposing trips">
+      <created>1482142657818</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1482142657818</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -864,7 +867,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36677814" sideWeight="0.510661" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07995736" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26978818" sideWeight="0.48933902" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26978818" sideWeight="0.48933902" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -927,7 +930,8 @@
     <MESSAGE value="Added new dependencies for transofrming coordinates to XY&#10;Added class to transfor to XY&#10;Improve importing from CSV (already from XML extracted info)" />
     <MESSAGE value="creation of XML files to input demand in matsim&#10;works for rail based modes" />
     <MESSAGE value="some errors checked" />
-    <option name="LAST_COMMIT_MESSAGE" value="some errors checked" />
+    <MESSAGE value="add a function to assign opposing trips" />
+    <option name="LAST_COMMIT_MESSAGE" value="add a function to assign opposing trips" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1312,8 +1316,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="60" column="72" selection-start-line="60" selection-start-column="72" selection-end-line="60" selection-end-column="72" />
+        <state relative-caret-position="454">
+          <caret line="71" column="47" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

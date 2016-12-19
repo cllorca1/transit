@@ -69,7 +69,7 @@ public class WriteXMLRailSchedule {
                     pw.print(transitTrip.getStopToStopList().get(i).getDestTransitStop().getX());
                     pw.print("\" y=\"");
                     pw.print(transitTrip.getStopToStopList().get(i).getDestTransitStop().getY());
-                    pw.print("\" linkRefId=\"");
+                    pw.print("\" linkRefId=\"pt");
                     pw.print(transitTrip.getStopToStopList().get(i).getNetworkLink());
                     pw.print("\" name=\"");
                     pw.print(transitTrip.getStopToStopList().get(i).getDestTransitStop().getStopName());
