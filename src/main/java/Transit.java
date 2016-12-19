@@ -1,8 +1,10 @@
 
 
+import com.sun.jndi.dns.ResourceRecord;
 import geocoding.Geocode;
 import importOsm.ReadCSVFile;
 import importOsm.ReadXmlFile;
+import sun.security.tools.keytool.Resources_sv;
 import transitSystem.TransitLine;
 import transitSystem.TransitStop;
 import transitSystem.TransitTrip;
@@ -12,11 +14,12 @@ import writeMATSimXMLFiles.TransformCoordinates;
 import writeMATSimXMLFiles.WriteXMLRaiFiles;
 import writeOutputFiles.WriteOutputs;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
-import com.pb.common.util.ResourceUtil;
+
 
 
 
@@ -38,14 +41,23 @@ public class Transit {
     public static void main (String[] args){
 
         File propFile = new File("transit.properties");
-        ResourceBundle rb = ResourceUtil.getPropertyBundle(propFile);
+
+        ResourceBundle rb = null;
+        try {
+            InputStream inputStream = new FileInputStream(propFile);
+            rb = new PropertyResourceBundle(inputStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
        //additional tool to geocode addresses: address to coordinates
         //Geocode geocode = new Geocode(rb);
         //geocode.geocodeAdress();
 
-        boolean extractXML = false;
+        boolean extractXML = Boolean.parseBoolean(rb.getString("extract.XML"));
         if (extractXML) {
             //extract data from XML OSM files
             ReadXmlFile readXml = new ReadXmlFile();
@@ -57,7 +69,7 @@ public class Transit {
 
         }
 
-        boolean readCSV = true;
+        boolean readCSV = Boolean.parseBoolean(rb.getString("extract.XML"));
         if (readCSV){
             ReadCSVFile readCSVFile = new ReadCSVFile();
             readCSVFile.readCsv();
@@ -70,21 +82,21 @@ public class Transit {
 
         }
 
-        boolean getTimes= false;
+        boolean getTimes= Boolean.parseBoolean(rb.getString("get.times"));
         if (getTimes) {
             TravelTimeFromGoogle travelTimeFromGoogle = new TravelTimeFromGoogle();
-            travelTimeFromGoogle.getTimes(listOfLines);
+            travelTimeFromGoogle.getTimes(listOfLines, rb);
             listOfTrips = travelTimeFromGoogle.getListOfTrips();
         }
 
-        boolean getFrequencies = false;
+        boolean getFrequencies = Boolean.parseBoolean(rb.getString("get.frequencies"));
         if (getFrequencies){
             LineFrequency lineFrequency = new LineFrequency();
             lineFrequency.getLineFrequency(listOfLines);
             listOfTrips = lineFrequency.getListOfTrips();
         }
 
-        boolean writeOutputFiles = false;
+        boolean writeOutputFiles = Boolean.parseBoolean(rb.getString("write.output.CSV"));
         //write outputs
 
         if (writeOutputFiles) {
@@ -93,7 +105,7 @@ public class Transit {
             writeOutputs.writeOutputs("./output", listOfStops, listOfLines, listOfTrips);
         }
 
-        boolean writeMATSimFiles = true;
+        boolean writeMATSimFiles = Boolean.parseBoolean(rb.getString("write.output.XML"));
         if (writeMATSimFiles) {
 
             WriteXMLRaiFiles writeXMLRaiFiles = new WriteXMLRaiFiles();
@@ -102,4 +114,7 @@ public class Transit {
 
     }
 
+    public ResourceBundle getRb() {
+        return rb;
+    }
 }

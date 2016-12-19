@@ -19,11 +19,10 @@ import java.util.ResourceBundle;
  */
 public class TravelTimeFromGoogle {
 
-    private ResourceBundle rb;
 
     private ArrayList<TransitTrip> listOfTrips = new ArrayList<TransitTrip>();
 
-    public void getTimes(ArrayList<TransitLine> listOfLines) {
+    public void getTimes(ArrayList<TransitLine> listOfLines, ResourceBundle rb) {
 
         //int queryNumber = 0;
         for (TransitLine transitLine : listOfLines) {
@@ -38,7 +37,7 @@ public class TravelTimeFromGoogle {
                 Map <Integer, TransitStopToStop> stopToStopList = new HashMap<Integer, TransitStopToStop>();
 
 
-                DateTime timeOfDay = new DateTime(2016,11,29,hours,minutes);
+                DateTime timeOfDay = new DateTime(2016,12,29,hours,minutes);
                 for (int i = 0; i < numberOfStops - 1; i++) {
 
                     int origSeq = i;
@@ -51,6 +50,7 @@ public class TravelTimeFromGoogle {
 
                     String origin = origLatitude + "," + origLongitude;
                     String destination = destLatitude + "," + destLongitude;
+
 
                     GetTransitTravelTime getTransitTravelTime = new GetTransitTravelTime(rb);
 
