@@ -52,17 +52,20 @@ public class WriteXMLRailNetwork {
                     double dx = transitStopToStop.getOrigTransitStop().getX() - transitStopToStop.getDestTransitStop().getX();
                     double dy = transitStopToStop.getOrigTransitStop().getY() - transitStopToStop.getDestTransitStop().getY();
                     double distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-                    double freeFlowSpeed = distance / duration;
+                    double freeFlowSpeed = distance / duration*1.5;
+                    //multiplied by 1.5 to allow trains get on time
 
-                    pw.print("<link id=\"");
+                    pw.print("<link id=\"pt");
                     pw.print(networkLink);
                     //todo check if this works to assign twice the first link and then the previous link until the end of the trip
                     //todo need to solve this problem, probably manually
-                    if (sequenceNumber==0){
+                    //todo ASSIGN NETWORKLINK TO STOPTOSTOP OBJECT
+                    transitStopToStop.setNetworkLink(networkLink);
+                    /*if (sequenceNumber==0){
                         transitStopToStop.getOrigTransitStop().setNetworkLink(networkLink);
 
                     }
-                    transitStopToStop.getDestTransitStop().setNetworkLink(networkLink);
+                    transitStopToStop.getDestTransitStop().setNetworkLink(networkLink);*/
                     sequenceNumber++;
                     networkLink++;
                     pw.print("\" from=\"");

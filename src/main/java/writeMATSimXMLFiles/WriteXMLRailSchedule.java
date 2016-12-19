@@ -44,7 +44,37 @@ public class WriteXMLRailSchedule {
 
 
             pw.println("<transitStops>");
-            for (TransitStop transitStop : listOfStops) {
+            //TODO loop along transit trip transitStopToStop instead
+            for (TransitTrip transitTrip : listOfTrips){
+                for (int i : transitTrip.getStopToStopList().keySet()){
+                    if (i==0){
+                        pw.print("<stopFacility id=\"");
+                        pw.print(transitTrip.getStopToStopList().get(i).getOrigTransitStop().getStopId()+ "-" +  transitTrip.getTransitLine().getLineId());
+                        pw.print("\" x=\"");
+                        pw.print(transitTrip.getStopToStopList().get(i).getOrigTransitStop().getX());
+                        pw.print("\" y=\"");
+                        pw.print(transitTrip.getStopToStopList().get(i).getOrigTransitStop().getY());
+                        pw.print("\" linkRefId=\"");
+                        pw.print(transitTrip.getStopToStopList().get(i).getNetworkLink());
+                        pw.print("\" name=\"");
+                        pw.print(transitTrip.getStopToStopList().get(i).getOrigTransitStop().getStopName());
+                        pw.println("\" />");
+                    }
+                    pw.print("<stopFacility id=\"");
+                    pw.print(transitTrip.getStopToStopList().get(i).getDestTransitStop().getStopId() + "-" +  transitTrip.getTransitLine().getLineId());
+                    pw.print("\" x=\"");
+                    pw.print(transitTrip.getStopToStopList().get(i).getDestTransitStop().getX());
+                    pw.print("\" y=\"");
+                    pw.print(transitTrip.getStopToStopList().get(i).getDestTransitStop().getY());
+                    pw.print("\" linkRefId=\"");
+                    pw.print(transitTrip.getStopToStopList().get(i).getNetworkLink());
+                    pw.print("\" name=\"");
+                    pw.print(transitTrip.getStopToStopList().get(i).getDestTransitStop().getStopName());
+                    pw.println("\" />");
+                }
+            }
+
+/*            for (TransitStop transitStop : listOfStops) {
                 if (transitStop.isPrintXMLNode()) {
                     //write xml line for stop, including name and networkLink
                     pw.print("<stopFacility id=\"");
@@ -61,7 +91,7 @@ public class WriteXMLRailSchedule {
 
 
                 }
-            }
+            }*/
             pw.println("</transitStops>");
 
             for (TransitTrip transitTrip : listOfTrips) {
@@ -87,7 +117,7 @@ public class WriteXMLRailSchedule {
                         DateTime departure = new DateTime(departureOffset);
 
                         pw.print("<stop refId=\"");
-                        pw.print(stopToStop.getOrigTransitStop().getStopId());
+                        pw.print(stopToStop.getOrigTransitStop().getStopId() + "-" +  transitTrip.getTransitLine().getLineId());
                         pw.print("\" departureOffset=\"");
                         pw.print(printTime(departure));
                         pw.println("\" awaitDeparture=\"true\"/>");
@@ -103,7 +133,7 @@ public class WriteXMLRailSchedule {
                         DateTime departure = new DateTime(departureOffset);
 
                         pw.print("<stop refId=\"");
-                        pw.print(stopToStop.getOrigTransitStop().getStopId());
+                        pw.print(stopToStop.getOrigTransitStop().getStopId()+ "-" +  transitTrip.getTransitLine().getLineId());
                         pw.print("\" arrivalOffset=\"");
                         pw.print(printTime(arrival));
                         pw.print("\" departureOffset=\"");
@@ -115,7 +145,7 @@ public class WriteXMLRailSchedule {
                         DateTime lastArrival = new DateTime(lastArrivalOffset);
 
                         pw.print("<stop refId=\"");
-                        pw.print(stopToStop.getDestTransitStop().getStopId());
+                        pw.print(stopToStop.getDestTransitStop().getStopId()+ "-" +  transitTrip.getTransitLine().getLineId());
                         pw.print("\" arrivalOffset=\"");
                         pw.print(printTime(lastArrival));
                         pw.println("\" awaitDeparture=\"true\"/>");
@@ -130,7 +160,7 @@ public class WriteXMLRailSchedule {
                         DateTime departure = new DateTime(departureOffset);
 
                         pw.print("<stop refId=\"");
-                        pw.print(stopToStop.getOrigTransitStop().getStopId());
+                        pw.print(stopToStop.getOrigTransitStop().getStopId()+ "-" +  transitTrip.getTransitLine().getLineId());
                         pw.print("\" arrivalOffset=\"");
                         pw.print(printTime(arrival));
                         pw.print("\" departureOffset=\"");
@@ -148,13 +178,14 @@ public class WriteXMLRailSchedule {
 
                     if (i == 0) {
                         //writes departure from the first segment to dest
-                        stopToStop.getOrigTransitStop().getNetworkLink();
-                        pw.print("<link refId=\"");
-                        pw.print(stopToStop.getOrigTransitStop().getNetworkLink());
+                        //stopToStop.getOrigTransitStop().getNetworkLink();
+                        pw.print("<link refId=\"pt");
+                        pw.print(stopToStop.getNetworkLink());
                         pw.println("\" />");
                     }
-                    pw.print("<link refId=\"");
-                    pw.print(stopToStop.getDestTransitStop().getNetworkLink());
+                    pw.print("<link refId=\"pt");
+
+                    pw.print(stopToStop.getNetworkLink());
                     pw.println("\" />");
 
                 }
@@ -171,12 +202,12 @@ public class WriteXMLRailSchedule {
                     pw.print("\" departureTime=\"");
                     pw.print(printTime(firstDeparture));
                     pw.print("\" vehicleRefId=\"");
-                    pw.print("train" + i);
+                    pw.print("train" + transitTrip.getTransitLine().getLineId() + "-"  + i );
                     pw.println("\" />");
 
                     pw2.print("<vehicle id=\"");
-                    pw2.print("train" + i);
-                    pw2.println("\" type=\"1\"");
+                    pw2.print("train" + transitTrip.getTransitLine().getLineId() + "-"  + i);
+                    pw2.println("\" type=\"1\" />");
                 }
                 pw.println("</departures>");
 

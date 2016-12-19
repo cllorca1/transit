@@ -9,6 +9,8 @@ public class TransitStopToStop {
     private int arrivalTime;
     private int departureTime;
 
+    private int networkLink;
+
 
 
     public TransitStopToStop(TransitStop origTransitStop, TransitStop destTransitStop, int arrivalTime, int departureTime) {
@@ -34,5 +36,11 @@ public class TransitStopToStop {
         return destTransitStop;
     }
 
+    public int getNetworkLink() {
+        return networkLink;
+    }
 
+    public void setNetworkLink(int networkLink) {
+        this.networkLink = networkLink;
+    }
 }
