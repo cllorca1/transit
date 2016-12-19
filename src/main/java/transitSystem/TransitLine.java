@@ -16,6 +16,7 @@ public class TransitLine {
     Map<Integer,TransitStop> stopList;
     Map<Integer, Long> linkList;
 
+
     public TransitLine(long lineId, String fromStop, String toStop, boolean bus, boolean subway, boolean tram, String lineName, Map<Integer, TransitStop> stopList) {
         this.lineId = lineId;
         this.fromStop = fromStop;
@@ -90,4 +91,9 @@ public class TransitLine {
     public void setLinkList(Map<Integer, Long> linkList) {
         this.linkList = linkList;
     }
+
+    public void setLineId(long lineId) {
+        this.lineId = lineId;
+    }
+
 }

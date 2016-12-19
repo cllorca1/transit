@@ -13,6 +13,9 @@ public class WriteXMLRaiFiles {
 
     public void writeXMLFiles(ArrayList<TransitStop> listOfStops, ArrayList<TransitLine> listOfLines, ArrayList<TransitTrip> listOfTrips){
 
+        AssignOpposing assignOpposing = new AssignOpposing();
+        assignOpposing.assignOpposingDirection(listOfTrips);
+
         WriteXMLRailNetwork writeXMLRailNetwork = new WriteXMLRailNetwork();
         writeXMLRailNetwork.writeXMLRailNetwork(listOfStops, listOfTrips);
 

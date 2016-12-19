@@ -13,6 +13,8 @@ public class TransitTrip {
     private int frequencyInSeconds = 0;
     private Map <Integer, TransitStopToStop> stopToStopList = new HashMap<Integer, TransitStopToStop>();
 
+    private TransitTrip opposingTrip;
+
     public TransitTrip(int departureTimeSeconds, int frequencyInSeconds, TransitLine transitLine) {
         this.departureTimeSeconds = departureTimeSeconds;
         this.frequencyInSeconds = frequencyInSeconds;
@@ -40,4 +42,12 @@ public class TransitTrip {
     public int getFrequencyInSeconds() { return frequencyInSeconds; }
 
     public void setFrequencyInSeconds(int frequencyInSeconds) {this.frequencyInSeconds = frequencyInSeconds; }
+
+    public TransitTrip getOpposingTrip() {
+        return opposingTrip;
+    }
+
+    public void setOpposingTrip(TransitTrip opposingTrip) {
+        this.opposingTrip = opposingTrip;
+    }
 }
