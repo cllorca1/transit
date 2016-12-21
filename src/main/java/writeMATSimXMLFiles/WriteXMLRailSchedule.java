@@ -16,12 +16,14 @@ import java.util.ArrayList;
  */
 public class WriteXMLRailSchedule {
 
-    public void writeXMLRailSchedule(ArrayList<TransitStop> listOfStops, ArrayList<TransitTrip> listOfTrips) {
+    public void writeXMLRailSchedule(ArrayList<TransitTrip> listOfTrips, String vehicleFileName, String scheduleFileName) {
+
+        String networkPrefix = "";
 
         try {
 
-            PrintWriter pw = new PrintWriter(new FileWriter("./output/XML/schedule.xml", true));
-            PrintWriter pw2 = new PrintWriter(new FileWriter("./output/XML/vehicles.xml", true));
+            PrintWriter pw = new PrintWriter(new FileWriter(scheduleFileName, false));
+            PrintWriter pw2 = new PrintWriter(new FileWriter(vehicleFileName, false));
 
             //schedule file
             pw.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
@@ -54,7 +56,7 @@ public class WriteXMLRailSchedule {
                         pw.print(transitTrip.getStopToStopList().get(i).getOrigTransitStop().getX());
                         pw.print("\" y=\"");
                         pw.print(transitTrip.getStopToStopList().get(i).getOrigTransitStop().getY());
-                        pw.print("\" linkRefId=\"pt");
+                        pw.print("\" linkRefId=\"pt"+ networkPrefix);
                         //pw.print(transitTrip.getStopToStopList().get(i).getNetworkLink());
                         //writes as link the last link of the other direction
                         int lastOpposingStopSequence = transitTrip.getOpposingTrip().getStopToStopList().size();
@@ -69,7 +71,7 @@ public class WriteXMLRailSchedule {
                     pw.print(transitTrip.getStopToStopList().get(i).getDestTransitStop().getX());
                     pw.print("\" y=\"");
                     pw.print(transitTrip.getStopToStopList().get(i).getDestTransitStop().getY());
-                    pw.print("\" linkRefId=\"pt");
+                    pw.print("\" linkRefId=\"pt" + networkPrefix);
                     pw.print(transitTrip.getStopToStopList().get(i).getNetworkLink());
                     pw.print("\" name=\"");
                     pw.print(transitTrip.getStopToStopList().get(i).getDestTransitStop().getStopName());
@@ -164,13 +166,13 @@ public class WriteXMLRailSchedule {
                     if (i == 0) {
                         //writes departure from the first segment to dest
                         //stopToStop.getOrigTransitStop().getNetworkLink();
-                        pw.print("<link refId=\"pt");
+                        pw.print("<link refId=\"pt" + networkPrefix);
                         int lastOpposingStopSequence = transitTrip.getOpposingTrip().getStopToStopList().size();
                         pw.print(transitTrip.getOpposingTrip().getStopToStopList().get(lastOpposingStopSequence-1).getNetworkLink());
                         //pw.print(stopToStop.getNetworkLink());
                         pw.println("\" />");
                     }
-                    pw.print("<link refId=\"pt");
+                    pw.print("<link refId=\"pt" + networkPrefix);
 
                     pw.print(stopToStop.getNetworkLink());
                     pw.println("\" />");

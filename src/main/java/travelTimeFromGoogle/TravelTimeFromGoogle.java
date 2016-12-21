@@ -19,10 +19,14 @@ import java.util.ResourceBundle;
  */
 public class TravelTimeFromGoogle {
 
-
+    private ResourceBundle rb;
     private ArrayList<TransitTrip> listOfTrips = new ArrayList<TransitTrip>();
 
-    public void getTimes(ArrayList<TransitLine> listOfLines, ResourceBundle rb) {
+    public TravelTimeFromGoogle(ResourceBundle rb){
+        this.rb=rb;
+    }
+
+    public void getTimes(ArrayList<TransitLine> listOfLines) {
 
         //int queryNumber = 0;
         for (TransitLine transitLine : listOfLines) {

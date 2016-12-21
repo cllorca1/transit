@@ -5,17 +5,24 @@ import transitSystem.TransitStop;
 import transitSystem.TransitTrip;
 
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * Created by carlloga on 24/11/16.
  */
 public class WriteOutputs {
 
-    public void writeOutputs(String outputFolder, ArrayList<TransitStop> listOfStops, ArrayList<TransitLine> listOfLines, ArrayList<TransitTrip> listOfTrips){
-        String stationFileName = outputFolder + "/stationListOut.csv";
-        String linesFileName = outputFolder + "/linesListOut.csv";
-        String lineLinksFileName = outputFolder + "/lineLinksListOut.csv";
-        String tripFileName = outputFolder + "/tripListOut.csv";
+    private ResourceBundle rb;
+
+    public WriteOutputs(ResourceBundle rb) {
+        this.rb = rb;
+    }
+
+    public void writeOutputs(ArrayList<TransitStop> listOfStops, ArrayList<TransitLine> listOfLines, ArrayList<TransitTrip> listOfTrips){
+        String stationFileName = rb.getString("out.csv.stations");
+        String linesFileName = rb.getString("out.csv.lines ");
+        String lineLinksFileName = rb.getString("out.csv.trips");
+        String tripFileName = rb.getString("out.csv.line.links");
 
         WriteStationFile writeStationFile = new WriteStationFile();
         writeStationFile.writeStationFile(stationFileName, listOfStops);

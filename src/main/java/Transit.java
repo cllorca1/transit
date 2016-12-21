@@ -46,6 +46,7 @@ public class Transit {
         try {
             InputStream inputStream = new FileInputStream(propFile);
             rb = new PropertyResourceBundle(inputStream);
+            System.out.println("Property-file read");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -60,8 +61,8 @@ public class Transit {
         boolean extractXML = Boolean.parseBoolean(rb.getString("extract.XML"));
         if (extractXML) {
             //extract data from XML OSM files
-            ReadXmlFile readXml = new ReadXmlFile();
-            readXml.readXMLFile("input/transit.osm");
+            ReadXmlFile readXml = new ReadXmlFile(rb);
+            readXml.readXMLFile();
             listOfStops = readXml.getListOfStops();
             listOfLines = readXml.getListOfLines();
 
@@ -69,9 +70,9 @@ public class Transit {
 
         }
 
-        boolean readCSV = Boolean.parseBoolean(rb.getString("extract.XML"));
+        boolean readCSV = Boolean.parseBoolean(rb.getString("read.CSV"));
         if (readCSV){
-            ReadCSVFile readCSVFile = new ReadCSVFile();
+            ReadCSVFile readCSVFile = new ReadCSVFile(rb);
             readCSVFile.readCsv();
             listOfStops = readCSVFile.getListOfStops();
             listOfLines = readCSVFile.getListOfLines();
@@ -84,8 +85,8 @@ public class Transit {
 
         boolean getTimes= Boolean.parseBoolean(rb.getString("get.times"));
         if (getTimes) {
-            TravelTimeFromGoogle travelTimeFromGoogle = new TravelTimeFromGoogle();
-            travelTimeFromGoogle.getTimes(listOfLines, rb);
+            TravelTimeFromGoogle travelTimeFromGoogle = new TravelTimeFromGoogle(rb);
+            travelTimeFromGoogle.getTimes(listOfLines);
             listOfTrips = travelTimeFromGoogle.getListOfTrips();
         }
 
@@ -100,15 +101,15 @@ public class Transit {
         //write outputs
 
         if (writeOutputFiles) {
-            WriteOutputs writeOutputs = new WriteOutputs();
+            WriteOutputs writeOutputs = new WriteOutputs(rb);
             System.out.println("Number of trips = " + listOfTrips.size());
-            writeOutputs.writeOutputs("./output", listOfStops, listOfLines, listOfTrips);
+            writeOutputs.writeOutputs(listOfStops, listOfLines, listOfTrips);
         }
 
         boolean writeMATSimFiles = Boolean.parseBoolean(rb.getString("write.output.XML"));
         if (writeMATSimFiles) {
 
-            WriteXMLRaiFiles writeXMLRaiFiles = new WriteXMLRaiFiles();
+            WriteXMLRaiFiles writeXMLRaiFiles = new WriteXMLRaiFiles(rb);
             writeXMLRaiFiles.writeXMLFiles(listOfStops, listOfLines, listOfTrips);
         }
 

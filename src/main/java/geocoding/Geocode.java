@@ -8,6 +8,8 @@ import transitSystem.TransitStop;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 
@@ -24,7 +26,7 @@ public class Geocode {
 
     public void geocodeAdress() {
 
-        ArrayList<String> listOfZones = new ArrayList<String>();
+        Map<Integer, String> listOfZones = new HashMap<Integer, String>();
 
 
         BufferedReader br = null;
@@ -32,17 +34,18 @@ public class Geocode {
 
         try {
 
-            FileReader fr = new FileReader("C:/Models/bikeSharing/geocoding/" + "zonesBerlin.csv");
+            FileReader fr = new FileReader("C:/Models/bikeSharing/geocoding/zones/" + "allZones.csv");
 
             br = new BufferedReader(fr);
 
             while ((line = br.readLine()) != null) {
 
-                String[] row = line.split(";");
+                String[] row = line.split(",");
 
-                String zoneName = row[0];
+                int zoneNumber = Integer.parseInt(row[0]);
+                String zoneName = row[1] + row[2];
 
-                listOfZones.add(zoneName);
+                listOfZones.put(zoneNumber,zoneName);
             }
 
         } catch (FileNotFoundException e) {
@@ -64,17 +67,16 @@ public class Geocode {
 
         try {
 
-            PrintWriter pw = new PrintWriter(new FileWriter("C:/Models/bikeSharing/geocoding/" + "zonesBerlinCoordinates.csv", true));
+            PrintWriter pw = new PrintWriter(new FileWriter("C:/Models/bikeSharing/geocoding/zones" + "allZonesCoordinates.csv", true));
             pw.println("zoneName, lat, lng");
 
-            for (String zoneName : listOfZones) {
+            for (int i : listOfZones.keySet()) {
 
+                String zoneName = listOfZones.get(i);
 
                 GeoApiContext context = new GeoApiContext().setApiKey(rb.getString("api.key"));
 
 
-
-                zoneName = zoneName + "+Berlin+Deutschland";
 
 
                 GeocodingResult[] result = GeocodingApi.newRequest(context)
@@ -82,9 +84,13 @@ public class Geocode {
                                 language("deutsch").
                                 await();
 
-                pw.println(zoneName + "," + result[0].geometry.location.lat + "," + result[0].geometry.location.lng);
+                if (result.length > 0) {
 
+                    pw.println(i + "," + zoneName + "," + result[0].geometry.location.lat + "," + result[0].geometry.location.lng);
 
+                } else {
+                    pw.println(i + "," + zoneName + ","+ ","+ ",notFound" );
+                }
             }
             pw.flush();
             pw.close();

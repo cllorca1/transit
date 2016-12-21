@@ -13,6 +13,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Created by carlloga on 21/11/16.
@@ -25,7 +26,15 @@ public class ReadXmlFile {
 
     private HashMap<Long, TransitStop> stopMap = new HashMap();
 
-    public void readXMLFile(String fileName) {
+    private ResourceBundle rb;
+
+    public ReadXmlFile(ResourceBundle rb){
+        this.rb=rb;
+    }
+
+    public void readXMLFile() {
+
+        String fileName = rb.getString("xml.osm.file");
 
         listOfStops = getStationsFromXML(fileName);
         listOfLines = getLinesFromXML(fileName);

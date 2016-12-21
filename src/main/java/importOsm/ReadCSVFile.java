@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Created by carlloga on 28/11/16.
@@ -24,13 +25,18 @@ public class ReadCSVFile {
     private HashMap<Long, TransitStop> stopMap = new HashMap();
     private HashMap<Long, TransitLine> lineMap = new HashMap();
     private String cvsSplitBy = ";";
+    private ResourceBundle rb;
+
+    public ReadCSVFile(ResourceBundle rb){
+        this.rb=rb;
+    }
 
     public void readCsv() {
 
-        readCsvStations("output/stationListS.csv");
-        readCsvLines("output/linesListS.csv");
-        readCsvLineLinks("output/lineLinksList.csv");
-        readCsvStopToStop("output/tripListS.csv");
+        readCsvStations(rb.getString("csv.station.file"));
+        readCsvLines(rb.getString("csv.line.file"));
+        readCsvLineLinks(rb.getString("csv.line.link.file"));
+        readCsvStopToStop(rb.getString("csv.trip.file"));
 
 
 
