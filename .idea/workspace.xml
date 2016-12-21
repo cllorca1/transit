@@ -6,16 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1c7cc846-68ef-49cc-95a7-e0afa181f2e2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Transit.java" afterPath="$PROJECT_DIR$/src/main/java/Transit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geocoding/Geocode.java" afterPath="$PROJECT_DIR$/src/main/java/geocoding/Geocode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/importOsm/ReadCSVFile.java" afterPath="$PROJECT_DIR$/src/main/java/importOsm/ReadCSVFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/importOsm/ReadXmlFile.java" afterPath="$PROJECT_DIR$/src/main/java/importOsm/ReadXmlFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/transitSystem/TransitStop.java" afterPath="$PROJECT_DIR$/src/main/java/transitSystem/TransitStop.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/travelTimeFromGoogle/TravelTimeFromGoogle.java" afterPath="$PROJECT_DIR$/src/main/java/travelTimeFromGoogle/TravelTimeFromGoogle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRaiFiles.java" afterPath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRaiFiles.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java" afterPath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java" afterPath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/writeOutputFiles/WriteOutputs.java" afterPath="$PROJECT_DIR$/src/main/java/writeOutputFiles/WriteOutputs.java" />
     </list>
     <ignored path="transit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,9 +31,11 @@
       <file leaf-file-name="Transit.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Transit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-              <folding />
+            <state relative-caret-position="476">
+              <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -829,7 +821,14 @@
       <option name="project" value="LOCAL" />
       <updated>1482153584705</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="add properties, solved order of node/link in XML files for MATSim">
+      <created>1482315464454</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1482315464454</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -921,7 +920,8 @@
     <MESSAGE value="solved minor problems" />
     <MESSAGE value="added property file" />
     <MESSAGE value="change dependencies (not known)" />
-    <option name="LAST_COMMIT_MESSAGE" value="change dependencies (not known)" />
+    <MESSAGE value="add properties, solved order of node/link in XML files for MATSim" />
+    <option name="LAST_COMMIT_MESSAGE" value="add properties, solved order of node/link in XML files for MATSim" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1285,9 +1285,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Transit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-          <folding />
+        <state relative-caret-position="476">
+          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
