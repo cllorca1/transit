@@ -66,8 +66,6 @@ public class Transit {
             listOfStops = readXml.getListOfStops();
             listOfLines = readXml.getListOfLines();
 
-        } else {
-
         }
 
         boolean readCSV = Boolean.parseBoolean(rb.getString("read.CSV"));
