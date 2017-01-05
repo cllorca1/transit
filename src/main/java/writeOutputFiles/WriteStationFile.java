@@ -18,7 +18,7 @@ public class WriteStationFile {
         try {
 
 
-            PrintWriter pw = new PrintWriter(new FileWriter(outputFile, true));
+            PrintWriter pw = new PrintWriter(new FileWriter(outputFile, false));
             pw.println("stopId; stopName; lat; lon; bus; tram; subway; stopPositionFlag; line; lineId");
 
 

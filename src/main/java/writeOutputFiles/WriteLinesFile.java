@@ -22,7 +22,7 @@ public class WriteLinesFile {
         try {
 
 
-            PrintWriter pw = new PrintWriter(new FileWriter(outputFile, true));
+            PrintWriter pw = new PrintWriter(new FileWriter(outputFile, false));
             pw.println("lineId; lineRef; from; to; bus; tram; subway; sequence; stopId; stopName");
 
 

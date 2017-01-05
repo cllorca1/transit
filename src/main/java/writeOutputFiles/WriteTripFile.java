@@ -19,7 +19,7 @@ public class WriteTripFile {
 
         try {
 
-            PrintWriter pw = new PrintWriter(new FileWriter(outputFile, true));
+            PrintWriter pw = new PrintWriter(new FileWriter(outputFile, false));
             pw.println("lineId; lineRef; fromStopId; fromStop; toStopId; toStop; departureTime; arrivalTime");
 
             for (TransitTrip transitTrip : listOfTrips){
