@@ -162,7 +162,7 @@ public class ReadXmlFile {
             //pw2.println("line number; lineId; lineRef; from; to; bus; subway; sequence; stopId; stopName");
 
             //to read lines in the OSM file
-            int numberLines = 0;
+            //int numberLines = 0;
             NodeList relationList = doc.getElementsByTagName("relation");
             for (int i = 0; i < relationList.getLength(); i++) {
                 Node node = relationList.item(i);
@@ -204,7 +204,12 @@ public class ReadXmlFile {
                                 }
                             }
 
-                        } else if (childNode.getNodeName().equals("member")) {
+
+                        }
+                    }
+                    for (int j = 0; j < childNodes.getLength(); j++) {
+                        Node childNode = childNodes.item(j);
+                        if (childNode.getNodeName().equals("member")) {
                             if (childNode.getAttributes().getLength() == 3) {
                                 //because not all relation > member have 3 attributes, they are not lines, but other type of relation in OSM
                                 String type="";
@@ -220,14 +225,15 @@ public class ReadXmlFile {
                                     }
                                 }
 
-                                if (role.equals("stop")) {
+                                //probably change equals to contain, to account for "backward stop" in some bus lines
+                                if (role.contains("stop")) {
                                     long stopId = Long.parseLong(ref);
                                     //System.out.println(stopId);
                                     if (stopMap.get(stopId) != null) {
                                         TransitStop transitStop = stopMap.get(stopId);
                                         //System.out.println("Stop!" + transitStop.stopName);
                                         stopList.put(stopSequence, transitStop);
-                                        //transitStop.addLine(lineName, lineId);
+                                        transitStop.addLine(lineName, lineId);
                                         //the previous line doesn't work because lineName is not assigned, it is in the other if-alternative
                                         stopSequence++;
                                     }
@@ -272,7 +278,7 @@ public class ReadXmlFile {
                                     + stopList.get(seq).getStopName());
                         }*/
                     }
-                    numberLines++;
+                    //numberLines++;
                 }
             }
             //pw2.flush();

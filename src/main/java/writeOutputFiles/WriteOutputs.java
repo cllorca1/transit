@@ -20,7 +20,7 @@ public class WriteOutputs {
 
     public void writeOutputs(ArrayList<TransitStop> listOfStops, ArrayList<TransitLine> listOfLines, ArrayList<TransitTrip> listOfTrips){
         String stationFileName = rb.getString("out.csv.stations");
-        String linesFileName = rb.getString("out.csv.lines ");
+        String linesFileName = rb.getString("out.csv.lines");
         String lineLinksFileName = rb.getString("out.csv.trips");
         String tripFileName = rb.getString("out.csv.line.links");
 

@@ -22,7 +22,7 @@ public class WriteLineLinksFile {
 
 
             PrintWriter pw = new PrintWriter(new FileWriter(outputFile, true));
-            pw.println("lineId; lineRef; from; to; bus; tram; subway; sequence; linkd");
+            pw.println("lineId; lineRef; from; to; bus; tram; subway; sequence; linkid");
 
 
             System.out.println("Writing output linelinks file for " + listOfLines.size() + " lines.");
@@ -30,16 +30,20 @@ public class WriteLineLinksFile {
 
             for (TransitLine transitLine : listOfLines) {
                 Map<Integer, Long> linkList = transitLine.getLinkList();
-                for (int sequence : linkList.keySet()) {
-                    pw.println(transitLine.getLineId() + ";"
-                            + transitLine.getLineName() + ";"
-                            + transitLine.getFromStop() + ";"
-                            + transitLine.getToStop() + ";"
-                            + transitLine.isBus() + ";"
-                            + transitLine.isTram() + ";"
-                            + transitLine.isSubway() + ";"
-                            + sequence + ";"
-                            + linkList.get(sequence));
+                try {
+                    for (int sequence : linkList.keySet()) {
+                        pw.println(transitLine.getLineId() + ";"
+                                + transitLine.getLineName() + ";"
+                                + transitLine.getFromStop() + ";"
+                                + transitLine.getToStop() + ";"
+                                + transitLine.isBus() + ";"
+                                + transitLine.isTram() + ";"
+                                + transitLine.isSubway() + ";"
+                                + sequence + ";"
+                                + linkList.get(sequence));
+
+                    }
+                } catch (Exception e){
 
                 }
             }
