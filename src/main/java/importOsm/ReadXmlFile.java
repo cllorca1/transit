@@ -73,7 +73,7 @@ public class ReadXmlFile {
                     //System.out.println(id);
                     String lat = nodeElement.getAttribute("lat");
                     String lon = nodeElement.getAttribute("lon");
-                    String stopName = null;
+                    String stopName = "null";
                     boolean bus = false;
                     boolean tram = false;
                     boolean subway = false;
@@ -97,7 +97,6 @@ public class ReadXmlFile {
                                     stopName = attributeValue;
                                 } else if (attributeName.equals("tram") & attributeValue.equals("yes")) {
                                     tram = true;
-
                                 } else if (attributeName.equals("subway") & attributeValue.equals("yes")) {
                                     subway = true;
                                 } else if (attributeName.equals("bus") & attributeValue.equals("yes")) {
@@ -190,10 +189,13 @@ public class ReadXmlFile {
                                 if (attributeName.equals("type") & attributeValue.equals("route")) {
                                     line = true;
                                 } else if (attributeName.equals("route") & attributeValue.equals("bus")) {
+                                    line=true;
                                     bus = true;
                                 } else if (attributeName.equals("route") & attributeValue.equals("tram")) {
+                                    line=true;
                                     tram = true;
                                 } else if (attributeName.equals("route") & attributeValue.equals("subway")) {
+                                    line=true;
                                     subway = true;
                                 } else if (attributeName.equals("ref")) {
                                     lineName = attributeValue;
@@ -225,16 +227,15 @@ public class ReadXmlFile {
                                     }
                                 }
 
-                                //probably change equals to contain, to account for "backward stop" in some bus lines
-                                if (role.contains("stop")) {
+                                //the next adds every node as an stop
+                                if (type.equals("node")) {
                                     long stopId = Long.parseLong(ref);
                                     //System.out.println(stopId);
+                                    // the stop must be in the map of stops
                                     if (stopMap.get(stopId) != null) {
                                         TransitStop transitStop = stopMap.get(stopId);
-                                        //System.out.println("Stop!" + transitStop.stopName);
                                         stopList.put(stopSequence, transitStop);
                                         transitStop.addLine(lineName, lineId);
-                                        //the previous line doesn't work because lineName is not assigned, it is in the other if-alternative
                                         stopSequence++;
                                     }
 

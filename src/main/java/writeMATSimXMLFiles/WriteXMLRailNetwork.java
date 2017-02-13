@@ -17,8 +17,6 @@ import java.util.Map;
  */
 public class WriteXMLRailNetwork {
 
-
-
     public void writeXMLRailNetwork(ArrayList<TransitStop> listOfStops, ArrayList<TransitTrip> listOfTrips, String fileName) {
 
         //sub-method to write links as stopToStop connectors
@@ -32,18 +30,14 @@ public class WriteXMLRailNetwork {
 
             pw.println("<network>");
 
-
-            //TODO The order of writing nodes and links needs to (but cannot) be changed
-
+            //TODO The order of writing nodes and links needs to (but cannot) be changed --- seems solved!
 
             for (TransitTrip transitTrip : listOfTrips) {
-
 
                 Map<Integer, TransitStopToStop> stopToStopMap = transitTrip.getStopToStopList();
 
                 int sequenceNumber = 0;
                 for (TransitStopToStop transitStopToStop : stopToStopMap.values()) {
-
 
                     //this nodes will be writen in XML list of nodes (This replicates some assignments of the variable...)
 
@@ -51,7 +45,6 @@ public class WriteXMLRailNetwork {
                     origStop.setPrintXMLNode(true);
                     TransitStop destStop = transitStopToStop.getDestTransitStop();
                     destStop.setPrintXMLNode(true);
-
 
                     TransformCoordinates tc = new TransformCoordinates();
                     tc.transformCoordinates(destStop);
@@ -61,23 +54,12 @@ public class WriteXMLRailNetwork {
                     double dx = transitStopToStop.getOrigTransitStop().getX() - transitStopToStop.getDestTransitStop().getX();
                     double dy = transitStopToStop.getOrigTransitStop().getY() - transitStopToStop.getDestTransitStop().getY();
                     double distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-                    double freeFlowSpeed = distance / duration*1.5;
+                    double freeFlowSpeed = distance / duration * 1.5;
                     //multiplied by 1.5 to allow trains get on time
-
-
-
                 }
-
             }
 
-
-
-
-
-
-        //sub=method to print nodes that were found in trip list
-
-
+            //sub=method to print nodes that were found in trip list
             //PrintWriter pw = new PrintWriter(new FileWriter("./output/XML/nodes.xml", true));
 
             pw.println("<nodes>");
@@ -85,7 +67,6 @@ public class WriteXMLRailNetwork {
             for (TransitStop transitStop : listOfStops) {
 
                 if (transitStop.isPrintXMLNode()) {
-
 
 
                     pw.print("<node id=\"");
@@ -105,7 +86,6 @@ public class WriteXMLRailNetwork {
 
             //TODO The order of writing nodes and links needs to (but cannot) be changed
 
-
             for (TransitTrip transitTrip : listOfTrips) {
 
 
@@ -117,26 +97,25 @@ public class WriteXMLRailNetwork {
 
                     //this nodes will be writen in XML list of nodes (This replicates some assignments of the variable...)
 
-                    TransitStop origStop = transitStopToStop.getOrigTransitStop();
-
-                    TransitStop destStop = transitStopToStop.getDestTransitStop();
-
-
-
                     int duration = transitStopToStop.getArrivalTime() - transitStopToStop.getDepartureTime();
                     double dx = transitStopToStop.getOrigTransitStop().getX() - transitStopToStop.getDestTransitStop().getX();
                     double dy = transitStopToStop.getOrigTransitStop().getY() - transitStopToStop.getDestTransitStop().getY();
                     double distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-                    double freeFlowSpeed = distance / duration*1.5;
+                    double freeFlowSpeed = distance / duration * 1.5;
                     //multiplied by 1.5 to allow trains get on time
 
                     String networkPrefix = "";
 
+                    //todo need to generate an extra link to store the bus/train before getting first stop and assign them very high speed and typical length over vehicle length
+                    if (transitStopToStop.hashCode()==0){
+
+                    }
+
                     pw.print("<link id=\"pt" + networkPrefix);
                     pw.print(networkLink);
-                    //todo check if this works to assign twice the first link and then the previous link until the end of the trip
-                    //todo need to solve this problem, probably manually
-                    //todo ASSIGN NETWORKLINK TO STOPTOSTOP OBJECT
+
+
+
                     transitStopToStop.setNetworkLink(networkLink);
                     /*if (sequenceNumber==0){
                         transitStopToStop.getOrigTransitStop().setNetworkLink(networkLink);
@@ -160,7 +139,6 @@ public class WriteXMLRailNetwork {
             }
 
             pw.println("</links>");
-
 
 
             pw.println("</network>");

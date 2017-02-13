@@ -41,7 +41,7 @@ public class TravelTimeFromGoogle {
                 Map <Integer, TransitStopToStop> stopToStopList = new HashMap<Integer, TransitStopToStop>();
 
 
-                DateTime timeOfDay = new DateTime(2016,12,29,hours,minutes);
+                DateTime timeOfDay = new DateTime(2017,03,13,hours,minutes);
                 for (int i = 0; i < numberOfStops - 1; i++) {
 
                     int origSeq = i;
@@ -68,7 +68,7 @@ public class TravelTimeFromGoogle {
                             for (int j = 0; j < directionsResult.routes[0].legs[k].steps.length; j++) {
 
                             if (directionsResult.routes[0].legs[k].steps[j].travelMode.equals(TravelMode.TRANSIT)) {
-                                if (directionsResult.routes[0].legs[k].steps[j].transitDetails.line.vehicle.type.equals(VehicleType.TRAM)) {
+                                if (directionsResult.routes[0].legs[k].steps[j].transitDetails.line.vehicle.type.equals(VehicleType.BUS)) {
                                     //String vehicleName = directionsResult.routes[0].legs[k].steps[j].transitDetails.line.vehicle.name;
                                     //String departureStop = directionsResult.routes[0].legs[k].steps[j].transitDetails.departureStop.name;
                                     //String arrivalStop = directionsResult.routes[0].legs[k].steps[j].transitDetails.arrivalStop.name;

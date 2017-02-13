@@ -33,19 +33,24 @@ public class WriteLinesFile {
 
             for (TransitLine transitLine : listOfLines) {
                 Map<Integer, TransitStop> stopList = transitLine.getStopList();
+                //check the name of the stop is not repeated
+                String lastStopName = "";
                 for (int sequence : stopList.keySet()) {
-                    pw.println(transitLine.getLineId() + ";"
-                            + transitLine.getLineName()+ ";"
-                            + transitLine.getFromStop() + ";"
-                            + transitLine.getToStop() + ";"
-                            + transitLine.isBus()+ ";"
-                            + transitLine.isTram() + ";"
-                            + transitLine.isSubway() + ";"
-                            + sequence + ";"
-                            + stopList.get(sequence).getStopId() + ";"
-                            + stopList.get(sequence).getStopName());
+                    //check and if different substitute lastStopName by currentStopName
+                    if(!stopList.get(sequence).getStopName().equals(lastStopName)) {
+                        lastStopName = stopList.get(sequence).getStopName();
+                        pw.println(transitLine.getLineId() + ";"
+                                + transitLine.getLineName() + ";"
+                                + transitLine.getFromStop() + ";"
+                                + transitLine.getToStop() + ";"
+                                + transitLine.isBus() + ";"
+                                + transitLine.isTram() + ";"
+                                + transitLine.isSubway() + ";"
+                                + sequence + ";"
+                                + stopList.get(sequence).getStopId() + ";"
+                                + stopList.get(sequence).getStopName());
 
-
+                    }
                 }
             }
 

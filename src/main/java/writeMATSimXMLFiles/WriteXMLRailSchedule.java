@@ -165,6 +165,7 @@ public class WriteXMLRailSchedule {
 
                     if (i == 0) {
                         //writes departure from the first segment to dest
+                        //todo may need to change to accept non bi-directional lines
                         //stopToStop.getOrigTransitStop().getNetworkLink();
                         pw.print("<link refId=\"pt" + networkPrefix);
                         int lastOpposingStopSequence = transitTrip.getOpposingTrip().getStopToStopList().size();
