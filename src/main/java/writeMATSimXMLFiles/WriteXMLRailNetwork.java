@@ -17,6 +17,13 @@ import java.util.Map;
  */
 public class WriteXMLRailNetwork {
 
+    private String networkPrefix = "bus";
+
+    public String getNetworkPrefix() {
+        return networkPrefix;
+    }
+
+
     public void writeXMLRailNetwork(ArrayList<TransitStop> listOfStops, ArrayList<TransitTrip> listOfTrips, String fileName) {
 
         //sub-method to write links as stopToStop connectors
@@ -69,7 +76,7 @@ public class WriteXMLRailNetwork {
                 if (transitStop.isPrintXMLNode()) {
 
 
-                    pw.print("<node id=\"");
+                    pw.print("<node id=\"pt" + networkPrefix);
                     pw.print(transitStop.getStopId());
                     pw.print("\" x=\"");
                     pw.print(transitStop.getX());
@@ -104,17 +111,26 @@ public class WriteXMLRailNetwork {
                     double freeFlowSpeed = distance / duration * 1.5;
                     //multiplied by 1.5 to allow trains get on time
 
-                    String networkPrefix = "";
+//                    String networkPrefix = "";
 
                     //todo need to generate an extra link to store the bus/train before getting first stop and assign them very high speed and typical length over vehicle length
-                    if (transitStopToStop.hashCode()==0){
+                    if (sequenceNumber==0){
+                        transitTrip.setSidingLink(networkLink);
+                        pw.print("<link id=\"ptExtra" + networkPrefix+networkLink);
+                        pw.print("\" from=\"pt" + networkPrefix);
+                        pw.print(transitStopToStop.getDestTransitStop().getStopId());
+                        pw.print("\" to=\"pt"+ networkPrefix);
+                        pw.print(transitStopToStop.getOrigTransitStop().getStopId());
+                        pw.print("\" length=\"" );
+                        pw.print(distance);
+                        pw.print("\" freespeed=\"");
+                        pw.print(freeFlowSpeed);
+                        pw.println("\" capacity=\"100000.0\" permlanes=\"1.0\" oneway=\"1\" modes=\"pt\" />");
 
                     }
 
                     pw.print("<link id=\"pt" + networkPrefix);
                     pw.print(networkLink);
-
-
 
                     transitStopToStop.setNetworkLink(networkLink);
                     /*if (sequenceNumber==0){
@@ -124,9 +140,9 @@ public class WriteXMLRailNetwork {
                     transitStopToStop.getDestTransitStop().setNetworkLink(networkLink);*/
                     sequenceNumber++;
                     networkLink++;
-                    pw.print("\" from=\"");
+                    pw.print("\" from=\"pt" + networkPrefix);
                     pw.print(transitStopToStop.getOrigTransitStop().getStopId());
-                    pw.print("\" to=\"");
+                    pw.print("\" to=\"pt"+ networkPrefix);
                     pw.print(transitStopToStop.getDestTransitStop().getStopId());
                     pw.print("\" length=\"");
                     pw.print(distance);

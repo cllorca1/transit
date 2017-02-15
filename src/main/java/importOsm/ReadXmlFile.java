@@ -2,6 +2,7 @@ package importOsm;
 
 
 import org.w3c.dom.*;
+import transitSystem.OSMNode;
 import transitSystem.TransitStop;
 import transitSystem.TransitLine;
 
@@ -26,10 +27,12 @@ public class ReadXmlFile {
 
     private HashMap<Long, TransitStop> stopMap = new HashMap();
 
+    private HashMap<Long, OSMNode> nodeMap = new HashMap();
+
     private ResourceBundle rb;
 
-    public ReadXmlFile(ResourceBundle rb){
-        this.rb=rb;
+    public ReadXmlFile(ResourceBundle rb) {
+        this.rb = rb;
     }
 
     public void readXMLFile() {
@@ -55,14 +58,7 @@ public class ReadXmlFile {
 
             NodeList nodeList = doc.getElementsByTagName("node");
 
-            //to print out stops
-            //PrintWriter pw = new PrintWriter(new FileWriter("output/stopListv2.csv", true));
-            //pw.println("stopId; stopName; lat; lon; bus; tram; subway; stopPositionFlag");
-
-
-
-
-            // to find stops in the OSM file
+            // to find nodes = stop_positions in the OSM file
             int numberStops = 0;
             //for (int i = 0; i < 5000; i++) {
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -73,6 +69,10 @@ public class ReadXmlFile {
                     //System.out.println(id);
                     String lat = nodeElement.getAttribute("lat");
                     String lon = nodeElement.getAttribute("lon");
+
+                    //this is only needed to store nodes to give coordinates to way-based stops
+                    nodeMap.put(id, new OSMNode(id, lon, lat));
+
                     String stopName = "null";
                     boolean bus = false;
                     boolean tram = false;
@@ -124,18 +124,71 @@ public class ReadXmlFile {
                     }
 
                 }
-
-
             }
 
+            System.out.println("The total number of nodes in the file is " + nodeMap.size());
+
+            //add additional stations that are coded as ways/platform
+            nodeList = doc.getElementsByTagName("way");
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element nodeElement = (Element) node;
+
+                    long id = Long.parseLong(nodeElement.getAttribute("id"));
+                    boolean stop = false;
+                    String stopName = "";
+                    long nodeId = 0L;
+                    boolean bus = false;
+                    boolean tram = false;
+                    boolean subway = false;
+
+
+                    NodeList childNodes = nodeElement.getChildNodes();
+                    for (int j = 0; j < childNodes.getLength(); j++) {
+                        Node childNode = childNodes.item(j);
+                        if (childNode.getNodeName().equals("tag")) {
+
+                            if (childNode.getAttributes().getLength() == 2) {
+                                String attributeName = childNode.getAttributes().item(0).getNodeValue();
+                                String attributeValue = childNode.getAttributes().item(1).getNodeValue();
+
+                                if (attributeName.equals("public_transport") & attributeValue.equals("platform")) {
+                                    stop = true;
+                                } else if (attributeName.equals("name")) {
+                                    stopName = attributeValue;
+                                } else if (attributeName.equals("tram") & attributeValue.equals("yes")) {
+                                    tram = true;
+                                } else if (attributeName.equals("subway") & attributeValue.equals("yes")) {
+                                    subway = true;
+                                } else if (attributeName.equals("bus") & attributeValue.equals("yes")) {
+                                    bus = true;
+                                }
+                            }
+                        } else if (childNode.getNodeName().equals("nd")) {
+                            String attributeValue = childNode.getAttributes().item(0).getNodeValue();
+                            nodeId = Long.parseLong(attributeValue);
+                        }
+                    }
+                    if (stop) {
+                        if (nodeMap.containsKey(nodeId)) {
+                            OSMNode osmNode = nodeMap.get(nodeId);
+                            TransitStop transitStop = new TransitStop(id, stopName, osmNode.getLat(), osmNode.getLon(), bus, tram, subway, false);
+                            stopMap.put(id, transitStop);
+                            listOfStops.add(transitStop);
+                            numberStops++;
+
+                            System.out.println("Stops: " + numberStops + " id: " + id + " name: " + stopName + " type: " + "WAY-PLATFORM");
+                        }
+                    }
+                }
+            }
             //pw.flush();
             //pw.close();
-
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
 
         return listOfStops;
@@ -189,13 +242,13 @@ public class ReadXmlFile {
                                 if (attributeName.equals("type") & attributeValue.equals("route")) {
                                     line = true;
                                 } else if (attributeName.equals("route") & attributeValue.equals("bus")) {
-                                    line=true;
+                                    line = true;
                                     bus = true;
                                 } else if (attributeName.equals("route") & attributeValue.equals("tram")) {
-                                    line=true;
+                                    line = true;
                                     tram = true;
                                 } else if (attributeName.equals("route") & attributeValue.equals("subway")) {
-                                    line=true;
+                                    line = true;
                                     subway = true;
                                 } else if (attributeName.equals("ref")) {
                                     lineName = attributeValue;
@@ -214,21 +267,21 @@ public class ReadXmlFile {
                         if (childNode.getNodeName().equals("member")) {
                             if (childNode.getAttributes().getLength() == 3) {
                                 //because not all relation > member have 3 attributes, they are not lines, but other type of relation in OSM
-                                String type="";
-                                String ref="";
-                                String role="";
-                                for (int itemNumber = 0; itemNumber < 3; itemNumber++){
-                                    if (childNode.getAttributes().item(itemNumber).getNodeName().equals("type")){
+                                String type = "";
+                                String ref = "";
+                                String role = "";
+                                for (int itemNumber = 0; itemNumber < 3; itemNumber++) {
+                                    if (childNode.getAttributes().item(itemNumber).getNodeName().equals("type")) {
                                         type = childNode.getAttributes().item(itemNumber).getNodeValue();
-                                    } else if (childNode.getAttributes().item(itemNumber).getNodeName().equals("ref")){
+                                    } else if (childNode.getAttributes().item(itemNumber).getNodeName().equals("ref")) {
                                         ref = childNode.getAttributes().item(itemNumber).getNodeValue();
-                                    } else if (childNode.getAttributes().item(itemNumber).getNodeName().equals("role")){
+                                    } else if (childNode.getAttributes().item(itemNumber).getNodeName().equals("role")) {
                                         role = childNode.getAttributes().item(itemNumber).getNodeValue();
                                     }
                                 }
 
-                                //the next adds every node as an stop
-                                if (type.equals("node")) {
+                                //the next adds every node/link as an stop
+                                if (type.equals("node") | (role.equals("platform") & type.equals("way"))) {
                                     long stopId = Long.parseLong(ref);
                                     //System.out.println(stopId);
                                     // the stop must be in the map of stops
@@ -239,7 +292,7 @@ public class ReadXmlFile {
                                         stopSequence++;
                                     }
 
-                                } else if (role.equals("") & type.equals("way")){
+                                } else if (role.equals("") & type.equals("way")) {
                                     Long linkId = Long.parseLong(ref);
                                     linkList.put(linkSequence, linkId);
                                     linkSequence++;

@@ -13,6 +13,8 @@ public class TransitTrip {
     private int frequencyInSeconds = 0;
     private Map <Integer, TransitStopToStop> stopToStopList = new HashMap<Integer, TransitStopToStop>();
 
+    private int sidingLink;
+
     private TransitTrip opposingTrip;
 
     public TransitTrip(int departureTimeSeconds, int frequencyInSeconds, TransitLine transitLine) {
@@ -46,8 +48,15 @@ public class TransitTrip {
     public TransitTrip getOpposingTrip() {
         return opposingTrip;
     }
-
     public void setOpposingTrip(TransitTrip opposingTrip) {
         this.opposingTrip = opposingTrip;
+    }
+
+    public int getSidingLink() {
+        return sidingLink;
+    }
+
+    public void setSidingLink(int sidingLink) {
+        this.sidingLink = sidingLink;
     }
 }

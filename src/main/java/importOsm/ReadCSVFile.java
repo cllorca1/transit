@@ -117,7 +117,7 @@ public class ReadCSVFile {
             }
             rowMap.put(rowMap.size(), rowMap.get(1));
 
-            System.out.println(lines);
+            //System.out.println(lines);
 
             String[] row1 = rowMap.get(1);
             long lineId = Long.parseLong(row1[0]);
@@ -128,13 +128,15 @@ public class ReadCSVFile {
             boolean tram = Boolean.parseBoolean(row1[5]);
             boolean subway = Boolean.parseBoolean(row1[6]);
             int sequenceNumber = Integer.parseInt(row1[7]);
+            int reSequenceNumber = 0;
             long stopId = Long.parseLong(row1[8]);
             Map<Integer, TransitStop> stopList = new HashMap<Integer, TransitStop>();
 
             if (stopMap.get(stopId) != null) {
                 TransitStop transitStop = stopMap.get(stopId);
-                stopList.put(sequenceNumber, transitStop);
-
+                //stopList.put(sequenceNumber, transitStop);
+                stopList.put(reSequenceNumber, transitStop);
+                reSequenceNumber++;
                 transitStop.addLine(lineRef, lineId);
             }
 
@@ -150,7 +152,9 @@ public class ReadCSVFile {
                     if (stopMap.get(stopId) != null) {
                         stopId = Long.parseLong(currentRow[8]);
                         transitStop = stopMap.get(stopId);
-                        stopList.put(sequenceNumber, transitStop);
+                        //stopList.put(sequenceNumber, transitStop);
+                        stopList.put(reSequenceNumber, transitStop);
+                        reSequenceNumber++;
                         //System.out.println(lineRef + transitStop.getStopName());
                         transitStop.addLine(lineRef, lineId);
                     }
@@ -171,6 +175,7 @@ public class ReadCSVFile {
                     tram = Boolean.parseBoolean(currentRow[5]);
                     subway = Boolean.parseBoolean(currentRow[6]);
                     sequenceNumber = Integer.parseInt(currentRow[7]);
+                    reSequenceNumber =0;
                     stopId = Long.parseLong(currentRow[8]);
 
                     TransitStop transitStop;
@@ -178,7 +183,9 @@ public class ReadCSVFile {
                     if (stopMap.get(stopId) != null) {
                         stopId = Long.parseLong(currentRow[8]);
                         transitStop = stopMap.get(stopId);
-                        stopList.put(sequenceNumber, transitStop);
+                        //stopList.put(sequenceNumber, transitStop);
+                        stopList.put(reSequenceNumber, transitStop);
+                        reSequenceNumber++;
                         transitStop.addLine(lineRef, lineId);
                     }
 
@@ -220,7 +227,7 @@ public class ReadCSVFile {
             }
             //rowMap.put(rowMap.size(),rowMap.get(1));
 
-            System.out.println(lines);
+            //System.out.println(lines);
 
             String[] row1 = rowMap.get(1);
             long lineId = Long.parseLong(row1[0]);
@@ -304,65 +311,67 @@ public class ReadCSVFile {
             }
             //rowMap.put(rowMap.size(),rowMap.get(1));
 
-            System.out.println(lines);
+            //System.out.println(lines);
 
-            //get line 1
-            String[] row1 = rowMap.get(1);
-            long lineId = Long.parseLong(row1[0]);
-            TransitLine transitLine = lineMap.get(lineId);
+            if(rowMap.size()>1) {
 
-            long fromStopId = Long.parseLong(row1[2]);
-            long toStopId = Long.parseLong(row1[4]);
-            TransitStop fromStop = stopMap.get(fromStopId);
-            TransitStop toStop = stopMap.get(toStopId);
+                //get line 1
+                String[] row1 = rowMap.get(1);
+                long lineId = Long.parseLong(row1[0]);
+                TransitLine transitLine = lineMap.get(lineId);
 
-            int departureTime = Integer.parseInt(row1[6]);
-            int arrivalTime = Integer.parseInt(row1[7]);
-            int sequence = 0;
+                long fromStopId = Long.parseLong(row1[2]);
+                long toStopId = Long.parseLong(row1[4]);
+                TransitStop fromStop = stopMap.get(fromStopId);
+                TransitStop toStop = stopMap.get(toStopId);
 
-            TransitStopToStop transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTime, departureTime);
-            Map<Integer,TransitStopToStop> stopToStopMap = new HashMap<Integer, TransitStopToStop>();
-            stopToStopMap.put(sequence, transitStopToStop);
-            sequence++;
+                int departureTime = Integer.parseInt(row1[6]);
+                int arrivalTime = Integer.parseInt(row1[7]);
+                int sequence = 0;
 
-            //read lines 1 to N
+                TransitStopToStop transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTime, departureTime);
+                Map<Integer, TransitStopToStop> stopToStopMap = new HashMap<Integer, TransitStopToStop>();
+                stopToStopMap.put(sequence, transitStopToStop);
+                sequence++;
 
-            for (int i = 2; i < rowMap.size(); i++) {
-                String[] currentRow = rowMap.get(i);
-                long currentLineId = Long.parseLong(currentRow[0]);
-                if (lineId == currentLineId) {
-                    //still in the same transit line
-                    fromStop = stopMap.get(Long.parseLong(currentRow[2]));
-                    toStop = stopMap.get(Long.parseLong(currentRow[4]));
-                    departureTime = Integer.parseInt(currentRow[6]);
-                    arrivalTime = Integer.parseInt(currentRow[7]);
+                //read lines 1 to N
 
-                    transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTime, departureTime);
-                    stopToStopMap.put(sequence, transitStopToStop);
-                    sequence++;
+                for (int i = 2; i < rowMap.size(); i++) {
+                    String[] currentRow = rowMap.get(i);
+                    long currentLineId = Long.parseLong(currentRow[0]);
+                    if (lineId == currentLineId) {
+                        //still in the same transit line
+                        fromStop = stopMap.get(Long.parseLong(currentRow[2]));
+                        toStop = stopMap.get(Long.parseLong(currentRow[4]));
+                        departureTime = Integer.parseInt(currentRow[6]);
+                        arrivalTime = Integer.parseInt(currentRow[7]);
 
-                } else {
-                    //found a new transit line
-                    TransitTrip transitTrip= new TransitTrip(transitLine, stopToStopMap.get(0).getDepartureTime(), stopToStopMap);
-                    listOfTrips.add(transitTrip);
-                    stopToStopMap = new HashMap<Integer, TransitStopToStop>();
-                    sequence = 0;
+                        transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTime, departureTime);
+                        stopToStopMap.put(sequence, transitStopToStop);
+                        sequence++;
 
-                    lineId=Long.parseLong(currentRow[0]);
-                    transitLine = lineMap.get(lineId);
-                    fromStop = stopMap.get(Long.parseLong(currentRow[2]));
-                    toStop = stopMap.get(Long.parseLong(currentRow[4]));
-                    departureTime = Integer.parseInt(currentRow[6]);
-                    arrivalTime = Integer.parseInt(currentRow[7]);
-                    transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTime, departureTime);
-                    stopToStopMap.put(sequence, transitStopToStop);
-                    sequence++;
+                    } else {
+                        //found a new transit line
+                        TransitTrip transitTrip = new TransitTrip(transitLine, stopToStopMap.get(0).getDepartureTime(), stopToStopMap);
+                        listOfTrips.add(transitTrip);
+                        stopToStopMap = new HashMap<Integer, TransitStopToStop>();
+                        sequence = 0;
+
+                        lineId = Long.parseLong(currentRow[0]);
+                        transitLine = lineMap.get(lineId);
+                        fromStop = stopMap.get(Long.parseLong(currentRow[2]));
+                        toStop = stopMap.get(Long.parseLong(currentRow[4]));
+                        departureTime = Integer.parseInt(currentRow[6]);
+                        arrivalTime = Integer.parseInt(currentRow[7]);
+                        transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTime, departureTime);
+                        stopToStopMap.put(sequence, transitStopToStop);
+                        sequence++;
+                    }
                 }
+
+                TransitTrip transitTrip = new TransitTrip(transitLine, stopToStopMap.get(0).getDepartureTime(), stopToStopMap);
+                listOfTrips.add(transitTrip);
             }
-
-            TransitTrip transitTrip = new TransitTrip(transitLine, stopToStopMap.get(0).getDepartureTime(), stopToStopMap);
-            listOfTrips.add(transitTrip);
-
 
 
         } catch (FileNotFoundException e) {

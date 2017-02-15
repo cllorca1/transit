@@ -37,7 +37,7 @@ public class WriteLinesFile {
                 String lastStopName = "";
                 for (int sequence : stopList.keySet()) {
                     //check and if different substitute lastStopName by currentStopName
-                    if(!stopList.get(sequence).getStopName().equals(lastStopName)) {
+                    if(!stopList.get(sequence).getStopName().equals(lastStopName) |stopList.get(sequence).getStopName().equals("")) {
                         lastStopName = stopList.get(sequence).getStopName();
                         pw.println(transitLine.getLineId() + ";"
                                 + transitLine.getLineName() + ";"

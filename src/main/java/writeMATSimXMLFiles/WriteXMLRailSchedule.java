@@ -18,7 +18,8 @@ public class WriteXMLRailSchedule {
 
     public void writeXMLRailSchedule(ArrayList<TransitTrip> listOfTrips, String vehicleFileName, String scheduleFileName) {
 
-        String networkPrefix = "";
+        WriteXMLRailNetwork writeXMLRailNetwork = new WriteXMLRailNetwork();
+        String networkPrefix = writeXMLRailNetwork.getNetworkPrefix();
 
         try {
 
@@ -46,7 +47,7 @@ public class WriteXMLRailSchedule {
 
 
             pw.println("<transitStops>");
-            //TODO loop along transit trip transitStopToStop instead
+            //TODO loop along transit trip transitStopToStop instead (?)
             for (TransitTrip transitTrip : listOfTrips){
                 for (int i : transitTrip.getStopToStopList().keySet()){
                     if (i==0){
@@ -56,11 +57,15 @@ public class WriteXMLRailSchedule {
                         pw.print(transitTrip.getStopToStopList().get(i).getOrigTransitStop().getX());
                         pw.print("\" y=\"");
                         pw.print(transitTrip.getStopToStopList().get(i).getOrigTransitStop().getY());
-                        pw.print("\" linkRefId=\"pt"+ networkPrefix);
-                        //pw.print(transitTrip.getStopToStopList().get(i).getNetworkLink());
-                        //writes as link the last link of the other direction
-                        int lastOpposingStopSequence = transitTrip.getOpposingTrip().getStopToStopList().size();
-                        pw.print(transitTrip.getOpposingTrip().getStopToStopList().get(lastOpposingStopSequence-1).getNetworkLink());
+                        //discontinued
+                        //pw.print("\" linkRefId=\"pt"+ networkPrefix);
+                        // writes as link the last link of the other direction
+                        //int lastOpposingStopSequence = transitTrip.getOpposingTrip().getStopToStopList().size();
+                        //pw.print(transitTrip.getOpposingTrip().getStopToStopList().get(lastOpposingStopSequence-1).getNetworkLink());
+                        //new version
+                        // writes as link 0 the siding link
+                        pw.print("\" linkRefId=\"ptExtra"+ networkPrefix);
+                        pw.print(transitTrip.getSidingLink());
                         pw.print("\" name=\"");
                         pw.print(transitTrip.getStopToStopList().get(i).getOrigTransitStop().getStopName());
                         pw.println("\" />");
@@ -93,8 +98,6 @@ public class WriteXMLRailSchedule {
 
                 for (int i : transitTrip.getStopToStopList().keySet()) {
                     // fill route profile (times)
-
-
                     TransitStopToStop stopToStop = transitTrip.getStopToStopList().get(i);
 
                     if (i == 0) {
@@ -166,11 +169,14 @@ public class WriteXMLRailSchedule {
                     if (i == 0) {
                         //writes departure from the first segment to dest
                         //todo may need to change to accept non bi-directional lines
-                        //stopToStop.getOrigTransitStop().getNetworkLink();
-                        pw.print("<link refId=\"pt" + networkPrefix);
-                        int lastOpposingStopSequence = transitTrip.getOpposingTrip().getStopToStopList().size();
-                        pw.print(transitTrip.getOpposingTrip().getStopToStopList().get(lastOpposingStopSequence-1).getNetworkLink());
+                        //discontinued
+                        //pw.print("<link refId=\"pt" + networkPrefix);
+                        //int lastOpposingStopSequence = transitTrip.getOpposingTrip().getStopToStopList().size();
+                        //pw.print(transitTrip.getOpposingTrip().getStopToStopList().get(lastOpposingStopSequence-1).getNetworkLink());
                         //pw.print(stopToStop.getNetworkLink());
+                        //new version
+                        pw.print("<link refId=\"ptExtra" + networkPrefix);
+                        pw.print(transitTrip.getSidingLink());
                         pw.println("\" />");
                     }
                     pw.print("<link refId=\"pt" + networkPrefix);

@@ -28,6 +28,8 @@ public class GetTransitTravelTime {
           directionsResult = DirectionsApi.newRequest(context)
                   .units(Unit.METRIC)
                   .mode(TravelMode.TRANSIT)
+                  .transitMode(TransitMode.BUS)
+                  .transitRoutingPreference(TransitRoutingPreference.LESS_WALKING)
                   .origin(origin)
                   .departureTime(timeOfDay)
                   .destination(destination).await();
