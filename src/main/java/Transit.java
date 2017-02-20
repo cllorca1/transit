@@ -2,6 +2,7 @@
 
 import com.sun.jndi.dns.ResourceRecord;
 import geocoding.Geocode;
+import geocoding.GetTravelTimeBetweenPoints;
 import importOsm.ReadCSVFile;
 import importOsm.ReadXmlFile;
 import sun.security.tools.keytool.Resources_sv;
@@ -10,6 +11,7 @@ import transitSystem.TransitStop;
 import transitSystem.TransitTrip;
 import travelTimeFromGoogle.LineFrequency;
 import travelTimeFromGoogle.TravelTimeFromGoogle;
+import travelTimeFromGoogle.TravelTimeMatrixFromGoogle;
 import writeMATSimXMLFiles.TransformCoordinates;
 import writeMATSimXMLFiles.WriteXMLRaiFiles;
 import writeOutputFiles.WriteOutputs;
@@ -42,6 +44,9 @@ public class Transit {
 
         File propFile = new File("transit.properties");
 
+
+
+
         ResourceBundle rb = null;
         try {
             InputStream inputStream = new FileInputStream(propFile);
@@ -53,6 +58,13 @@ public class Transit {
             e.printStackTrace();
         }
 
+        //travel time by bike
+        /*GetTravelTimeBetweenPoints ttBike = new GetTravelTimeBetweenPoints(rb);
+        try {
+            ttBike.getBicycleTimes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
 
        //additional tool to geocode addresses: address to coordinates
         //Geocode geocode = new Geocode(rb);
@@ -86,6 +98,13 @@ public class Transit {
             TravelTimeFromGoogle travelTimeFromGoogle = new TravelTimeFromGoogle(rb);
             travelTimeFromGoogle.getTimes(listOfLines);
             listOfTrips = travelTimeFromGoogle.getListOfTrips();
+        }
+
+        boolean getTimesUsingMatrix= Boolean.parseBoolean(rb.getString("get.times.matrix"));
+        if (getTimesUsingMatrix) {
+            TravelTimeMatrixFromGoogle travelTimeMAtrixFromGoogle = new TravelTimeMatrixFromGoogle(rb);
+            travelTimeMAtrixFromGoogle.getTimesFromMatrix(listOfLines);
+            listOfTrips = travelTimeMAtrixFromGoogle.getListOfTrips();
         }
 
         boolean getFrequencies = Boolean.parseBoolean(rb.getString("get.frequencies"));

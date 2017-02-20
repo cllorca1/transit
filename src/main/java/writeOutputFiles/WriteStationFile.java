@@ -23,10 +23,24 @@ public class WriteStationFile {
 
 
             System.out.println("Writing output file for " + listOfStops.size() + " stations.");
-
+            boolean writeAllStops = false;
             for (TransitStop transitStop : listOfStops) {
-                //the next loop writes as many times the stop as lines stop at, and does not write non-served stops
-                for (String line : transitStop.getLines()) {
+                //the next loop writes as many times the stop as lines stop at, and does not write non-served stops if writeAllStops = false
+
+                if (writeAllStops) {
+                    for (String line : transitStop.getLines()) {
+                        pw.println(transitStop.getStopId() + ";"
+                                + transitStop.getStopName() + ";"
+                                + transitStop.getLat() + ";"
+                                + transitStop.getLon() + ";"
+                                + transitStop.isBus() + ";"
+                                + transitStop.isTram() + ";"
+                                + transitStop.isSubway() + ";"
+                                + transitStop.isStopPositionFlag()
+                                + ";" + line + ";"
+                                + transitStop.getLineIds().get(transitStop.getLines().indexOf(line)));
+                    }
+                } else {
                     pw.println(transitStop.getStopId() + ";"
                             + transitStop.getStopName() + ";"
                             + transitStop.getLat() + ";"
@@ -34,10 +48,7 @@ public class WriteStationFile {
                             + transitStop.isBus() + ";"
                             + transitStop.isTram() + ";"
                             + transitStop.isSubway() + ";"
-                            + transitStop.isStopPositionFlag()
-                            //discarded because lines are not properly assigned
-                            + ";" + line + ";"
-                            + transitStop.getLineIds().get(transitStop.getLines().indexOf(line)));
+                            + transitStop.isStopPositionFlag());
                 }
             }
 
