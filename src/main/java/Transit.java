@@ -1,24 +1,19 @@
 
 
-import com.sun.jndi.dns.ResourceRecord;
-import geocoding.Geocode;
-import geocoding.GetTravelTimeBetweenPoints;
+import consistencyChecker.TransitDataChecker;
 import importOsm.ReadCSVFile;
 import importOsm.ReadXmlFile;
-import sun.security.tools.keytool.Resources_sv;
 import transitSystem.TransitLine;
 import transitSystem.TransitStop;
 import transitSystem.TransitTrip;
 import travelTimeFromGoogle.LineFrequency;
 import travelTimeFromGoogle.TravelTimeFromGoogle;
 import travelTimeFromGoogle.TravelTimeMatrixFromGoogle;
-import writeMATSimXMLFiles.TransformCoordinates;
 import writeMATSimXMLFiles.WriteXMLRaiFiles;
 import writeOutputFiles.WriteOutputs;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.ListIterator;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
@@ -101,7 +96,7 @@ public class Transit {
 
 
         boolean manualFilters = true;
-        char mode = 'b';
+        char mode = 't';
 
 
         ArrayList<TransitTrip> newListOfTrips = new ArrayList<TransitTrip>();
@@ -133,6 +128,7 @@ public class Transit {
                     }
                     break;
                 case 't':
+                    newListOfTrips = listOfTrips;
                     break;
             }
 
@@ -165,6 +161,12 @@ public class Transit {
             lineFrequency.getLineFrequency(listOfLines);
             listOfTrips = lineFrequency.getListOfTrips();
         }
+
+
+        TransitDataChecker transitDataChecker = new TransitDataChecker();
+        transitDataChecker.load(listOfStops, listOfLines, listOfTrips);
+        transitDataChecker.check();
+
 
         boolean writeOutputFiles = Boolean.parseBoolean(rb.getString("write.output.CSV"));
         //write outputs
