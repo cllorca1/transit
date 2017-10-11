@@ -67,7 +67,7 @@ public class WriteXMLRailSchedule {
                         pw.print("\" linkRefId=\"ptExtra"+ networkPrefix);
                         pw.print(transitTrip.getSidingLink());
                         pw.print("\" name=\"");
-                        pw.print(transitTrip.getStopToStopList().get(i).getOrigTransitStop().getStopName());
+                        pw.print(transitTrip.getStopToStopList().get(i).getOrigTransitStop().getStopName().replace("\"","-" ));
                         pw.println("\" />");
                     }
                     pw.print("<stopFacility id=\"");
@@ -79,7 +79,7 @@ public class WriteXMLRailSchedule {
                     pw.print("\" linkRefId=\"pt" + networkPrefix);
                     pw.print(transitTrip.getStopToStopList().get(i).getNetworkLink());
                     pw.print("\" name=\"");
-                    pw.print(transitTrip.getStopToStopList().get(i).getDestTransitStop().getStopName());
+                    pw.print(transitTrip.getStopToStopList().get(i).getDestTransitStop().getStopName().replace("\"","-" ));
                     pw.println("\" />");
                 }
             }
