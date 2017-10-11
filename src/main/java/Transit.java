@@ -18,6 +18,7 @@ import writeOutputFiles.WriteOutputs;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
@@ -31,22 +32,18 @@ import java.util.ResourceBundle;
 public class Transit {
 
     private ResourceBundle rb;
-    private static ArrayList<TransitStop> listOfStops = new ArrayList<TransitStop>();
-    private static ArrayList<TransitLine> listOfLines = new ArrayList<TransitLine>();
-    private static ArrayList<TransitTrip> listOfTrips = new ArrayList<TransitTrip>();
+    private ArrayList<TransitStop> listOfStops = new ArrayList<TransitStop>();
+    private ArrayList<TransitLine> listOfLines = new ArrayList<TransitLine>();
+    private ArrayList<TransitTrip> listOfTrips = new ArrayList<TransitTrip>();
 
 
     private Transit (ResourceBundle rb){
         this.rb=rb;
     }
 
-    public static void main (String[] args){
+    public static void main (String[] args) {
 
         File propFile = new File("transit.properties");
-
-
-
-
         ResourceBundle rb = null;
         try {
             InputStream inputStream = new FileInputStream(propFile);
@@ -57,6 +54,14 @@ public class Transit {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Transit t = new Transit(rb);
+        t.runTransitTools();
+
+    }
+
+    public void runTransitTools(){
+
 
         //travel time by bike
         /*GetTravelTimeBetweenPoints ttBike = new GetTravelTimeBetweenPoints(rb);
@@ -89,9 +94,56 @@ public class Transit {
             listOfTrips = readCSVFile.getListOfTrips();
             System.out.println(listOfStops.size() + " stops read from csv");
             System.out.println(listOfLines.size() + " lines read from csv");
+            System.out.println(listOfTrips.size() + " trips read from csv");
 
 
         }
+
+
+        boolean manualFilters = true;
+        char mode = 'b';
+
+
+        ArrayList<TransitTrip> newListOfTrips = new ArrayList<TransitTrip>();
+
+        if (manualFilters){
+            switch (mode){
+                case 'b':
+
+                    for (int i = 0; i < listOfTrips.size(); i++){
+                        TransitTrip trip = listOfTrips.get(i);
+                        TransitLine line = trip.getTransitLine();
+                        if (line.isSubway() || line.isTram() || (!line.isSubway() && !line.isBus() && !line.isTram())){
+                            //is a metro or a tram or a train -- >
+
+                        } else {
+                            newListOfTrips.add(trip);
+                        }
+                    }
+                    break;
+                case 'm':
+                   for (int i = 0; i < listOfTrips.size(); i++){
+                       TransitTrip trip = listOfTrips.get(i);
+                       TransitLine line = trip.getTransitLine();
+                       if (!line.isBus() && !line.isTram() && !line.isSubway()){
+                            //is a train --> remove
+                       } else {
+                           newListOfTrips.add(trip);
+                       }
+                    }
+                    break;
+                case 't':
+                    break;
+            }
+
+            System.out.println(newListOfTrips.size() + " trips after applying filters");
+        }
+
+        listOfTrips = newListOfTrips;
+
+
+
+
 
         boolean getTimes= Boolean.parseBoolean(rb.getString("get.times"));
         if (getTimes) {
