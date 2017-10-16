@@ -55,7 +55,7 @@ public class IntersectionChecker implements Checker {
                 errCount++;
                 long lineid = trip.getTransitLine().getLineId();
                 String lineName = trip.getTransitLine().getLineName();
-                logger.warn("The line " + lineName + "-" + lineid + " has intersecting segments");
+                logger.warn("The line " + lineName + "%" + lineid + "%  has intersecting segments");
             }
         }
 

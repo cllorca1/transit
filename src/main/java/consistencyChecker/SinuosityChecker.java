@@ -51,7 +51,7 @@ public class SinuosityChecker implements Checker {
                 errCount++;
                 long lineid = trip.getTransitLine().getLineId();
                 String lineName = trip.getTransitLine().getLineName();
-                logger.warn("The line " + lineName + "-" + lineid + " is too sinuous");
+                logger.warn("The line " + lineName + "%" + lineid + "% is too sinuous");
             }
 
 

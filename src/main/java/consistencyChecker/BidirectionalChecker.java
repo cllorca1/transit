@@ -52,7 +52,7 @@ public class BidirectionalChecker implements Checker {
                 long lineid = transitTrip.getTransitLine().getLineId();
                 String lineName = transitTrip.getTransitLine().getLineName();
 
-                logger.warn("The line " + lineName + "-" + lineid + " does not have an opposing direction line");
+                logger.warn("The line " + lineName + "%" + lineid + "%  does not have an opposing direction line");
                 errCount ++;
 
             }
