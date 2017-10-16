@@ -14,12 +14,15 @@ public class SinuosityChecker implements Checker {
     private ArrayList<TransitLine> listOfLines;
     private ArrayList<TransitTrip> listOfTrips;
     private static Logger logger = Logger.getLogger(SinuosityChecker.class);
+    private double alpha;
 
 
     public void load(ArrayList<TransitStop> listOfStops, ArrayList<TransitLine> listOfLines, ArrayList<TransitTrip> listOfTrips) {
         this.listOfStops = listOfStops;
         this.listOfLines = listOfLines;
         this.listOfTrips = listOfTrips;
+        alpha = 1.9;
+
     }
 
     public void check() {
@@ -37,7 +40,7 @@ public class SinuosityChecker implements Checker {
                     if (!stop1.equals(stop3) && !stop2.equals(stop3)){
                         double distance13 = getDistanceFromStops(stop1,stop3) ;
                         double distance32 = getDistanceFromStops(stop3,stop2);
-                        if (distance12 > distance13 && distance12 > distance32){
+                        if (distance12 > distance13*alpha && distance12 > distance32*alpha){
                             error = true;
                         }
 
