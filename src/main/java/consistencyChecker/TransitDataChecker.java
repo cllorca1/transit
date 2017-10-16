@@ -21,6 +21,8 @@ private static Logger logger = Logger.getLogger(TransitDataChecker.class);
         sinuosityChecker = new SinuosityChecker();
         stopOrderChecker = new StopOrderChecker();
 
+        stopOrderChecker.setReportFileName("./output/check/stopOrder.csv");
+
     }
 
     public void load(ArrayList<TransitStop> listOfStops, ArrayList<TransitLine> listOfLines, ArrayList<TransitTrip> listOfTrips) {
