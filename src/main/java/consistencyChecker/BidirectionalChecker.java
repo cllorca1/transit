@@ -33,14 +33,9 @@ public class BidirectionalChecker implements Checker {
                 String origin2 = opposingTrip.getStopToStopList().get(0).getOrigTransitStop().getStopName();
                 String dest2 = opposingTrip.getStopToStopList().get(opposingTrip.getStopToStopList().size()-1).getDestTransitStop().getStopName();
 
-
-
-                if( origin1.equals(dest2) & origin2.equals(dest1) ){
-
+                if( origin1.equals(dest2) && origin2.equals(dest1) ){
                     transitTrip.setOpposingTrip(opposingTrip);
                 }
-
-
             }
 
 

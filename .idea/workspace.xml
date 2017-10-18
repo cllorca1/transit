@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c7cc846-68ef-49cc-95a7-e0afa181f2e2" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_julienchastang_charts4j_master_charts4j_1_3_g19518f2_5.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/consistencyChecker/StopOrderChecker.java" afterPath="$PROJECT_DIR$/src/main/java/consistencyChecker/StopOrderChecker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/consistencyChecker/TransitDataChecker.java" afterPath="$PROJECT_DIR$/src/main/java/consistencyChecker/TransitDataChecker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Transit.java" afterPath="$PROJECT_DIR$/src/main/java/Transit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/consistencyChecker/BidirectionalChecker.java" afterPath="$PROJECT_DIR$/src/main/java/consistencyChecker/BidirectionalChecker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/transit.iml" afterPath="$PROJECT_DIR$/transit.iml" />
     </list>
     <ignored path="transit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,28 +31,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Transit.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Transit.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Transit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-170">
-              <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="171" column="9" lean-forward="false" selection-start-line="171" selection-start-column="9" selection-end-line="171" selection-end-column="9" />
               <folding>
-                <element signature="e#729#742#0" expanded="true" />
-                <element signature="e#808#821#0" expanded="true" />
-                <element signature="e#887#900#0" expanded="true" />
                 <element signature="e#945#946#0" expanded="true" />
                 <element signature="e#971#972#0" expanded="true" />
-                <element signature="e#3054#3067#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TransitDataChecker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/consistencyChecker/TransitDataChecker.java">
+      <file leaf-file-name="GetTransitTravelTime.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/travelTimeFromGoogle/GetTransitTravelTime.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+            <state relative-caret-position="323">
+              <caret line="21" column="34" lean-forward="false" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,24 +56,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TransitLine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/transitSystem/TransitLine.java">
+      <file leaf-file-name="TravelTimeFromGoogle.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/travelTimeFromGoogle/TravelTimeFromGoogle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="74" column="18" lean-forward="false" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
+            <state relative-caret-position="187">
+              <caret line="43" column="76" lean-forward="false" selection-start-line="43" selection-start-column="76" selection-end-line="43" selection-end-column="76" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BidirectionalChecker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/consistencyChecker/BidirectionalChecker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="54" column="68" lean-forward="false" selection-start-line="54" selection-start-column="68" selection-end-line="54" selection-end-column="68" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -83,7 +70,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/consistencyChecker/IntersectionChecker.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="63" column="84" lean-forward="true" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="84" />
+              <caret line="63" column="84" lean-forward="false" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="84" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,16 +78,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StopOrderChecker.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StopOrderChecker.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/consistencyChecker/StopOrderChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="97" column="70" lean-forward="true" selection-start-line="97" selection-start-column="70" selection-end-line="97" selection-end-column="70" />
+            <state relative-caret-position="402">
+              <caret line="95" column="54" lean-forward="false" selection-start-line="95" selection-start-column="43" selection-end-line="95" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1118#1119#0" expanded="true" />
-                <element signature="e#1170#1171#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReadCSVFile.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/importOsm/ReadCSVFile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="65" column="48" lean-forward="false" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -109,21 +104,8 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/writeOutputFiles/WriteLinesFile.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="64" column="9" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="64" selection-end-column="9" />
+              <caret line="64" column="9" lean-forward="true" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TransitTrip.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/transitSystem/TransitTrip.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding>
-                <element signature="e#1463#1464#0" expanded="true" />
-                <element signature="e#1498#1499#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -131,21 +113,11 @@
       <file leaf-file-name="SinuosityChecker.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/consistencyChecker/SinuosityChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="1071">
               <caret line="70" column="5" lean-forward="false" selection-start-line="64" selection-start-column="4" selection-end-line="70" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AssignOpposing.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/AssignOpposing.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="38" column="9" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="38" selection-end-column="9" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -165,6 +137,7 @@
       <find>337067</find>
       <find>println</find>
       <find>1973855</find>
+      <find>Total number of errors 'absence of opposing line'</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -220,7 +193,6 @@
         <option value="$PROJECT_DIR$/src/main/java/travelTimeFromGoogle/GetTransitTravelTime.java" />
         <option value="$PROJECT_DIR$/src/main/java/geocoding/GetTravelTimeBetweenPoints.java" />
         <option value="$PROJECT_DIR$/src/main/java/writeOutputFiles/WriteStationFile.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/transitSystem/TransitTrip.java" />
         <option value="$PROJECT_DIR$/src/main/java/travelTimeFromGoogle/TravelTimeFromGoogle.java" />
         <option value="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java" />
@@ -229,15 +201,16 @@
         <option value="$PROJECT_DIR$/src/main/java/consistencyChecker/Checker.java" />
         <option value="$PROJECT_DIR$/src/main/java/consistencyChecker/Sinuosity.java" />
         <option value="$PROJECT_DIR$/src/main/java/consistencyChecker/ConsistencyChecker.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Transit.java" />
         <option value="$PROJECT_DIR$/src/main/java/consistencyChecker/EndStationChecker.java" />
         <option value="$PROJECT_DIR$/src/main/resources/log4j.xml" />
         <option value="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java" />
-        <option value="$PROJECT_DIR$/src/main/java/consistencyChecker/BidirectionalChecker.java" />
         <option value="$PROJECT_DIR$/src/main/java/consistencyChecker/IntersectionChecker.java" />
         <option value="$PROJECT_DIR$/src/main/java/consistencyChecker/SinuosityChecker.java" />
         <option value="$PROJECT_DIR$/src/main/java/consistencyChecker/TransitDataChecker.java" />
         <option value="$PROJECT_DIR$/src/main/java/consistencyChecker/StopOrderChecker.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/consistencyChecker/BidirectionalChecker.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Transit.java" />
       </list>
     </option>
   </component>
@@ -257,7 +230,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="1912" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -301,9 +274,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -335,55 +306,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="consistencyChecker" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="transit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="transit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="geocoding" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="transit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="transit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="importOsm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="transit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="transit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="transitSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="transit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="transit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="travelTimeFromGoogle" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="transit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="transit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="writeMATSimXMLFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="transit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="transit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="writeOutputFiles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="transit" type="b2602c69:ProjectViewProjectNode" />
@@ -399,43 +322,43 @@
             <path>
               <item name="transit" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Maven: com.github.julienchastang:charts4j:master-charts4j-1.3-g19518f2-5" type="70bed36:NamedLibraryElementNode" />
             </path>
             <path>
               <item name="transit" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="Maven: com.github.julienchastang:charts4j:master-charts4j-1.3-g19518f2-5" type="70bed36:NamedLibraryElementNode" />
+              <item name="charts4j-master-charts4j-1.3-g19518f2-5.jar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="transit" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Maven: com.github.julienchastang:charts4j:master-charts4j-1.3-g19518f2-5" type="70bed36:NamedLibraryElementNode" />
+              <item name="charts4j-master-charts4j-1.3-g19518f2-5.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="charts4j" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="transit" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="awt" type="462c0819:PsiDirectoryNode" />
+              <item name="Maven: com.github.julienchastang:charts4j:master-charts4j-1.3-g19518f2-5" type="70bed36:NamedLibraryElementNode" />
+              <item name="charts4j-master-charts4j-1.3-g19518f2-5.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="transit" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="awt" type="462c0819:PsiDirectoryNode" />
-              <item name="geom" type="462c0819:PsiDirectoryNode" />
+              <item name="Maven: com.github.julienchastang:charts4j:master-charts4j-1.3-g19518f2-5" type="70bed36:NamedLibraryElementNode" />
+              <item name="charts4j-master-charts4j-1.3-g19518f2-5.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="charts4j" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -901,7 +824,14 @@
       <option name="project" value="LOCAL" />
       <updated>1508165635551</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="improve order of stops checking">
+      <created>1508168911318</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1508168911318</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView">
@@ -914,7 +844,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.4978678" order="6" side_tool="false" content_ui="tabs" />
@@ -924,7 +855,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2716702" sideWeight="0.5127932" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1734375" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35536295" sideWeight="0.48720682" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35536295" sideWeight="0.48720682" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1008,7 +939,8 @@
     <MESSAGE value="implement check methods for transit data" />
     <MESSAGE value="change output for check methods" />
     <MESSAGE value="added stop order checker" />
-    <option name="LAST_COMMIT_MESSAGE" value="added stop order checker" />
+    <MESSAGE value="improve order of stops checking" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve order of stops checking" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1133,26 +1065,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/writeOutputFiles/WriteTripFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/travelTimeFromGoogle/GetTransitTravelTime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="25" lean-forward="false" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -1165,26 +1081,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/travelTimeFromGoogle/TravelTimeFromGoogle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="50" column="54" lean-forward="false" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/importOsm/ReadCSVFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="56" column="26" lean-forward="false" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1202,21 +1102,6 @@
         <state relative-caret-position="181">
           <caret line="539" column="17" lean-forward="false" selection-start-line="539" selection-start-column="17" selection-end-line="539" selection-end-column="17" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Transit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-170">
-          <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
-          <folding>
-            <element signature="e#729#742#0" expanded="true" />
-            <element signature="e#808#821#0" expanded="true" />
-            <element signature="e#887#900#0" expanded="true" />
-            <element signature="e#945#946#0" expanded="true" />
-            <element signature="e#971#972#0" expanded="true" />
-            <element signature="e#3054#3067#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1286,25 +1171,15 @@
         <state relative-caret-position="119">
           <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
-            <element signature="e#1463#1464#0" expanded="true" />
-            <element signature="e#1498#1499#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/consistencyChecker/BidirectionalChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="54" column="68" lean-forward="false" selection-start-line="54" selection-start-column="68" selection-end-line="54" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1463#1464#0" expanded="false" />
+            <element signature="e#1498#1499#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/consistencyChecker/SinuosityChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
+        <state relative-caret-position="1071">
           <caret line="70" column="5" lean-forward="false" selection-start-line="64" selection-start-column="4" selection-end-line="70" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1320,28 +1195,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/consistencyChecker/IntersectionChecker.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="63" column="84" lean-forward="true" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="84" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/writeOutputFiles/WriteLinesFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="64" column="9" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="64" selection-end-column="9" />
+        <state relative-caret-position="340">
+          <caret line="58" column="46" lean-forward="true" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/consistencyChecker/TransitDataChecker.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/consistencyChecker/IntersectionChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+        <state relative-caret-position="374">
+          <caret line="63" column="84" lean-forward="false" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="84" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1350,12 +1215,75 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/consistencyChecker/StopOrderChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="97" column="70" lean-forward="true" selection-start-line="97" selection-start-column="70" selection-end-line="97" selection-end-column="70" />
+        <state relative-caret-position="402">
+          <caret line="95" column="54" lean-forward="false" selection-start-line="95" selection-start-column="43" selection-end-line="95" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1118#1119#0" expanded="true" />
-            <element signature="e#1170#1171#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/importOsm/ReadCSVFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="65" column="48" lean-forward="false" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/writeOutputFiles/WriteLinesFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="64" column="9" lean-forward="true" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/consistencyChecker/BidirectionalChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/travelTimeFromGoogle/TravelTimeFromGoogle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="43" column="76" lean-forward="false" selection-start-line="43" selection-start-column="76" selection-end-line="43" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/consistencyChecker/TransitDataChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="74" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/travelTimeFromGoogle/GetTransitTravelTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="34" lean-forward="false" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Transit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="171" column="9" lean-forward="false" selection-start-line="171" selection-start-column="9" selection-end-line="171" selection-end-column="9" />
+          <folding>
+            <element signature="e#945#946#0" expanded="true" />
+            <element signature="e#971#972#0" expanded="true" />
           </folding>
         </state>
       </provider>

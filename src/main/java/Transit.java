@@ -162,11 +162,14 @@ public class Transit {
             listOfTrips = lineFrequency.getListOfTrips();
         }
 
+        boolean check= Boolean.parseBoolean(rb.getString("check.consistency"));
 
-        TransitDataChecker transitDataChecker = new TransitDataChecker();
-        transitDataChecker.load(listOfStops, listOfLines, listOfTrips);
-        transitDataChecker.check();
 
+        if (check) {
+            TransitDataChecker transitDataChecker = new TransitDataChecker();
+            transitDataChecker.load(listOfStops, listOfLines, listOfTrips);
+            transitDataChecker.check();
+        }
 
         boolean writeOutputFiles = Boolean.parseBoolean(rb.getString("write.output.CSV"));
         //write outputs

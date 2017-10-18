@@ -20,6 +20,13 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
 
     <dependencies>
         <dependency>
@@ -44,6 +51,12 @@
             <groupId>org.apache.cassandra</groupId>
             <artifactId>cassandra-all</artifactId>
             <version>0.8.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.julienchastang</groupId>
+            <artifactId>charts4j</artifactId>
+            <version>master-SNAPSHOT</version>
         </dependency>
 
 
