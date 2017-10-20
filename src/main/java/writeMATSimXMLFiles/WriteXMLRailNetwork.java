@@ -1,6 +1,7 @@
 package writeMATSimXMLFiles;
 
 import org.apache.log4j.Logger;
+import org.cts.crs.CRSException;
 import transitSystem.TransitLine;
 import transitSystem.TransitStop;
 import transitSystem.TransitStopToStop;
@@ -60,13 +61,10 @@ public class WriteXMLRailNetwork {
                     TransitStop destStop = transitStopToStop.getDestTransitStop();
                     destStop.setPrintXMLNode(true);
 
-                    if (destStop.getX()!=0) {
-                        tc.transformCoordinates(destStop);
-                    }
+                    tc.transformCoordinates(destStop);
 
-                    if (origStop.getX()!=0) {
-                        tc.transformCoordinates(origStop);
-                    }
+                    tc.transformCoordinates(origStop);
+
 //                    int duration = transitStopToStop.getArrivalTime() - transitStopToStop.getDepartureTime();
 //                    double dx = transitStopToStop.getOrigTransitStop().getX() - transitStopToStop.getDestTransitStop().getX();
 //                    double dy = transitStopToStop.getOrigTransitStop().getY() - transitStopToStop.getDestTransitStop().getY();
@@ -182,6 +180,8 @@ public class WriteXMLRailNetwork {
             pw.close();
 
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (CRSException e) {
             e.printStackTrace();
         }
 
