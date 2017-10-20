@@ -33,7 +33,7 @@ public class WriteXMLRaiFiles {
         merger.mergeWithRoadNetwork();
 
 
-        WriteXMLRailSchedule writeXMLRailSchedule = new WriteXMLRailSchedule();
+        WriteXMLRailSchedule writeXMLRailSchedule = new WriteXMLRailSchedule(rb);
         writeXMLRailSchedule.writeXMLRailSchedule(listOfTrips, rb.getString("out.xml.vehicles"),rb.getString("out.xml.schedule"));
 
 

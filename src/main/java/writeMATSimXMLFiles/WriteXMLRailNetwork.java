@@ -1,5 +1,6 @@
 package writeMATSimXMLFiles;
 
+import org.apache.log4j.Logger;
 import transitSystem.TransitLine;
 import transitSystem.TransitStop;
 import transitSystem.TransitStopToStop;
@@ -16,6 +17,8 @@ import java.util.Map;
  * Created by carlloga on 16/12/16.
  */
 public class WriteXMLRailNetwork {
+
+    private static Logger logger = Logger.getLogger(WriteXMLRailNetwork.class);
 
     private String networkPrefix = "bus";
 
@@ -37,7 +40,7 @@ public class WriteXMLRailNetwork {
 
             pw.println("<network>");
 
-            //TODO The order of writing nodes and links needs to (but cannot) be changed --- seems solved!
+
 
             for (TransitTrip transitTrip : listOfTrips) {
 
@@ -46,7 +49,7 @@ public class WriteXMLRailNetwork {
                 int sequenceNumber = 0;
                 for (TransitStopToStop transitStopToStop : stopToStopMap.values()) {
 
-                    //this nodes will be writen in XML list of nodes (This replicates some assignments of the variable...)
+                    //this nodes will be writen in XML list of nodes ()
 
                     TransitStop origStop = transitStopToStop.getOrigTransitStop();
                     origStop.setPrintXMLNode(true);
@@ -57,14 +60,16 @@ public class WriteXMLRailNetwork {
                     tc.transformCoordinates(destStop);
                     tc.transformCoordinates(origStop);
 
-                    int duration = transitStopToStop.getArrivalTime() - transitStopToStop.getDepartureTime();
-                    double dx = transitStopToStop.getOrigTransitStop().getX() - transitStopToStop.getDestTransitStop().getX();
-                    double dy = transitStopToStop.getOrigTransitStop().getY() - transitStopToStop.getDestTransitStop().getY();
-                    double distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-                    double freeFlowSpeed = distance / duration * 1.5;
+//                    int duration = transitStopToStop.getArrivalTime() - transitStopToStop.getDepartureTime();
+//                    double dx = transitStopToStop.getOrigTransitStop().getX() - transitStopToStop.getDestTransitStop().getX();
+//                    double dy = transitStopToStop.getOrigTransitStop().getY() - transitStopToStop.getDestTransitStop().getY();
+//                    double distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+//                    double freeFlowSpeed = distance / duration * 1.5;
                     //multiplied by 1.5 to allow trains get on time
                 }
             }
+
+            logger.info("Coordinates of nodes already transformed");
 
             //sub=method to print nodes that were found in trip list
             //PrintWriter pw = new PrintWriter(new FileWriter("./output/XML/nodes.xml", true));
@@ -89,9 +94,11 @@ public class WriteXMLRailNetwork {
             }
             pw.println("</nodes>");
 
+            logger.info("Nodes for transit stations written");
+
             pw.println("<links>");
 
-            //TODO The order of writing nodes and links needs to (but cannot) be changed
+
 
             for (TransitTrip transitTrip : listOfTrips) {
 
@@ -157,6 +164,8 @@ public class WriteXMLRailNetwork {
 
             }
 
+            logger.info("Links for transit lines written");
+
             pw.println("</links>");
 
 
@@ -169,6 +178,8 @@ public class WriteXMLRailNetwork {
             e.printStackTrace();
         }
 
+
+        logger.info("Netowork xml file for transit written");
 
     }
 
