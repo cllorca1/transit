@@ -4,6 +4,7 @@ import transitSystem.TransitLine;
 import transitSystem.TransitStop;
 import transitSystem.TransitStopToStop;
 import transitSystem.TransitTrip;
+import utils.TransitUtil;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -54,32 +55,57 @@ public class ReadCSVFile {
             br = new BufferedReader(new FileReader(fileName));
             Long previousStopId = Long.parseLong("0");
 
+            line = br.readLine();
+
+            String[] header = line.split(cvsSplitBy);
+
+            int posId = TransitUtil.findPositionInArray("stopId", header);
+            int posName = TransitUtil.findPositionInArray("stopName", header);
+            int posLat = TransitUtil.findPositionInArray("lat", header);
+            int posLon = TransitUtil.findPositionInArray("lon", header);
+            int posBus = TransitUtil.findPositionInArray("bus", header);
+            int posTram = TransitUtil.findPositionInArray("tram", header);
+            int posSubway = TransitUtil.findPositionInArray("subway", header);
+            int posFlag = TransitUtil.findPositionInArray("stopPositionFlag", header);
+            int posX = TransitUtil.findPositionInArray("x", header);
+            int posY = TransitUtil.findPositionInArray("y", header);
+
+
+
             int rowCounter = 0;
             while ((line = br.readLine()) != null) {
 
-                if (rowCounter > 0) {
+
                     String[] row = line.split(cvsSplitBy);
-                    long stopId = Long.parseLong(row[0]);
+                    long stopId = Long.parseLong(row[posId]);
 
                     if (stopId != previousStopId) {
                         //found a new stop
                         previousStopId = stopId;
-                        String stopName = row[1];
-                        String lat = row[2];
-                        String lon = row[3];
-                        boolean bus = Boolean.parseBoolean(row[4]);
-                        boolean tram = Boolean.parseBoolean(row[5]);
-                        boolean subway = Boolean.parseBoolean(row[6]);
-                        boolean stopPositionFlag = Boolean.parseBoolean(row[7]);
+                        String stopName = row[posName];
+                        String lat = row[posLat];
+                        String lon = row[posLon];
+                        boolean bus = Boolean.parseBoolean(row[posBus]);
+                        boolean tram = Boolean.parseBoolean(row[posTram]);
+                        boolean subway = Boolean.parseBoolean(row[posSubway]);
+                        boolean stopPositionFlag = Boolean.parseBoolean(row[posFlag]);
                         TransitStop transitStop = new TransitStop(stopId, stopName, lat, lon, bus, tram, subway, stopPositionFlag);
                         listOfStops.add(transitStop);
                         stopMap.put(stopId, transitStop);
 
+                        if (posX != -1 && posY != -1){
+                            transitStop.setX(Float.parseFloat(row[posX]));
+                            transitStop.setY(Float.parseFloat(row[posY]));
+
+                        }
+
                     }
-                }
+
                 rowCounter++;
 
             }
+
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

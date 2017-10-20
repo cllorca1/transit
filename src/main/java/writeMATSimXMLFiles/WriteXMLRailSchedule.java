@@ -174,7 +174,7 @@ public class WriteXMLRailSchedule {
                 pw.println("</routeProfile>");
                 pw.println("<route>");
 
-                logger.info("The route profile were generated in the schedule file");
+                //logger.info("The route profile were generated in the schedule file");
 
                 for (int i : transitTrip.getStopToStopList().keySet()) {
                     // fill route profile (times)
@@ -201,7 +201,7 @@ public class WriteXMLRailSchedule {
                 }
                 pw.println("</route>");
 
-                logger.info("The routes were generated in the schedule file");
+                //logger.info("The routes were generated in the schedule file");
 
                 pw.println("<departures>");
                 // write  departures given the first one and the frequency
@@ -251,7 +251,7 @@ public class WriteXMLRailSchedule {
                 pw.println("</transitLine>");
             }
 
-            logger.info("The departures and vehicles were generated in the schedule file");
+            //logger.info("The departures and vehicles were generated in the schedule file");
 
             pw.println("</transitSchedule>");
             pw2.println("</vehicleDefinitions>");

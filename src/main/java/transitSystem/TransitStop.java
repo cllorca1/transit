@@ -30,6 +30,8 @@ public class TransitStop {
         this.tram = tram;
         this.subway = subway;
         this.stopPositionFlag = stopPositionFlag;
+        this.x = 0;
+        this.y = 0;
     }
 
     public void addLine(String lineName, long lineId){

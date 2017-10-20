@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -49,6 +49,31 @@
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.cassandra:cassandra-thrift:0.8.1" level="project" />
     <orderEntry type="library" name="Maven: com.github.stephenc:jamm:0.2.2" level="project" />
-    <orderEntry type="library" name="Maven: com.github.julienchastang:charts4j:master-charts4j-1.3-g19518f2-5" level="project" />
+    <orderEntry type="library" name="Maven: org.matsim:matsim:0.10.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: kml:kml:2.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.geotools:gt-main:14.0" level="project" />
+    <orderEntry type="library" name="Maven: org.geotools:gt-referencing:14.0" level="project" />
+    <orderEntry type="library" name="Maven: org.geotools:gt-shapefile:14.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.geotools:gt-epsg-hsql:14.0" level="project" />
+    <orderEntry type="library" name="Maven: org.jfree:jfreechart:1.0.19" level="project" />
+    <orderEntry type="library" name="Maven: org.jfree:jcommon:1.0.23" level="project" />
+    <orderEntry type="library" name="Maven: com.google.inject:guice:4.1.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.inject.extensions:guice-multibindings:4.1.0" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.trove4j:trove4j:3.0.3" level="project" />
+    <orderEntry type="library" name="Maven: org.matsim.contrib:accessibility:0.10.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.matsim.contrib:matrixbasedptrouter:0.10.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.matsim.contrib:roadpricing:0.10.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.openstreetmap.osmosis:osmosis-core:0.45" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.10" level="project" />
+    <orderEntry type="library" name="Maven: xerces:xercesImpl:2.9.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.woodstox:stax2-api:4.0.0" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.jpf:jpf:1.5" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.woodstox:woodstox-core:5.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.openstreetmap.osmosis:osmosis-xml:0.45" level="project" />
+    <orderEntry type="library" name="Maven: org.matsim.contrib:analysis:0.10.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.osgeo:proj4j:0.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-math:2.2" level="project" />
   </component>
 </module>
