@@ -177,6 +177,12 @@ public class Transit {
         }
 
 
+        boolean writeMATSimFiles = Boolean.parseBoolean(rb.getString("write.output.XML"));
+        if (writeMATSimFiles) {
+
+            WriteXMLRaiFiles writeXMLRaiFiles = new WriteXMLRaiFiles(rb);
+            writeXMLRaiFiles.writeXMLFiles(listOfStops, listOfLines, listOfTrips);
+        }
 
         boolean writeOutputFiles = Boolean.parseBoolean(rb.getString("write.output.CSV"));
         //write outputs
@@ -185,13 +191,6 @@ public class Transit {
             WriteOutputs writeOutputs = new WriteOutputs(rb);
             System.out.println("Number of trips = " + listOfTrips.size());
             writeOutputs.writeOutputs(listOfStops, listOfLines, listOfTrips);
-        }
-
-        boolean writeMATSimFiles = Boolean.parseBoolean(rb.getString("write.output.XML"));
-        if (writeMATSimFiles) {
-
-            WriteXMLRaiFiles writeXMLRaiFiles = new WriteXMLRaiFiles(rb);
-            writeXMLRaiFiles.writeXMLFiles(listOfStops, listOfLines, listOfTrips);
         }
 
     }
