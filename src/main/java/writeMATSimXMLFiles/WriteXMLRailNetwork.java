@@ -47,6 +47,10 @@ public class WriteXMLRailNetwork {
                 Map<Integer, TransitStopToStop> stopToStopMap = transitTrip.getStopToStopList();
 
                 int sequenceNumber = 0;
+
+                TransformCoordinates tc = new TransformCoordinates();
+
+                //sequential version
                 for (TransitStopToStop transitStopToStop : stopToStopMap.values()) {
 
                     //this nodes will be writen in XML list of nodes ()
@@ -56,10 +60,13 @@ public class WriteXMLRailNetwork {
                     TransitStop destStop = transitStopToStop.getDestTransitStop();
                     destStop.setPrintXMLNode(true);
 
-                    TransformCoordinates tc = new TransformCoordinates();
-                    tc.transformCoordinates(destStop);
-                    tc.transformCoordinates(origStop);
+                    if (destStop.getX()!=0) {
+                        tc.transformCoordinates(destStop);
+                    }
 
+                    if (origStop.getX()!=0) {
+                        tc.transformCoordinates(origStop);
+                    }
 //                    int duration = transitStopToStop.getArrivalTime() - transitStopToStop.getDepartureTime();
 //                    double dx = transitStopToStop.getOrigTransitStop().getX() - transitStopToStop.getDestTransitStop().getX();
 //                    double dy = transitStopToStop.getOrigTransitStop().getY() - transitStopToStop.getDestTransitStop().getY();
