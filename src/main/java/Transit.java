@@ -1,6 +1,7 @@
 
 
 import consistencyChecker.TransitDataChecker;
+import importOsm.CSVFrequencyReader;
 import importOsm.ReadCSVFile;
 import importOsm.ReadXmlFile;
 import transitSystem.TransitLine;
@@ -91,6 +92,10 @@ public class Transit {
             System.out.println(listOfLines.size() + " lines read from csv");
             System.out.println(listOfTrips.size() + " trips read from csv");
 
+            CSVFrequencyReader frequencyReader = new CSVFrequencyReader(rb);
+            frequencyReader.mapLines(listOfLines);
+            frequencyReader.readExternalFrequencies();
+
 
         }
 
@@ -170,6 +175,8 @@ public class Transit {
             transitDataChecker.load(listOfStops, listOfLines, listOfTrips);
             transitDataChecker.check();
         }
+
+
 
         boolean writeOutputFiles = Boolean.parseBoolean(rb.getString("write.output.CSV"));
         //write outputs

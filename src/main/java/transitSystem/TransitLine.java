@@ -6,15 +6,16 @@ import java.util.Map;
  * Created by carlloga on 21/11/16.
  */
 public class TransitLine {
-    long lineId;
-    String fromStop;
-    String toStop;
-    boolean bus;
-    boolean subway;
-    boolean tram;
-    String lineName;
-    Map<Integer,TransitStop> stopList;
-    Map<Integer, Long> linkList;
+    private long lineId;
+    private String fromStop;
+    private String toStop;
+    private boolean bus;
+    private boolean subway;
+    private boolean tram;
+    private String lineName;
+    private double headway;
+    private Map<Integer,TransitStop> stopList;
+    private Map<Integer, Long> linkList;
 
 
     public TransitLine(long lineId, String fromStop, String toStop, boolean bus, boolean subway, boolean tram, String lineName, Map<Integer, TransitStop> stopList) {
@@ -96,4 +97,11 @@ public class TransitLine {
         this.lineId = lineId;
     }
 
+    public double getHeadway() {
+        return headway;
+    }
+
+    public void setHeadway(double headway) {
+        this.headway = headway;
+    }
 }
