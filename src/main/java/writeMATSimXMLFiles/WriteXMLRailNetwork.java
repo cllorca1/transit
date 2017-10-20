@@ -112,7 +112,7 @@ public class WriteXMLRailNetwork {
                     double freeFlowSpeed = distance / duration * 1.5;
                     //freeFlowSpeed = freeFlowSpeed>200/3.6? 1: freeFlowSpeed;
 
-                    System.out.println("Now it si possible to find some links with free speed = Double.NaN");
+                    //System.out.println("Now it is possible to find some links with free speed = Double.NaN");
                     //multiplied by 1.5 to allow trains get on time
 
 //                    String networkPrefix = "";
