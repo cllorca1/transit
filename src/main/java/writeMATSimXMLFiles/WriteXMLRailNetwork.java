@@ -108,11 +108,10 @@ public class WriteXMLRailNetwork {
                     double dx = transitStopToStop.getOrigTransitStop().getX() - transitStopToStop.getDestTransitStop().getX();
                     double dy = transitStopToStop.getOrigTransitStop().getY() - transitStopToStop.getDestTransitStop().getY();
                     double distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-                    //distance = distance==0? 0.1: distance;
+                    distance = distance==0? 0.1: distance;
                     double freeFlowSpeed = distance / duration * 1.5;
-                    //freeFlowSpeed = freeFlowSpeed>200/3.6? 1: freeFlowSpeed;
+                    freeFlowSpeed = freeFlowSpeed>200/3.6? 1: freeFlowSpeed;
 
-                    //System.out.println("Now it is possible to find some links with free speed = Double.NaN");
                     //multiplied by 1.5 to allow trains get on time
 
 //                    String networkPrefix = "";

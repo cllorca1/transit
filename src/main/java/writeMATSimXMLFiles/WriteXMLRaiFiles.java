@@ -26,6 +26,13 @@ public class WriteXMLRaiFiles {
         WriteXMLRailNetwork writeXMLRailNetwork = new WriteXMLRailNetwork();
         writeXMLRailNetwork.writeXMLRailNetwork(listOfStops, listOfTrips, rb.getString("out.xml.network"));
 
+
+        NetworkMergeTool merger = new NetworkMergeTool(rb.getString("road.network.file"),
+                rb.getString("out.xml.network"),
+                rb.getString("final.network.file") );
+        merger.mergeWithRoadNetwork();
+
+
         WriteXMLRailSchedule writeXMLRailSchedule = new WriteXMLRailSchedule();
         writeXMLRailSchedule.writeXMLRailSchedule(listOfTrips, rb.getString("out.xml.vehicles"),rb.getString("out.xml.schedule"));
 
