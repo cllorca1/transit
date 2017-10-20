@@ -69,8 +69,6 @@ public class CSVFrequencyReader {
                     TransitLine line = lineMap.get(lineId);
                     line.setHeadway(headway);
 
-                    logger.info(line.getHeadway());
-
                 } catch (NullPointerException e){
                     logger.warn("Line not found: " + lineId);
                 }
