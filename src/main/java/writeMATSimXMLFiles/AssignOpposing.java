@@ -27,7 +27,7 @@ public class AssignOpposing {
                 if( origin1.equals(dest2) & origin2.equals(dest1) ){
 
                     transitTrip.setOpposingTrip(opposingTrip);
-                    System.out.println(origin1 + "-" + origin2);
+                    //System.out.println(origin1 + "-" + origin2);
 
                 }
 
