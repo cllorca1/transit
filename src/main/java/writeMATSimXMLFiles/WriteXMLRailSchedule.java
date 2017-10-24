@@ -242,6 +242,7 @@ public class WriteXMLRailSchedule {
                     pw2.println("\" type=\"1\" />");
 
                     departure = departure.plusSeconds(((int) Math.round(headway)*60));
+                    i++;
 
                 }
                 pw.println("</departures>");
