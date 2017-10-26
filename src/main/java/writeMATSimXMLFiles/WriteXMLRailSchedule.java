@@ -56,7 +56,7 @@ public class WriteXMLRailSchedule {
 
             pw2.println("<vehicleType id=\"1\">");
 
-
+            //todo loop for various vehicle descriptions
 
             pw2.println("<description>S-Bahn</description>");
             pw2.println("<capacity>");
@@ -69,7 +69,8 @@ public class WriteXMLRailSchedule {
 
 
             pw.println("<transitStops>");
-            //TODO loop along transit trip transitStopToStop instead (?)
+
+
             for (TransitTrip transitTrip : listOfTrips){
                 for (int i : transitTrip.getStopToStopList().keySet()){
                     if (i==0){
@@ -117,6 +118,8 @@ public class WriteXMLRailSchedule {
                 int absoluteDepartureInSeconds = Integer.parseInt(rb.getString("first.departure.hour"))*3600;
                 int lastDepartureInSeconds = Integer.parseInt(rb.getString("last.departure.hour"))*3600;
 
+                //this is because the stopToStop element stores departure and arrival time and not travel Time
+                int referenceDepartureInSeconds = transitTrip.getStopToStopList().get(0).getDepartureTime();
 
                 for (int i : transitTrip.getStopToStopList().keySet()) {
                     // fill route profile (times)
@@ -125,7 +128,7 @@ public class WriteXMLRailSchedule {
                     if (i == 0) {
                         //writes departure from the first segment to dest
                         stopToStop.getOrigTransitStop().getStopId();
-                        long departureOffset = (stopToStop.getDepartureTime() - absoluteDepartureInSeconds - 3600) * 1000;
+                        long departureOffset = (stopToStop.getDepartureTime() - referenceDepartureInSeconds - 3600) * 1000;
                         DateTime departure = new DateTime(departureOffset);
 
                         pw.print("<stop refId=\"");
@@ -139,9 +142,9 @@ public class WriteXMLRailSchedule {
                         //writes the arrival of previous segment to dest and departure from the current segment from orig
                         //AND writes the arrival of this segment to dest
                         TransitStopToStop previousStopToStop = transitTrip.getStopToStopList().get(i - 1);
-                        long arrivalOffset = (previousStopToStop.getArrivalTime() - absoluteDepartureInSeconds - 3600) * 1000;
+                        long arrivalOffset = (previousStopToStop.getArrivalTime() - referenceDepartureInSeconds - 3600) * 1000;
                         DateTime arrival = new DateTime(arrivalOffset);
-                        long departureOffset = (stopToStop.getDepartureTime() - absoluteDepartureInSeconds - 3600) * 1000;
+                        long departureOffset = (stopToStop.getDepartureTime() - referenceDepartureInSeconds - 3600) * 1000;
                         DateTime departure = new DateTime(departureOffset);
 
                         pw.print("<stop refId=\"");
@@ -153,7 +156,7 @@ public class WriteXMLRailSchedule {
                         pw.println("\" awaitDeparture=\"true\"/>");
 
 
-                        long lastArrivalOffset = (stopToStop.getArrivalTime() - absoluteDepartureInSeconds - 3600) * 1000;
+                        long lastArrivalOffset = (stopToStop.getArrivalTime() - referenceDepartureInSeconds - 3600) * 1000;
                         DateTime lastArrival = new DateTime(lastArrivalOffset);
 
                         pw.print("<stop refId=\"");
@@ -166,9 +169,9 @@ public class WriteXMLRailSchedule {
                     } else {
                         //writes arrival of previous segment to dest and departure from the current segment from orig
                         TransitStopToStop previousStopToStop = transitTrip.getStopToStopList().get(i - 1);
-                        long arrivalOffset = (previousStopToStop.getArrivalTime() - absoluteDepartureInSeconds - 3600) * 1000;
+                        long arrivalOffset = (previousStopToStop.getArrivalTime() - referenceDepartureInSeconds - 3600) * 1000;
                         DateTime arrival = new DateTime(arrivalOffset);
-                        long departureOffset = (stopToStop.getDepartureTime() - absoluteDepartureInSeconds - 3600) * 1000;
+                        long departureOffset = (stopToStop.getDepartureTime() - referenceDepartureInSeconds - 3600) * 1000;
                         DateTime departure = new DateTime(departureOffset);
 
                         pw.print("<stop refId=\"");
@@ -248,6 +251,8 @@ public class WriteXMLRailSchedule {
                     pw.print("train" + transitTrip.getTransitLine().getLineId() + "-"  + i );
                     pw.println("\" />");
 
+
+                    //todo assign here different vehicle types based on line type
                     pw2.print("<vehicle id=\"");
                     pw2.print("train" + transitTrip.getTransitLine().getLineId() + "-"  + i);
                     pw2.println("\" type=\"1\" />");

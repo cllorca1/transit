@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c7cc846-68ef-49cc-95a7-e0afa181f2e2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/importOsm/VehicleTypeReader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/transitSystem/TransitDataContainer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/transitSystem/TransitVehicle.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Transit.java" afterPath="$PROJECT_DIR$/src/main/java/Transit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRaiFiles.java" afterPath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRaiFiles.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java" afterPath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java" afterPath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java" />
     </list>
@@ -56,8 +51,8 @@
       <file leaf-file-name="WriteXMLRailSchedule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-237">
-              <caret line="32" column="37" lean-forward="false" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+            <state relative-caret-position="290">
+              <caret line="236" column="34" lean-forward="false" selection-start-line="236" selection-start-column="25" selection-end-line="236" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -66,8 +61,8 @@
       <file leaf-file-name="WriteXMLRailNetwork.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="29" column="57" lean-forward="true" selection-start-line="29" selection-start-column="57" selection-end-line="29" selection-end-column="57" />
+            <state relative-caret-position="1006">
+              <caret line="129" column="86" lean-forward="false" selection-start-line="129" selection-start-column="86" selection-end-line="129" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -128,16 +123,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LineType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/transitSystem/LineType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="VehicleTypeReader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/importOsm/VehicleTypeReader.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -180,6 +165,8 @@
       <find>5.0</find>
       <find>5.0</find>
       <find>links for</find>
+      <find>vehicleType</find>
+      <find>vehicle</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -254,9 +241,9 @@
         <option value="$PROJECT_DIR$/src/main/java/importOsm/VehicleTypeReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/transitSystem/TransitDataContainer.java" />
         <option value="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRaiFiles.java" />
-        <option value="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java" />
-        <option value="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java" />
         <option value="$PROJECT_DIR$/src/main/java/Transit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java" />
+        <option value="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java" />
       </list>
     </option>
   </component>
@@ -688,13 +675,6 @@
       <option name="presentableId" value="Default" />
       <updated>1478877429553</updated>
     </task>
-    <task id="LOCAL-00001" summary="first test">
-      <created>1478881266586</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1478881266586</updated>
-    </task>
     <task id="LOCAL-00002" summary="second test">
       <created>1478881548097</created>
       <option name="number" value="00002" />
@@ -1031,7 +1011,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509004779041</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="improve data structurec">
+      <created>1509005932403</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1509005932403</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1045,7 +1032,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.4978678" order="6" side_tool="false" content_ui="tabs" />
@@ -1055,7 +1041,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2716702" sideWeight="0.5127932" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1734375" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41170096" sideWeight="0.48720682" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41170096" sideWeight="0.48720682" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1115,7 +1101,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="debug error in quotation marks in xml files" />
     <MESSAGE value="add manual filter of transit trips" />
     <MESSAGE value="implement check methods for transit data" />
     <MESSAGE value="change output for check methods" />
@@ -1140,7 +1125,8 @@
     <MESSAGE value="debug log of stop names" />
     <MESSAGE value="add line type" />
     <MESSAGE value="debug return method" />
-    <option name="LAST_COMMIT_MESSAGE" value="debug return method" />
+    <MESSAGE value="improve data structurec" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve data structurec" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1153,13 +1139,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/joda-time/joda-time/2.4/joda-time-2.4.jar!/org/joda/time/DateTime.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="587" column="29" lean-forward="false" selection-start-line="587" selection-start-column="29" selection-end-line="587" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/common-base/common-base/0.0.3/common-base-0.0.3.jar!/META-INF/maven/common-base/common-base/pom.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1404,7 +1383,7 @@
         <state relative-caret-position="731">
           <caret line="46" column="61" lean-forward="false" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="61" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1422,8 +1401,8 @@
         <state relative-caret-position="187">
           <caret line="33" column="19" lean-forward="false" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
           <folding>
-            <element signature="e#1793#1794#0" expanded="true" />
-            <element signature="e#1817#1818#0" expanded="true" />
+            <element signature="e#1793#1794#0" expanded="false" />
+            <element signature="e#1817#1818#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1547,14 +1526,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-237">
-          <caret line="32" column="37" lean-forward="false" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Transit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1586,10 +1557,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/joda-time/joda-time/2.4/joda-time-2.4.jar!/org/joda/time/DateTime.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="62" column="11" lean-forward="false" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
+          <folding>
+            <element signature="e#1719#1720#0" expanded="true" />
+            <element signature="e#1746#1747#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="236" column="34" lean-forward="false" selection-start-line="236" selection-start-column="25" selection-end-line="236" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="29" column="57" lean-forward="true" selection-start-line="29" selection-start-column="57" selection-end-line="29" selection-end-column="57" />
+        <state relative-caret-position="1006">
+          <caret line="129" column="86" lean-forward="false" selection-start-line="129" selection-start-column="86" selection-end-line="129" selection-end-column="86" />
           <folding />
         </state>
       </provider>
