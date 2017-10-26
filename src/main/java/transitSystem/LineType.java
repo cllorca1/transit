@@ -10,22 +10,22 @@ public enum LineType {
                 return RURAL_BUS;
 
             case 2:
-                return RURAL_BUS;
+                return TOWN_BUS;
 
             case 3:
-                return RURAL_BUS;
+                return CITY_BUS;
 
             case 4:
-                return RURAL_BUS;
+                return SBAHN;
 
             case 5:
-                return RURAL_BUS;
+                return TRAM;
 
             case 6:
-                return RURAL_BUS;
+                return UBAHN;
 
             case 7:
-                return RURAL_BUS;
+                return REGIOBAHN;
 
             default:
                 return null;
