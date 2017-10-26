@@ -36,8 +36,6 @@ public class ReadCSVFile {
         readCsvLineLinks(rb.getString("csv.line.link.file"));
         readCsvStopToStop(rb.getString("csv.trip.file"));
 
-
-
     }
 
     public void readCsvStations(String fileName) {

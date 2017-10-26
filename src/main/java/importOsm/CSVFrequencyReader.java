@@ -2,6 +2,7 @@ package importOsm;
 
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.log4j.Logger;
+import transitSystem.LineType;
 import transitSystem.TransitLine;
 import utils.TransitUtil;
 
@@ -55,6 +56,7 @@ public class CSVFrequencyReader {
 
             int posLineId = TransitUtil.findPositionInArray("lineId", header);
             int posHeadway = TransitUtil.findPositionInArray("headway", header);
+            int posType = TransitUtil.findPositionInArray("typeReal", header);
 
 
 
@@ -64,10 +66,12 @@ public class CSVFrequencyReader {
 
                 long lineId = Long.parseLong(row[posLineId]);
                 double headway = Double.parseDouble(row[posHeadway]);
+                LineType type = LineType.convertFromCode(Integer.parseInt(row[posType]));
 
                 try{
                     TransitLine line = lineMap.get(lineId);
                     line.setHeadway(headway);
+                    line.setLineType(type);
 
                 } catch (NullPointerException e){
                     logger.warn("Line not found: " + lineId);
