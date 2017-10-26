@@ -1,5 +1,6 @@
 package writeMATSimXMLFiles;
 
+import transitSystem.TransitDataContainer;
 import transitSystem.TransitLine;
 import transitSystem.TransitStop;
 import transitSystem.TransitTrip;
@@ -13,18 +14,20 @@ import java.util.ResourceBundle;
 public class WriteXMLRaiFiles {
 
     private ResourceBundle rb;
+    private TransitDataContainer transitDataContainer;
 
-    public WriteXMLRaiFiles(ResourceBundle rb) {
+    public WriteXMLRaiFiles(ResourceBundle rb, TransitDataContainer transitDataContainer) {
         this.rb = rb;
+        this.transitDataContainer = transitDataContainer;
     }
 
-    public void writeXMLFiles(ArrayList<TransitStop> listOfStops, ArrayList<TransitLine> listOfLines, ArrayList<TransitTrip> listOfTrips){
+    public void writeXMLFiles(){
 
         AssignOpposing assignOpposing = new AssignOpposing();
-        assignOpposing.assignOpposingDirection(listOfTrips);
+        assignOpposing.assignOpposingDirection(transitDataContainer.getListOfTrips());
 
-        WriteXMLRailNetwork writeXMLRailNetwork = new WriteXMLRailNetwork();
-        writeXMLRailNetwork.writeXMLRailNetwork(listOfStops, listOfTrips, rb.getString("out.xml.network"));
+        WriteXMLRailNetwork writeXMLRailNetwork = new WriteXMLRailNetwork(transitDataContainer);
+        writeXMLRailNetwork.writeXMLRailNetwork(rb.getString("out.xml.network"));
 
 
         NetworkMergeTool merger = new NetworkMergeTool(rb.getString("road.network.file"),
@@ -33,8 +36,8 @@ public class WriteXMLRaiFiles {
         merger.mergeWithRoadNetwork();
 
 
-        WriteXMLRailSchedule writeXMLRailSchedule = new WriteXMLRailSchedule(rb);
-        writeXMLRailSchedule.writeXMLRailSchedule(listOfTrips, rb.getString("out.xml.vehicles"),rb.getString("out.xml.schedule"));
+        WriteXMLRailSchedule writeXMLRailSchedule = new WriteXMLRailSchedule(rb, transitDataContainer);
+        writeXMLRailSchedule.writeXMLRailSchedule(rb.getString("out.xml.vehicles"),rb.getString("out.xml.schedule"));
 
 
     }

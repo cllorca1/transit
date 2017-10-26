@@ -5,6 +5,7 @@ import importOsm.CSVFrequencyReader;
 import javafx.scene.chart.PieChart;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
+import transitSystem.TransitDataContainer;
 import transitSystem.TransitStop;
 import transitSystem.TransitStopToStop;
 import transitSystem.TransitTrip;
@@ -21,16 +22,19 @@ import java.util.ResourceBundle;
 public class WriteXMLRailSchedule {
 
     private ResourceBundle rb;
+    private TransitDataContainer transitDataContainer;
     private static Logger logger = Logger.getLogger(WriteXMLRailSchedule.class);
 
-    public WriteXMLRailSchedule(ResourceBundle rb) {
+    public WriteXMLRailSchedule(ResourceBundle rb, TransitDataContainer transitDataContainer) {
         this.rb = rb;
+        this.transitDataContainer = transitDataContainer;
     }
 
-    public void writeXMLRailSchedule(ArrayList<TransitTrip> listOfTrips, String vehicleFileName, String scheduleFileName) {
+    public void writeXMLRailSchedule(String vehicleFileName, String scheduleFileName) {
 
-        WriteXMLRailNetwork writeXMLRailNetwork = new WriteXMLRailNetwork();
-        String networkPrefix = writeXMLRailNetwork.getNetworkPrefix();
+        ArrayList<TransitTrip> listOfTrips = transitDataContainer.getListOfTrips();
+
+        String networkPrefix = WriteXMLRailNetwork.getNetworkPrefix();
 
         try {
 
@@ -46,7 +50,14 @@ public class WriteXMLRailSchedule {
             //vehicle file header
             pw2.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             pw2.println("<vehicleDefinitions xmlns=\"http://www.matsim.org/files/dtd\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.matsim.org/files/dtd http://www.matsim.org/files/dtd/vehicleDefinitions_v1.0.xsd\">");
+
+
+
+
             pw2.println("<vehicleType id=\"1\">");
+
+
+
             pw2.println("<description>S-Bahn</description>");
             pw2.println("<capacity>");
             pw2.println("<seats persons=\"150\"/>");

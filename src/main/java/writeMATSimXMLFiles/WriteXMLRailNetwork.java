@@ -2,10 +2,7 @@ package writeMATSimXMLFiles;
 
 import org.apache.log4j.Logger;
 import org.cts.crs.CRSException;
-import transitSystem.TransitLine;
-import transitSystem.TransitStop;
-import transitSystem.TransitStopToStop;
-import transitSystem.TransitTrip;
+import transitSystem.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,15 +17,23 @@ import java.util.Map;
 public class WriteXMLRailNetwork {
 
     private static Logger logger = Logger.getLogger(WriteXMLRailNetwork.class);
+    private TransitDataContainer transitDataContainer;
 
-    private String networkPrefix = "bus";
 
-    public String getNetworkPrefix() {
+    private static String networkPrefix = "bus";
+
+    public static String getNetworkPrefix() {
         return networkPrefix;
     }
 
+    public WriteXMLRailNetwork(TransitDataContainer transitDataContainer) {
+        this.transitDataContainer = transitDataContainer;
+    }
 
-    public void writeXMLRailNetwork(ArrayList<TransitStop> listOfStops, ArrayList<TransitTrip> listOfTrips, String fileName) {
+    public void writeXMLRailNetwork(String fileName) {
+
+        ArrayList<TransitStop> listOfStops = transitDataContainer.getListOfStops();
+        ArrayList<TransitTrip> listOfTrips = transitDataContainer.getListOfTrips();
 
         //sub-method to write links as stopToStop connectors
         int networkLink = 0;

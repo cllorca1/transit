@@ -4,22 +4,17 @@ import consistencyChecker.TransitDataChecker;
 import importOsm.CSVFrequencyReader;
 import importOsm.ReadCSVFile;
 import importOsm.ReadXmlFile;
-import transitSystem.TransitLine;
-import transitSystem.TransitStop;
-import transitSystem.TransitTrip;
+import importOsm.VehicleTypeReader;
+import transitSystem.*;
 import travelTimeFromGoogle.LineFrequency;
 import travelTimeFromGoogle.TravelTimeFromGoogle;
 import travelTimeFromGoogle.TravelTimeMatrixFromGoogle;
 import writeMATSimXMLFiles.WriteXMLRaiFiles;
 import writeOutputFiles.WriteOutputs;
 
+import javax.activation.DataContentHandler;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
-
-
-
+import java.util.*;
 
 
 /**
@@ -31,6 +26,8 @@ public class Transit {
     private ArrayList<TransitStop> listOfStops = new ArrayList<TransitStop>();
     private ArrayList<TransitLine> listOfLines = new ArrayList<TransitLine>();
     private ArrayList<TransitTrip> listOfTrips = new ArrayList<TransitTrip>();
+
+    private TransitDataContainer transitDataContainer;
 
 
     private Transit (ResourceBundle rb){
@@ -59,18 +56,6 @@ public class Transit {
     public void runTransitTools(){
 
 
-        //travel time by bike
-        /*GetTravelTimeBetweenPoints ttBike = new GetTravelTimeBetweenPoints(rb);
-        try {
-            ttBike.getBicycleTimes();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
-       //additional tool to geocode addresses: address to coordinates
-        //Geocode geocode = new Geocode(rb);
-        //geocode.geocodeAdress();
-
         boolean extractXML = Boolean.parseBoolean(rb.getString("extract.XML"));
         if (extractXML) {
             //extract data from XML OSM files
@@ -96,17 +81,23 @@ public class Transit {
             frequencyReader.mapLines(listOfLines);
             frequencyReader.readExternalFrequencies();
 
+            VehicleTypeReader vehicleTypeReader = new VehicleTypeReader(rb);
+            Map<LineType, TransitVehicle> vehicleMap = vehicleTypeReader.createTransitVehicleTypes();
+
+//            Temporary
+
+            transitDataContainer = new TransitDataContainer(listOfStops, listOfLines, listOfTrips, vehicleMap);
 
         }
 
 
         boolean manualFilters = true;
-        char mode = 't';
-
-
-        ArrayList<TransitTrip> newListOfTrips = new ArrayList<TransitTrip>();
 
         if (manualFilters){
+
+            char mode = 't';
+            ArrayList<TransitTrip> newListOfTrips = new ArrayList<TransitTrip>();
+
             switch (mode){
                 case 'b':
 
@@ -138,11 +129,11 @@ public class Transit {
             }
 
             System.out.println(newListOfTrips.size() + " trips after applying filters");
+
+            //todo
+            listOfTrips = newListOfTrips;
+            transitDataContainer.setListOfTrips(listOfTrips);
         }
-
-        listOfTrips = newListOfTrips;
-
-
 
 
 
@@ -151,19 +142,26 @@ public class Transit {
             TravelTimeFromGoogle travelTimeFromGoogle = new TravelTimeFromGoogle(rb);
             travelTimeFromGoogle.getTimes(listOfLines);
             listOfTrips = travelTimeFromGoogle.getListOfTrips();
+            //todo
+            transitDataContainer.setListOfTrips(listOfTrips);
         }
 
         boolean getTimesUsingMatrix= Boolean.parseBoolean(rb.getString("get.times.matrix"));
         if (getTimesUsingMatrix) {
             TravelTimeMatrixFromGoogle travelTimeMAtrixFromGoogle = new TravelTimeMatrixFromGoogle(rb);
             travelTimeMAtrixFromGoogle.getTimesFromMatrix(listOfLines);
+            //replaces the list of trips
             listOfTrips = travelTimeMAtrixFromGoogle.getListOfTrips();
+            //todo
+            transitDataContainer.setListOfTrips(listOfTrips);
         }
 
         boolean getFrequencies = Boolean.parseBoolean(rb.getString("get.frequencies"));
         if (getFrequencies){
+            //this module is no longer used -- inconsistent with further matsim schedule generation
             LineFrequency lineFrequency = new LineFrequency();
             lineFrequency.getLineFrequency(listOfLines);
+            //todo
             listOfTrips = lineFrequency.getListOfTrips();
         }
 
@@ -180,8 +178,8 @@ public class Transit {
         boolean writeMATSimFiles = Boolean.parseBoolean(rb.getString("write.output.XML"));
         if (writeMATSimFiles) {
 
-            WriteXMLRaiFiles writeXMLRaiFiles = new WriteXMLRaiFiles(rb);
-            writeXMLRaiFiles.writeXMLFiles(listOfStops, listOfLines, listOfTrips);
+            WriteXMLRaiFiles writeXMLRaiFiles = new WriteXMLRaiFiles(rb, transitDataContainer);
+            writeXMLRaiFiles.writeXMLFiles();
         }
 
         boolean writeOutputFiles = Boolean.parseBoolean(rb.getString("write.output.CSV"));
