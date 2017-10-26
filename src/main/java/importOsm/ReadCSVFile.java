@@ -6,10 +6,7 @@ import transitSystem.TransitStopToStop;
 import transitSystem.TransitTrip;
 import utils.TransitUtil;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,7 +49,8 @@ public class ReadCSVFile {
 
         try {
 
-            br = new BufferedReader(new FileReader(fileName));
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName),"ISO-8859-15"));
+
             Long previousStopId = Long.parseLong("0");
 
             line = br.readLine();
@@ -72,8 +70,10 @@ public class ReadCSVFile {
 
 
 
-            int rowCounter = 0;
+            int rowCounter = 1;
             while ((line = br.readLine()) != null) {
+
+
 
 
                     String[] row = line.split(csvSplitBy);
@@ -82,7 +82,8 @@ public class ReadCSVFile {
                     if (stopId != previousStopId) {
                         //found a new stop
                         previousStopId = stopId;
-                        String stopName = row[posName];
+                        String stopName = deGermanizeString(row[posName]);
+                        System.out.println(stopName);
                         String lat = row[posLat];
                         String lon = row[posLon];
                         boolean bus = Boolean.parseBoolean(row[posBus]);
@@ -261,24 +262,30 @@ public class ReadCSVFile {
 
             br = new BufferedReader(new FileReader(fileName));
 
-            int lines = 0;
+            String[] header = br.readLine().split(csvSplitBy);
+
+            int posLineId = TransitUtil.findPositionInArray("lineId", header);
+            int posSeq = TransitUtil.findPositionInArray("sequence", header);
+            int posLinkId = TransitUtil.findPositionInArray("linkid", header);
+
+
+            int lines = 1;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(csvSplitBy);
                 rowMap.put(lines, row);
                 lines++;
             }
-            //rowMap.put(rowMap.size(),rowMap.get(1));
 
-            //System.out.println(lines);
 
             String[] row1 = rowMap.get(1);
-            long lineId = Long.parseLong(row1[0]);
+            long lineId = Long.parseLong(row1[posLineId]);
             TransitLine transitLine = null;
 
-                int sequenceNumber = Integer.parseInt(row1[7]);
-                long linkId = Long.parseLong(row1[8]);
+                int sequenceNumber = Integer.parseInt(row1[posSeq]);
+                long linkId = Long.parseLong(row1[posLinkId]);
                 Map<Integer, Long> linkList = new HashMap<Integer, Long>();
                 linkList.put(sequenceNumber, linkId);
+
             if (lineMap.containsKey(lineId)) {
                 transitLine = lineMap.get(lineId);
 
@@ -287,11 +294,11 @@ public class ReadCSVFile {
 
             for (int i = 2; i < rowMap.size(); i++) {
                 String[] currentRow = rowMap.get(i);
-                long currentLineId = Long.parseLong(currentRow[0]);
+                long currentLineId = Long.parseLong(currentRow[posLineId]);
                 if (lineId == currentLineId) {
                     //continue adding links to linklist
-                    sequenceNumber = Integer.parseInt(currentRow[7]);
-                    linkId = Long.parseLong(currentRow[8]);
+                    sequenceNumber = Integer.parseInt(currentRow[posSeq]);
+                    linkId = Long.parseLong(currentRow[posLinkId]);
                     linkList.put(sequenceNumber, linkId);
 
 
@@ -305,8 +312,8 @@ public class ReadCSVFile {
                         linkList = new HashMap<Integer, Long>();
                         lineId = currentLineId;
                         transitLine = lineMap.get(currentLineId);
-                        sequenceNumber = Integer.parseInt(currentRow[7]);
-                        linkId = Long.parseLong(currentRow[8]);
+                        sequenceNumber = Integer.parseInt(currentRow[posSeq]);
+                        linkId = Long.parseLong(currentRow[posLinkId]);
                         linkList.put(sequenceNumber, linkId);
 
                 }
@@ -345,13 +352,24 @@ public class ReadCSVFile {
 
             br = new BufferedReader(new FileReader(fileName));
 
-            int lines = 0;
+            String[] header = br.readLine().split(csvSplitBy);
+
+            int posLineId = TransitUtil.findPositionInArray("lineId", header);
+            int posFromStopId = TransitUtil.findPositionInArray("fromStopId", header);
+            int posToStopId = TransitUtil.findPositionInArray("toStopId", header);
+            int posDepTime = TransitUtil.findPositionInArray("departureTime", header);
+            int posArrTime = TransitUtil.findPositionInArray("arrivalTime", header);
+
+
+            int lines = 1;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(csvSplitBy);
                 rowMap.put(lines, row);
                 lines++;
             }
-            //rowMap.put(rowMap.size(),rowMap.get(1));
+
+
+
 
             //System.out.println(lines);
 
@@ -359,16 +377,16 @@ public class ReadCSVFile {
 
                 //get line 1
                 String[] row1 = rowMap.get(1);
-                long lineId = Long.parseLong(row1[0]);
+                long lineId = Long.parseLong(row1[posLineId]);
                 TransitLine transitLine = lineMap.get(lineId);
 
-                long fromStopId = Long.parseLong(row1[2]);
-                long toStopId = Long.parseLong(row1[4]);
+                long fromStopId = Long.parseLong(row1[posFromStopId]);
+                long toStopId = Long.parseLong(row1[posToStopId]);
                 TransitStop fromStop = stopMap.get(fromStopId);
                 TransitStop toStop = stopMap.get(toStopId);
 
-                int departureTime = Integer.parseInt(row1[6]);
-                int arrivalTime = Integer.parseInt(row1[7]);
+                int departureTime = Integer.parseInt(row1[posDepTime]);
+                int arrivalTime = Integer.parseInt(row1[posArrTime]);
                 int sequence = 0;
 
                 TransitStopToStop transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTime, departureTime);
@@ -380,13 +398,13 @@ public class ReadCSVFile {
 
                 for (int i = 2; i < rowMap.size(); i++) {
                     String[] currentRow = rowMap.get(i);
-                    long currentLineId = Long.parseLong(currentRow[0]);
+                    long currentLineId = Long.parseLong(currentRow[posLineId]);
                     if (lineId == currentLineId) {
                         //still in the same transit line
-                        fromStop = stopMap.get(Long.parseLong(currentRow[2]));
-                        toStop = stopMap.get(Long.parseLong(currentRow[4]));
-                        departureTime = Integer.parseInt(currentRow[6]);
-                        arrivalTime = Integer.parseInt(currentRow[7]);
+                        fromStop = stopMap.get(Long.parseLong(currentRow[posFromStopId]));
+                        toStop = stopMap.get(Long.parseLong(currentRow[posToStopId]));
+                        departureTime = Integer.parseInt(currentRow[posDepTime]);
+                        arrivalTime = Integer.parseInt(currentRow[posArrTime]);
 
                         transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTime, departureTime);
                         stopToStopMap.put(sequence, transitStopToStop);
@@ -399,12 +417,12 @@ public class ReadCSVFile {
                         stopToStopMap = new HashMap<Integer, TransitStopToStop>();
                         sequence = 0;
 
-                        lineId = Long.parseLong(currentRow[0]);
+                        lineId = Long.parseLong(currentRow[posLineId]);
                         transitLine = lineMap.get(lineId);
-                        fromStop = stopMap.get(Long.parseLong(currentRow[2]));
-                        toStop = stopMap.get(Long.parseLong(currentRow[4]));
-                        departureTime = Integer.parseInt(currentRow[6]);
-                        arrivalTime = Integer.parseInt(currentRow[7]);
+                        fromStop = stopMap.get(Long.parseLong(currentRow[posFromStopId]));
+                        toStop = stopMap.get(Long.parseLong(currentRow[posToStopId]));
+                        departureTime = Integer.parseInt(currentRow[posDepTime]);
+                        arrivalTime = Integer.parseInt(currentRow[posArrTime]);
                         transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTime, departureTime);
                         stopToStopMap.put(sequence, transitStopToStop);
                         sequence++;
@@ -433,8 +451,6 @@ public class ReadCSVFile {
 
     }
 
-
-
     public ArrayList<TransitStop> getListOfStops() {
         return listOfStops;
     }
@@ -446,4 +462,17 @@ public class ReadCSVFile {
     public ArrayList<TransitTrip> getListOfTrips() {
         return listOfTrips;
     }
+
+    public String deGermanizeString(String germanString){
+        String nonGermanString = germanString.replace("ß", "ss");
+        nonGermanString = nonGermanString.replace("ä", "ae");
+        nonGermanString = nonGermanString.replace("ö", "oe");
+        nonGermanString = nonGermanString.replace("ü", "ue");
+        nonGermanString = nonGermanString.replace("Ä", "AE");
+        nonGermanString = nonGermanString.replace("Ö", "OE");
+        nonGermanString = nonGermanString.replace("Ü", "UE");
+
+        return nonGermanString;
+    }
+
 }
