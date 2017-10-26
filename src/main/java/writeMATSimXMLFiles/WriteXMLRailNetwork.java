@@ -127,7 +127,7 @@ public class WriteXMLRailNetwork {
                     double distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
                     distance = distance==0? 0.1: distance;
                     double freeFlowSpeed = distance / duration * 1.5;
-                    freeFlowSpeed = freeFlowSpeed == Double.POSITIVE_INFINITY? 1: freeFlowSpeed;
+                    freeFlowSpeed = freeFlowSpeed == Double.POSITIVE_INFINITY? 40: freeFlowSpeed;
 
                     //multiplied by 1.5 to allow trains get on time
 

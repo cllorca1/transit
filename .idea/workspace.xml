@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1c7cc846-68ef-49cc-95a7-e0afa181f2e2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Transit.java" afterPath="$PROJECT_DIR$/src/main/java/Transit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/transitSystem/TransitVehicle.java" afterPath="$PROJECT_DIR$/src/main/java/transitSystem/TransitVehicle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/utils/TransitUtil.java" afterPath="$PROJECT_DIR$/src/main/java/utils/TransitUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java" afterPath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java" afterPath="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java" />
     </list>
     <ignored path="transit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,11 +47,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WriteXMLRailSchedule.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WriteXMLRailSchedule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1667">
+            <state relative-caret-position="1820">
               <caret line="247" column="59" lean-forward="true" selection-start-line="247" selection-start-column="59" selection-end-line="247" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WriteXMLRailNetwork.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="410">
+              <caret line="129" column="81" lean-forward="false" selection-start-line="129" selection-start-column="79" selection-end-line="129" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -253,11 +260,11 @@
         <option value="$PROJECT_DIR$/src/main/java/importOsm/VehicleTypeReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/transitSystem/TransitDataContainer.java" />
         <option value="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRaiFiles.java" />
-        <option value="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java" />
         <option value="$PROJECT_DIR$/src/main/java/transitSystem/TransitVehicle.java" />
         <option value="$PROJECT_DIR$/src/main/java/utils/TransitUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/Transit.java" />
         <option value="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java" />
+        <option value="$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java" />
       </list>
     </option>
   </component>
@@ -689,13 +696,6 @@
       <option name="presentableId" value="Default" />
       <updated>1478877429553</updated>
     </task>
-    <task id="LOCAL-00003" summary="second test">
-      <created>1478881613484</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1478881613484</updated>
-    </task>
     <task id="LOCAL-00004" summary="test">
       <created>1481553250847</created>
       <option name="number" value="00004" />
@@ -1032,7 +1032,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509009008445</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="randomize departures">
+      <created>1509011285371</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1509011285371</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1116,7 +1123,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implement check methods for transit data" />
     <MESSAGE value="change output for check methods" />
     <MESSAGE value="added stop order checker" />
     <MESSAGE value="improve order of stops checking" />
@@ -1141,7 +1147,8 @@
     <MESSAGE value="debug return method" />
     <MESSAGE value="improve data structurec" />
     <MESSAGE value="debug departure time and free speed issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="debug departure time and free speed issues" />
+    <MESSAGE value="randomize departures" />
+    <option name="LAST_COMMIT_MESSAGE" value="randomize departures" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1514,14 +1521,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="86" column="34" lean-forward="true" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/transitSystem/TransitVehicle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1605,8 +1604,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailSchedule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1667">
+        <state relative-caret-position="1820">
           <caret line="247" column="59" lean-forward="true" selection-start-line="247" selection-start-column="59" selection-end-line="247" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/writeMATSimXMLFiles/WriteXMLRailNetwork.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="129" column="81" lean-forward="false" selection-start-line="129" selection-start-column="79" selection-end-line="129" selection-end-column="81" />
           <folding />
         </state>
       </provider>
