@@ -81,7 +81,7 @@ public class ReadCSVFile {
                         //found a new stop
                         previousStopId = stopId;
                         String stopName = deGermanizeString(row[posName]);
-                        System.out.println(stopName);
+//                        System.out.println(stopName);
                         String lat = row[posLat];
                         String lon = row[posLon];
                         boolean bus = Boolean.parseBoolean(row[posBus]);
