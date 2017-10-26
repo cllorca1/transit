@@ -1,5 +1,6 @@
 package transitSystem;
 
+import javax.sound.sampled.Line;
 import java.util.Map;
 
 /**
@@ -16,6 +17,8 @@ public class TransitLine {
     private double headway;
     private Map<Integer,TransitStop> stopList;
     private Map<Integer, Long> linkList;
+    private LineType lineType;
+
 
 
     public TransitLine(long lineId, String fromStop, String toStop, boolean bus, boolean subway, boolean tram, String lineName, Map<Integer, TransitStop> stopList) {
@@ -103,5 +106,13 @@ public class TransitLine {
 
     public void setHeadway(double headway) {
         this.headway = headway;
+    }
+
+    public LineType getLineType() {
+        return lineType;
+    }
+
+    public void setLineType(LineType lineType) {
+        this.lineType = lineType;
     }
 }
