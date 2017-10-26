@@ -5,15 +5,14 @@ import importOsm.CSVFrequencyReader;
 import javafx.scene.chart.PieChart;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
-import transitSystem.TransitDataContainer;
-import transitSystem.TransitStop;
-import transitSystem.TransitStopToStop;
-import transitSystem.TransitTrip;
+import transitSystem.*;
+import utils.TransitUtil;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -54,20 +53,29 @@ public class WriteXMLRailSchedule {
 
 
 
-            pw2.println("<vehicleType id=\"1\">");
+
 
             //todo loop for various vehicle descriptions
 
-            pw2.println("<description>S-Bahn</description>");
-            pw2.println("<capacity>");
-            pw2.println("<seats persons=\"150\"/>");
-            pw2.println("<standingRoom persons=\"200\"/>");
-            pw2.println("</capacity>");
-            pw2.println("<length meter=\"150.0\"/>");
-            pw2.println("</vehicleType>");
+            Map<LineType, TransitVehicle> vehicleMap = transitDataContainer.getVehicleTypeMap();
+
+            for (LineType lineType : LineType.values()) {
+
+                TransitVehicle vehicle = vehicleMap.get(lineType);
+
+                pw2.println("<vehicleType id=\"" + lineType.ordinal() + "\">");
+                pw2.println("<description>" + lineType.toString() + "</description>");
+                pw2.println("<capacity>");
+                pw2.println("<seats persons=\"" + vehicle.getSeatCapacity() + "\"/>");
+                pw2.println("<standingRoom persons=\"" + vehicle.getStandUpCapacity() + "\"/>");
+                pw2.println("</capacity>");
+                pw2.println("<length meter=\"" + vehicle.getLength() + "\"/>");
+                pw2.println("</vehicleType>");
+
+
+            }
+
             //end of vehicle file header
-
-
             pw.println("<transitStops>");
 
 
@@ -234,7 +242,7 @@ public class WriteXMLRailSchedule {
 
 
                 int i = 0;
-                DateTime departure = new DateTime(absoluteDepartureInSeconds * 1000);
+                DateTime departure = new DateTime(absoluteDepartureInSeconds * 1000).plusMinutes((int)Math.round(TransitUtil.rand.nextFloat()*headway));
                 DateTime lastDeparture = new DateTime(lastDepartureInSeconds * 1000);
                 //create departure until departure time is higher than the final departure
                 while (departure.isBefore(lastDeparture)) {
@@ -255,7 +263,7 @@ public class WriteXMLRailSchedule {
                     //todo assign here different vehicle types based on line type
                     pw2.print("<vehicle id=\"");
                     pw2.print("train" + transitTrip.getTransitLine().getLineId() + "-"  + i);
-                    pw2.println("\" type=\"1\" />");
+                    pw2.println("\" type=\""+ transitTrip.getTransitLine().getLineType().ordinal() + "\" />");
 
                     departure = departure.plusSeconds(((int) Math.round(headway)*60));
                     i++;

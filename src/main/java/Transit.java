@@ -9,6 +9,7 @@ import transitSystem.*;
 import travelTimeFromGoogle.LineFrequency;
 import travelTimeFromGoogle.TravelTimeFromGoogle;
 import travelTimeFromGoogle.TravelTimeMatrixFromGoogle;
+import utils.TransitUtil;
 import writeMATSimXMLFiles.WriteXMLRaiFiles;
 import writeOutputFiles.WriteOutputs;
 
@@ -47,6 +48,8 @@ public class Transit {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        TransitUtil.initializeRandomNumber();
 
         Transit t = new Transit(rb);
         t.runTransitTools();

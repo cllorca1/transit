@@ -15,4 +15,24 @@ public class TransitVehicle {
         this.standUpCapacity = standUpCapacity;
         this.length = length;
     }
+
+    public LineType getType() {
+        return type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getSeatCapacity() {
+        return seatCapacity;
+    }
+
+    public int getStandUpCapacity() {
+        return standUpCapacity;
+    }
+
+    public int getLength() {
+        return length;
+    }
 }
