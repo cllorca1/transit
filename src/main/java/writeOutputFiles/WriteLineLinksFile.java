@@ -1,5 +1,6 @@
 package writeOutputFiles;
 
+import transitSystem.TransitDataContainer;
 import transitSystem.TransitLine;
 import transitSystem.TransitStop;
 
@@ -15,8 +16,10 @@ import java.util.Map;
 public class WriteLineLinksFile {
 
 
-    public void writeLineLinksFile(String outputFile, ArrayList<TransitLine> listOfLines) {
+    public void write(String outputFile, TransitDataContainer transitDataContainer) {
 
+
+        ArrayList<TransitLine> listOfLines = transitDataContainer.getListOfLines();
 
         try {
 

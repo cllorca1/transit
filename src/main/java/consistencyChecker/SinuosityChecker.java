@@ -1,10 +1,7 @@
 package consistencyChecker;
 
 import org.apache.log4j.Logger;
-import transitSystem.TransitLine;
-import transitSystem.TransitStop;
-import transitSystem.TransitStopToStop;
-import transitSystem.TransitTrip;
+import transitSystem.*;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -17,10 +14,10 @@ public class SinuosityChecker implements Checker {
     private double alpha;
 
 
-    public void load(ArrayList<TransitStop> listOfStops, ArrayList<TransitLine> listOfLines, ArrayList<TransitTrip> listOfTrips) {
-        this.listOfStops = listOfStops;
-        this.listOfLines = listOfLines;
-        this.listOfTrips = listOfTrips;
+    public void load(TransitDataContainer transitDataContainer) {
+        this.listOfStops = transitDataContainer.getListOfStops();
+        this.listOfLines = transitDataContainer.getListOfLines();
+        this.listOfTrips = transitDataContainer.getListOfTrips();
         alpha = 1.9;
 
     }

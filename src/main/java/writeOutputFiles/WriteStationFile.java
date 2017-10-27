@@ -1,6 +1,7 @@
 package writeOutputFiles;
 
 import importOsm.ReadXmlFile;
+import transitSystem.TransitDataContainer;
 import transitSystem.TransitStop;
 
 import java.io.FileWriter;
@@ -13,7 +14,9 @@ import java.util.ArrayList;
  */
 public class WriteStationFile {
 
-    public void writeStationFile(String outputFile, ArrayList<TransitStop> listOfStops) {
+    public void write(String outputFile, TransitDataContainer transitDataContainer) {
+
+        ArrayList<TransitStop> listOfStops = transitDataContainer.getListOfStops();
 
         try {
 

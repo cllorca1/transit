@@ -1,6 +1,7 @@
 package consistencyChecker;
 
 import org.apache.log4j.Logger;
+import transitSystem.TransitDataContainer;
 import transitSystem.TransitLine;
 import transitSystem.TransitStop;
 import transitSystem.TransitTrip;
@@ -14,6 +15,7 @@ private IntersectionChecker intersectionChecker;
 private SinuosityChecker sinuosityChecker;
 private StopOrderChecker stopOrderChecker;
 private static Logger logger = Logger.getLogger(TransitDataChecker.class);
+private TransitDataContainer transitDataContainer;
 
     public TransitDataChecker() {
         bidirectionalChecker = new BidirectionalChecker();
@@ -25,11 +27,11 @@ private static Logger logger = Logger.getLogger(TransitDataChecker.class);
 
     }
 
-    public void load(ArrayList<TransitStop> listOfStops, ArrayList<TransitLine> listOfLines, ArrayList<TransitTrip> listOfTrips) {
-        bidirectionalChecker.load(listOfStops,listOfLines, listOfTrips);
-        intersectionChecker.load(listOfStops,listOfLines, listOfTrips);
-        sinuosityChecker.load(listOfStops,listOfLines, listOfTrips);
-        stopOrderChecker.load(listOfStops, listOfLines, listOfTrips);
+    public void load(TransitDataContainer transitDataContainer) {
+        bidirectionalChecker.load(transitDataContainer);
+        intersectionChecker.load(transitDataContainer);
+        sinuosityChecker.load(transitDataContainer);
+        stopOrderChecker.load(transitDataContainer);
     }
 
     public void check() {

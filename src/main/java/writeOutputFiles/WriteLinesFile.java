@@ -1,6 +1,7 @@
 package writeOutputFiles;
 
 import importOsm.ReadXmlFile;
+import transitSystem.TransitDataContainer;
 import transitSystem.TransitLine;
 import transitSystem.TransitStop;
 
@@ -14,10 +15,11 @@ import java.util.Map;
 /**
  * Created by carlloga on 25/11/16.
  */
-public class WriteLinesFile {
+public class WriteLinesFile implements CSVWriter {
 
-    public void writeLinesFile(String outputFile, ArrayList<TransitLine> listOfLines) {
+    public void write(String outputFile, TransitDataContainer transitDataContainer) {
 
+        ArrayList<TransitLine> listOfLines = transitDataContainer.getListOfLines();
 
         try {
 

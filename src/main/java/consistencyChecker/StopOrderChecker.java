@@ -1,7 +1,9 @@
 package consistencyChecker;
 
+import org.apache.commons.lang.ObjectUtils;
 import org.apache.log4j.Logger;
 import org.omg.CORBA.TRANSACTION_MODE;
+import transitSystem.TransitDataContainer;
 import transitSystem.TransitLine;
 import transitSystem.TransitStop;
 import transitSystem.TransitTrip;
@@ -24,10 +26,10 @@ public class StopOrderChecker implements Checker {
     private double alphaDistanceLowerThreshold;
 
 
-    public void load(ArrayList<TransitStop> listOfStops, ArrayList<TransitLine> listOfLines, ArrayList<TransitTrip> listOfTrips) {
-        this.listOfStops = listOfStops;
-        this.listOfLines = listOfLines;
-        this.listOfTrips = listOfTrips;
+    public void load(TransitDataContainer transitDataContainer) {
+        this.listOfStops = transitDataContainer.getListOfStops();
+        this.listOfLines = transitDataContainer.getListOfLines();
+        this.listOfTrips = transitDataContainer.getListOfTrips();
         alphaDistanceUpperThreshold = 3;
         alphaDistanceLowerThreshold = .25;
 
@@ -55,7 +57,12 @@ public class StopOrderChecker implements Checker {
             for (TransitTrip trip : listOfTrips) {
                 TransitLine line = trip.getTransitLine();
                 boolean error = false;
-                Map<Integer, TransitStop> stopMap = line.getStopList();
+                Map<Integer, TransitStop> stopMap = new HashMap<>();
+                try {
+                    stopMap = line.getStopList();
+                } catch(NullPointerException e){
+                    logger.info("!");
+                }
                 //only from one of the edges:
                 int i = 0;
                 TransitStop fromStop = stopMap.get(i);

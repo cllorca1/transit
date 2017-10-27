@@ -1,5 +1,6 @@
 package writeOutputFiles;
 
+import transitSystem.TransitDataContainer;
 import transitSystem.TransitLine;
 import transitSystem.TransitStop;
 import transitSystem.TransitTrip;
@@ -18,23 +19,23 @@ public class WriteOutputs {
         this.rb = rb;
     }
 
-    public void writeOutputs(ArrayList<TransitStop> listOfStops, ArrayList<TransitLine> listOfLines, ArrayList<TransitTrip> listOfTrips){
+    public void writeOutputs(TransitDataContainer transitDataContainer){
         String stationFileName = rb.getString("out.csv.stations");
         String linesFileName = rb.getString("out.csv.lines");
         String lineLinksFileName = rb.getString("out.csv.trips");
         String tripFileName = rb.getString("out.csv.line.links");
 
         WriteStationFile writeStationFile = new WriteStationFile();
-        writeStationFile.writeStationFile(stationFileName, listOfStops);
+        writeStationFile.write(stationFileName, transitDataContainer);
 
         WriteLinesFile writeLinesFile = new WriteLinesFile();
-        writeLinesFile.writeLinesFile(linesFileName, listOfLines);
+        writeLinesFile.write(linesFileName, transitDataContainer);
 
         WriteLineLinksFile writeLineLinksFile = new WriteLineLinksFile();
-        writeLineLinksFile.writeLineLinksFile(lineLinksFileName, listOfLines);
+        writeLineLinksFile.write(lineLinksFileName, transitDataContainer);
 
         WriteTripFile writeTripFile = new WriteTripFile();
-        writeTripFile.writeTripFile(tripFileName, listOfTrips);
+        writeTripFile.write(tripFileName, transitDataContainer);
 
 
 

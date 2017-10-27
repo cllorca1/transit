@@ -1,6 +1,7 @@
 package consistencyChecker;
 
 import org.apache.log4j.Logger;
+import transitSystem.TransitDataContainer;
 import transitSystem.TransitLine;
 import transitSystem.TransitStop;
 import transitSystem.TransitTrip;
@@ -15,10 +16,10 @@ public class BidirectionalChecker implements Checker {
     private static Logger logger = Logger.getLogger(BidirectionalChecker.class);
 
 
-    public void load(ArrayList<TransitStop> listOfStops, ArrayList<TransitLine> listOfLines, ArrayList<TransitTrip> listOfTrips) {
-        this.listOfStops = listOfStops;
-        this.listOfLines = listOfLines;
-        this.listOfTrips = listOfTrips;
+    public void load(TransitDataContainer transitDataContainer) {
+        this.listOfStops = transitDataContainer.getListOfStops();
+        this.listOfLines = transitDataContainer.getListOfLines();
+        this.listOfTrips = transitDataContainer.getListOfTrips();
     }
 
     public void check() {

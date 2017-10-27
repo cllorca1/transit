@@ -24,9 +24,9 @@ import java.util.*;
 public class Transit {
 
     private ResourceBundle rb;
-    private ArrayList<TransitStop> listOfStops = new ArrayList<TransitStop>();
-    private ArrayList<TransitLine> listOfLines = new ArrayList<TransitLine>();
-    private ArrayList<TransitTrip> listOfTrips = new ArrayList<TransitTrip>();
+    //private ArrayList<TransitStop> listOfStops = new ArrayList<TransitStop>();
+    //private ArrayList<TransitLine> listOfLines = new ArrayList<TransitLine>();
+    //private ArrayList<TransitTrip> listOfTrips = new ArrayList<TransitTrip>();
 
     private TransitDataContainer transitDataContainer;
 
@@ -64,18 +64,21 @@ public class Transit {
             //extract data from XML OSM files
             ReadXmlFile readXml = new ReadXmlFile(rb);
             readXml.readXMLFile();
-            listOfStops = readXml.getListOfStops();
-            listOfLines = readXml.getListOfLines();
-
+            ArrayList<TransitStop> listOfStops = readXml.getListOfStops();
+            ArrayList<TransitLine> listOfLines = readXml.getListOfLines();
+            ArrayList<TransitTrip> listOfTrips = new ArrayList<>();
+            Map<LineType, TransitVehicle> vehicleMap = new HashMap<>();
+            //it creates an empty list of trips and an empty map of vehicles, as this is not available in OSM data
+            transitDataContainer = new TransitDataContainer(listOfStops, listOfLines, listOfTrips, vehicleMap);
         }
 
         boolean readCSV = Boolean.parseBoolean(rb.getString("read.CSV"));
         if (readCSV){
             ReadCSVFile readCSVFile = new ReadCSVFile(rb);
             readCSVFile.readCsv();
-            listOfStops = readCSVFile.getListOfStops();
-            listOfLines = readCSVFile.getListOfLines();
-            listOfTrips = readCSVFile.getListOfTrips();
+            ArrayList<TransitStop> listOfStops = readCSVFile.getListOfStops();
+            ArrayList<TransitLine> listOfLines = readCSVFile.getListOfLines();
+            ArrayList<TransitTrip> listOfTrips = readCSVFile.getListOfTrips();
             System.out.println(listOfStops.size() + " stops read from csv");
             System.out.println(listOfLines.size() + " lines read from csv");
             System.out.println(listOfTrips.size() + " trips read from csv");
@@ -87,8 +90,6 @@ public class Transit {
             VehicleTypeReader vehicleTypeReader = new VehicleTypeReader(rb);
             Map<LineType, TransitVehicle> vehicleMap = vehicleTypeReader.createTransitVehicleTypes();
 
-//            Temporary
-
             transitDataContainer = new TransitDataContainer(listOfStops, listOfLines, listOfTrips, vehicleMap);
 
         }
@@ -99,7 +100,8 @@ public class Transit {
         if (manualFilters){
 
             char mode = 't';
-            ArrayList<TransitTrip> newListOfTrips = new ArrayList<TransitTrip>();
+            ArrayList<TransitTrip> listOfTrips = transitDataContainer.getListOfTrips();
+            ArrayList<TransitTrip> newListOfTrips = listOfTrips;
 
             switch (mode){
                 case 'b':
@@ -143,8 +145,8 @@ public class Transit {
         boolean getTimes= Boolean.parseBoolean(rb.getString("get.times"));
         if (getTimes) {
             TravelTimeFromGoogle travelTimeFromGoogle = new TravelTimeFromGoogle(rb);
-            travelTimeFromGoogle.getTimes(listOfLines);
-            listOfTrips = travelTimeFromGoogle.getListOfTrips();
+            travelTimeFromGoogle.getTimes(transitDataContainer.getListOfLines());
+            ArrayList<TransitTrip> listOfTrips = travelTimeFromGoogle.getListOfTrips();
             //todo
             transitDataContainer.setListOfTrips(listOfTrips);
         }
@@ -152,10 +154,10 @@ public class Transit {
         boolean getTimesUsingMatrix= Boolean.parseBoolean(rb.getString("get.times.matrix"));
         if (getTimesUsingMatrix) {
             TravelTimeMatrixFromGoogle travelTimeMAtrixFromGoogle = new TravelTimeMatrixFromGoogle(rb);
-            travelTimeMAtrixFromGoogle.getTimesFromMatrix(listOfLines);
+            travelTimeMAtrixFromGoogle.getTimesFromMatrix(transitDataContainer.getListOfLines());
             //replaces the list of trips
-            listOfTrips = travelTimeMAtrixFromGoogle.getListOfTrips();
-            //todo
+            ArrayList<TransitTrip> listOfTrips = travelTimeMAtrixFromGoogle.getListOfTrips();
+            //todo: this module may be not working
             transitDataContainer.setListOfTrips(listOfTrips);
         }
 
@@ -163,17 +165,18 @@ public class Transit {
         if (getFrequencies){
             //this module is no longer used -- inconsistent with further matsim schedule generation
             LineFrequency lineFrequency = new LineFrequency();
-            lineFrequency.getLineFrequency(listOfLines);
+            lineFrequency.getLineFrequency(transitDataContainer.getListOfLines());
             //todo
-            listOfTrips = lineFrequency.getListOfTrips();
+            ArrayList<TransitTrip> listOfTrips  = lineFrequency.getListOfTrips();
+            transitDataContainer.setListOfTrips(listOfTrips);
         }
 
-        boolean check= Boolean.parseBoolean(rb.getString("check.consistency"));
+        boolean check = Boolean.parseBoolean(rb.getString("check.consistency"));
 
 
         if (check) {
             TransitDataChecker transitDataChecker = new TransitDataChecker();
-            transitDataChecker.load(listOfStops, listOfLines, listOfTrips);
+            transitDataChecker.load(transitDataContainer);
             transitDataChecker.check();
         }
 
@@ -190,8 +193,8 @@ public class Transit {
 
         if (writeOutputFiles) {
             WriteOutputs writeOutputs = new WriteOutputs(rb);
-            System.out.println("Number of trips = " + listOfTrips.size());
-            writeOutputs.writeOutputs(listOfStops, listOfLines, listOfTrips);
+            System.out.println("Number of trips = " + transitDataContainer.getListOfTrips().size());
+            writeOutputs.writeOutputs(transitDataContainer);
         }
 
     }

@@ -1,5 +1,6 @@
 package writeOutputFiles;
 
+import transitSystem.TransitDataContainer;
 import transitSystem.TransitStop;
 import transitSystem.TransitStopToStop;
 import transitSystem.TransitTrip;
@@ -15,7 +16,9 @@ import java.util.Map;
  */
 public class WriteTripFile {
 
-    public void writeTripFile(String outputFile, ArrayList<TransitTrip> listOfTrips) {
+    public void write(String outputFile, TransitDataContainer transitDataContainer) {
+
+        ArrayList<TransitTrip> listOfTrips = transitDataContainer.getListOfTrips();
 
         try {
 

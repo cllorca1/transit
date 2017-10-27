@@ -1,10 +1,7 @@
 package consistencyChecker;
 
 import org.apache.log4j.Logger;
-import transitSystem.TransitLine;
-import transitSystem.TransitStop;
-import transitSystem.TransitStopToStop;
-import transitSystem.TransitTrip;
+import transitSystem.*;
 
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
@@ -19,10 +16,10 @@ public class IntersectionChecker implements Checker {
     private static Logger logger = Logger.getLogger(IntersectionChecker.class);
 
 
-    public void load(ArrayList<TransitStop> listOfStops, ArrayList<TransitLine> listOfLines, ArrayList<TransitTrip> listOfTrips) {
-        this.listOfStops = listOfStops;
-        this.listOfLines = listOfLines;
-        this.listOfTrips = listOfTrips;
+    public void load(TransitDataContainer transitDataContainer) {
+        this.listOfStops = transitDataContainer.getListOfStops();
+        this.listOfLines = transitDataContainer.getListOfLines();
+        this.listOfTrips = transitDataContainer.getListOfTrips();
 
     }
 
