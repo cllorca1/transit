@@ -128,6 +128,12 @@ public class WriteXMLRailNetwork {
                     distance = distance==0? 0.1: distance;
                     double freeFlowSpeed = distance / duration * 1.5;
                     freeFlowSpeed = freeFlowSpeed == Double.POSITIVE_INFINITY? 40: freeFlowSpeed;
+                    /*if (freeFlowSpeed >=40) {
+                        logger.info("line%" + transitTrip.getTransitLine().getLineId() + "%length%" +
+                                distance + "% between stops %" +
+                                transitStopToStop.getOrigTransitStop().getStopId() +  "%and%" +  transitStopToStop.getDestTransitStop().getStopId()+
+                                "%speed%" + freeFlowSpeed);
+                    }*/
 
                     //multiplied by 1.5 to allow trains get on time
 

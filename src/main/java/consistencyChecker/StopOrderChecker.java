@@ -61,7 +61,7 @@ public class StopOrderChecker implements Checker {
                 try {
                     stopMap = line.getStopList();
                 } catch(NullPointerException e){
-                    logger.info("!");
+
                 }
                 //only from one of the edges:
                 int i = 0;

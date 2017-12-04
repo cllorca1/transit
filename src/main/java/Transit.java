@@ -95,13 +95,14 @@ public class Transit {
         }
 
 
-        boolean manualFilters = true;
+        boolean manualFilters = Boolean.parseBoolean(rb.getString("filter.by.mode"));
 
         if (manualFilters){
 
-            char mode = 't';
+            char mode = rb.getString("selected.mode").toCharArray()[0];
+
             ArrayList<TransitTrip> listOfTrips = transitDataContainer.getListOfTrips();
-            ArrayList<TransitTrip> newListOfTrips = listOfTrips;
+            ArrayList<TransitTrip> newListOfTrips = new ArrayList<>();
 
             switch (mode){
                 case 'b':
