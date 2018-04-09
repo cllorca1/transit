@@ -154,7 +154,8 @@ public class ReadCSVFile {
             boolean tram = Boolean.parseBoolean(row1[posTram]);
             boolean subway = Boolean.parseBoolean(row1[posSubway]);
             int sequenceNumber = Integer.parseInt(row1[posSeq]);
-            boolean validity = Integer.parseInt(row1[posValidity]) == 1? false : true;
+            boolean validity = Integer.parseInt(row1[posValidity]) != 1;
+
 
             //this variable cleans the jumps in sequence number of the input file, if exist
             int reSequenceNumber = 0;
@@ -208,7 +209,7 @@ public class ReadCSVFile {
                     subway = Boolean.parseBoolean(currentRow[posSubway]);
                     sequenceNumber = Integer.parseInt(currentRow[posSeq]);
                     reSequenceNumber = 0;
-                    validity = Integer.parseInt(row1[posValidity]) == 1? false : true;
+                    validity = Integer.parseInt(currentRow[posValidity]) != 1;
 //                    stopId = Long.parseLong(currentRow[posStopId]);
 
                     TransitStop transitStop;

@@ -117,4 +117,12 @@ public class TransitLine {
     public void setLineType(LineType lineType) {
         this.lineType = lineType;
     }
+
+    public boolean isValidity() {
+        return validity;
+    }
+
+    public void setValidity(boolean validity) {
+        this.validity = validity;
+    }
 }

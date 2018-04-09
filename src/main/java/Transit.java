@@ -5,11 +5,14 @@ import importOsm.CSVFrequencyReader;
 import importOsm.ReadCSVFile;
 import importOsm.ReadXmlFile;
 import importOsm.VehicleTypeReader;
+import org.cts.crs.CRSException;
 import transitSystem.*;
 import travelTimeFromGoogle.LineFrequency;
 import travelTimeFromGoogle.TravelTimeFromGoogle;
 import travelTimeFromGoogle.TravelTimeMatrixFromGoogle;
+import travelTimeUsingMATSim.TravelTimeMatsim;
 import utils.TransitUtil;
+import writeMATSimXMLFiles.TransformCoordinates;
 import writeMATSimXMLFiles.WriteXMLRaiFiles;
 import writeOutputFiles.WriteOutputs;
 
@@ -177,10 +180,28 @@ public class Transit {
             transitDataContainer.setListOfTrips(listOfTrips);
         }
 
-        boolean useMatsim = Boolean.parseBoolean(rb.getString("use.matsim.for.travelTimes"));
+        boolean useMatsim = Boolean.parseBoolean(rb.getString("get.matsim.times"));
+
+
+
+
 
         if (useMatsim){
 
+            try {
+                TransformCoordinates tc = new TransformCoordinates();
+                transitDataContainer.getListOfStops().forEach(stop -> {
+                    tc.transformCoordinates(stop);
+                });
+
+            } catch (CRSException e) {
+                e.printStackTrace();
+            }
+
+
+            TravelTimeMatsim travelTimeMatsim = new TravelTimeMatsim(transitDataContainer);
+            travelTimeMatsim.loadMatsim("./input/matsim/studyNetworkDense.xml","./input/matsim/output" );
+            travelTimeMatsim.getTravelTimes();
 
 
         }
