@@ -18,10 +18,11 @@ public class TransitLine {
     private Map<Integer,TransitStop> stopList;
     private Map<Integer, Long> linkList;
     private LineType lineType;
+    private boolean validity;
 
 
 
-    public TransitLine(long lineId, String fromStop, String toStop, boolean bus, boolean subway, boolean tram, String lineName, Map<Integer, TransitStop> stopList) {
+    public TransitLine(long lineId, String fromStop, String toStop, boolean bus, boolean subway, boolean tram, String lineName, Map<Integer, TransitStop> stopList, boolean validity) {
         this.lineId = lineId;
         this.fromStop = fromStop;
         this.toStop = toStop;
@@ -30,6 +31,7 @@ public class TransitLine {
         this.tram = tram;
         this.lineName = lineName;
         this.stopList = stopList;
+        this.validity = validity;
     }
 
     public TransitLine(long lineId, String fromStop, String toStop, boolean bus, boolean subway, boolean tram, String lineName, Map<Integer, TransitStop> stopList, Map<Integer, Long> linkList) {

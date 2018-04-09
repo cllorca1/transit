@@ -3,10 +3,7 @@ package consistencyChecker;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.log4j.Logger;
 import org.omg.CORBA.TRANSACTION_MODE;
-import transitSystem.TransitDataContainer;
-import transitSystem.TransitLine;
-import transitSystem.TransitStop;
-import transitSystem.TransitTrip;
+import transitSystem.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -96,6 +93,7 @@ public class StopOrderChecker implements Checker {
                         acc = 'r';
                     }
 
+
                     pw.println(line.getLineId() + "," +
                             line.getLineName().replace(",","&") + "," +
                             j + "," +
@@ -114,7 +112,7 @@ public class StopOrderChecker implements Checker {
                     long lineid = trip.getTransitLine().getLineId();
                     String lineName = trip.getTransitLine().getLineName();
                     //logger.info(cumDistance);
-                    logger.warn("The line " + lineName + "%" + lineid + "%  has incorrect stop order - if the line is lineal");
+                    //logger.warn("The line " + lineName + "%" + lineid + "%  has incorrect stop order - if the line is lineal");
                 }
 
             }

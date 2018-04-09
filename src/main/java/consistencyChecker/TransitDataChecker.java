@@ -14,6 +14,7 @@ private BidirectionalChecker bidirectionalChecker;
 private IntersectionChecker intersectionChecker;
 private SinuosityChecker sinuosityChecker;
 private StopOrderChecker stopOrderChecker;
+private TravelSpeedChecker travelSpeedChecker;
 private static Logger logger = Logger.getLogger(TransitDataChecker.class);
 private TransitDataContainer transitDataContainer;
 
@@ -22,8 +23,10 @@ private TransitDataContainer transitDataContainer;
         intersectionChecker = new IntersectionChecker();
         sinuosityChecker = new SinuosityChecker();
         stopOrderChecker = new StopOrderChecker();
+        travelSpeedChecker = new TravelSpeedChecker();
 
         stopOrderChecker.setReportFileName("./output/check/stopOrder.csv");
+        travelSpeedChecker.setReportFileName("./output/check/speedCheck.csv");
 
     }
 
@@ -32,6 +35,8 @@ private TransitDataContainer transitDataContainer;
         intersectionChecker.load(transitDataContainer);
         sinuosityChecker.load(transitDataContainer);
         stopOrderChecker.load(transitDataContainer);
+        travelSpeedChecker.load(transitDataContainer);
+
     }
 
     public void check() {
@@ -39,6 +44,7 @@ private TransitDataContainer transitDataContainer;
         intersectionChecker.check();
         sinuosityChecker.check();
         stopOrderChecker.check();
+        travelSpeedChecker.check();
     }
 }
 

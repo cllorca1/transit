@@ -75,12 +75,18 @@ public class Transit {
         boolean readCSV = Boolean.parseBoolean(rb.getString("read.CSV"));
         if (readCSV){
             ReadCSVFile readCSVFile = new ReadCSVFile(rb);
-            readCSVFile.readCsv();
+            readCSVFile.readCsvStations(rb.getString("csv.station.file"));
             ArrayList<TransitStop> listOfStops = readCSVFile.getListOfStops();
-            ArrayList<TransitLine> listOfLines = readCSVFile.getListOfLines();
-            ArrayList<TransitTrip> listOfTrips = readCSVFile.getListOfTrips();
             System.out.println(listOfStops.size() + " stops read from csv");
+
+            readCSVFile.readCsvLines(rb.getString("csv.line.file"));
+            ArrayList<TransitLine> listOfLines = readCSVFile.getListOfLines();
             System.out.println(listOfLines.size() + " lines read from csv");
+
+            readCSVFile.readCsvLineLinks(rb.getString("csv.line.link.file"));
+
+            readCSVFile.readCsvStopToStop(rb.getString("csv.trip.file"));
+            ArrayList<TransitTrip> listOfTrips = readCSVFile.getListOfTrips();
             System.out.println(listOfTrips.size() + " trips read from csv");
 
             CSVFrequencyReader frequencyReader = new CSVFrequencyReader(rb);
@@ -142,7 +148,6 @@ public class Transit {
         }
 
 
-
         boolean getTimes= Boolean.parseBoolean(rb.getString("get.times"));
         if (getTimes) {
             TravelTimeFromGoogle travelTimeFromGoogle = new TravelTimeFromGoogle(rb);
@@ -171,6 +176,15 @@ public class Transit {
             ArrayList<TransitTrip> listOfTrips  = lineFrequency.getListOfTrips();
             transitDataContainer.setListOfTrips(listOfTrips);
         }
+
+        boolean useMatsim = Boolean.parseBoolean(rb.getString("use.matsim.for.travelTimes"));
+
+        if (useMatsim){
+
+
+
+        }
+
 
         boolean check = Boolean.parseBoolean(rb.getString("check.consistency"));
 
