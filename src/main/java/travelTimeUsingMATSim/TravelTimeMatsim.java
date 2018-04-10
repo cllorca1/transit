@@ -101,7 +101,7 @@ public class TravelTimeMatsim {
 
     public void getTravelTimes() {
 
-        transitDataContainer.getListOfLines().parallelStream().forEach(transitLine -> {
+        transitDataContainer.getListOfLines().forEach(transitLine -> {
             if (!transitLine.isValidity()) {
                 getLineTravelTimes(transitLine);
                 logger.info("Completed line " + transitLine.getLineName() + " in MATSim");
@@ -116,7 +116,6 @@ public class TravelTimeMatsim {
 
         Iterator<TransitStop> stopIterator = stopMap.values().iterator();
         TransitStop fromStop = stopIterator.next();
-
         TransitStop toStop;
         int departureTimeInSeconds = 8 * 60 * 60;
         Map<Integer, TransitStopToStop> stopToStopList = new HashMap<>();
@@ -131,14 +130,11 @@ public class TravelTimeMatsim {
             Coord toStopCoord = new Coord(toStop.getX(), toStop.getY());
             int travelTimeBetweenStops = (int) calculateTimeBetweenStops(fromStopCoord, toStopCoord);
             int arrivalTimeInSeconds = travelTimeBetweenStops + departureTimeInSeconds;
-
             TransitStopToStop transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTimeInSeconds, departureTimeInSeconds);
             stopToStopList.put(seq, transitStopToStop);
             seq++;
             departureTimeInSeconds = arrivalTimeInSeconds + 20;
             fromStop = toStop;
-
-
         }
 
     }
