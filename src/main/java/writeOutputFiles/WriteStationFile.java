@@ -14,6 +14,8 @@ import java.util.ArrayList;
  */
 public class WriteStationFile {
 
+    private String csvSplitBy = ",";
+
     public void write(String outputFile, TransitDataContainer transitDataContainer) {
 
         ArrayList<TransitStop> listOfStops = transitDataContainer.getListOfStops();
@@ -23,9 +25,9 @@ public class WriteStationFile {
             boolean writeAllStops = false;
             PrintWriter pw = new PrintWriter(new FileWriter(outputFile, false));
             if (writeAllStops) {
-                pw.println("stopId;stopName;lat;lon;bus;tram;subway;stopPositionFlag;line;lineId;x;y");
+                pw.println("stopId,stopName,lat,lon,bus,tram,subway,stopPositionFlag,line,lineId,x,y");
             } else {
-                pw.println("stopId;stopName;lat;lon;bus;tram;subway;stopPositionFlag;x;y");
+                pw.println("stopId,stopName,lat,lon,bus,tram,subway,stopPositionFlag,x,y");
             }
 
 
@@ -36,29 +38,29 @@ public class WriteStationFile {
 
                 if (writeAllStops) {
                     for (String line : transitStop.getLines()) {
-                        pw.println(transitStop.getStopId() + ";"
-                                + transitStop.getStopName() + ";"
-                                + transitStop.getLat() + ";"
-                                + transitStop.getLon() + ";"
-                                + transitStop.isBus() + ";"
-                                + transitStop.isTram() + ";"
-                                + transitStop.isSubway() + ";"
+                        pw.println(transitStop.getStopId() + csvSplitBy
+                                + transitStop.getStopName() + csvSplitBy
+                                + transitStop.getLat() + csvSplitBy
+                                + transitStop.getLon() +csvSplitBy
+                                + transitStop.isBus() + csvSplitBy
+                                + transitStop.isTram() + csvSplitBy
+                                + transitStop.isSubway() + csvSplitBy
                                 + transitStop.isStopPositionFlag()
-                                + ";" + line + ";"
-                                + transitStop.getLineIds().get(transitStop.getLines().indexOf(line))+ ";"
-                                + transitStop.getX() + ";"
+                                + csvSplitBy + line + csvSplitBy
+                                + transitStop.getLineIds().get(transitStop.getLines().indexOf(line))+ csvSplitBy
+                                + transitStop.getX() + csvSplitBy
                                 + transitStop.getY());
                     }
                 } else {
-                    pw.println(transitStop.getStopId() + ";"
-                            + transitStop.getStopName() + ";"
-                            + transitStop.getLat() + ";"
-                            + transitStop.getLon() + ";"
-                            + transitStop.isBus() + ";"
-                            + transitStop.isTram() + ";"
-                            + transitStop.isSubway() + ";"
-                            + transitStop.isStopPositionFlag()+ ";"
-                            + transitStop.getX() + ";"
+                    pw.println(transitStop.getStopId() + csvSplitBy
+                            + transitStop.getStopName() + csvSplitBy
+                            + transitStop.getLat() +csvSplitBy
+                            + transitStop.getLon() +csvSplitBy
+                            + transitStop.isBus() + csvSplitBy
+                            + transitStop.isTram() + csvSplitBy
+                            + transitStop.isSubway() + csvSplitBy
+                            + transitStop.isStopPositionFlag()+ csvSplitBy
+                            + transitStop.getX() + csvSplitBy
                             + transitStop.getY());
                 }
             }

@@ -16,6 +16,8 @@ import java.util.Map;
  */
 public class WriteTripFile {
 
+    private String csvSplitBy = ",";
+
     public void write(String outputFile, TransitDataContainer transitDataContainer) {
 
         ArrayList<TransitTrip> listOfTrips = transitDataContainer.getListOfTrips();
@@ -23,25 +25,25 @@ public class WriteTripFile {
         try {
 
             PrintWriter pw = new PrintWriter(new FileWriter(outputFile, false));
-            pw.println("lineId; lineRef; fromStopId; fromStop; toStopId; toStop; departureTime; arrivalTime");
+            pw.println("lineId,lineRef,fromStopId,fromStop,toStopId,toStop,departureTime,arrivalTime");
 
             for (TransitTrip transitTrip : listOfTrips){
 
                 Map<Integer, TransitStopToStop> stopToStopMap = transitTrip.getStopToStopList();
 
                 if (transitTrip.getFrequencyInSeconds()>0){
-                    pw.println(transitTrip.getTransitLine().getLineName() + ";" + transitTrip.getFrequencyInSeconds()+ ";" + "FREQUENCY");
+                    pw.println(transitTrip.getTransitLine().getLineName() + csvSplitBy + transitTrip.getFrequencyInSeconds()+ csvSplitBy + "FREQUENCY");
                 }
 
                 for (TransitStopToStop transitStopToStop : stopToStopMap.values()){
 
-                    pw.println( transitTrip.getTransitLine().getLineId() + ";"
-                            + transitTrip.getTransitLine().getLineName() + ";"
-                            + transitStopToStop.getOrigTransitStop().getStopId() + ";"
-                            + transitStopToStop.getOrigTransitStop().getStopName() + ";"
-                            + transitStopToStop.getDestTransitStop().getStopId() + ";"
-                            + transitStopToStop.getDestTransitStop(). getStopName() + ";"
-                            + transitStopToStop.getDepartureTime() + ";"
+                    pw.println( transitTrip.getTransitLine().getLineId() + csvSplitBy
+                            + transitTrip.getTransitLine().getLineName() + csvSplitBy
+                            + transitStopToStop.getOrigTransitStop().getStopId() + csvSplitBy
+                            + transitStopToStop.getOrigTransitStop().getStopName() + csvSplitBy
+                            + transitStopToStop.getDestTransitStop().getStopId() + csvSplitBy
+                            + transitStopToStop.getDestTransitStop(). getStopName() + csvSplitBy
+                            + transitStopToStop.getDepartureTime() + csvSplitBy
                             + transitStopToStop.getArrivalTime());
                 }
 

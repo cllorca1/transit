@@ -17,6 +17,8 @@ import java.util.Map;
  */
 public class WriteLinesFile implements CSVWriter {
 
+    private String csvSplitBy = ",";
+
     public void write(String outputFile, TransitDataContainer transitDataContainer) {
 
         ArrayList<TransitLine> listOfLines = transitDataContainer.getListOfLines();
@@ -25,7 +27,7 @@ public class WriteLinesFile implements CSVWriter {
 
 
             PrintWriter pw = new PrintWriter(new FileWriter(outputFile, false));
-            pw.println("lineId; lineRef; from; to; bus; tram; subway; sequence; stopId; stopName");
+            pw.println("lineId,lineRef,from,to,bus,tram,subway,sequence,stopId,stopName");
 
 
             System.out.println("Writing output file for " + listOfLines.size() + " lines.");
@@ -39,17 +41,17 @@ public class WriteLinesFile implements CSVWriter {
                 String lastStopName = "";
                 for (int sequence : stopList.keySet()) {
                     //check and if different substitute lastStopName by currentStopName
-                    if(!stopList.get(sequence).getStopName().equals(lastStopName) |stopList.get(sequence).getStopName().equals("")) {
+                    if(!stopList.get(sequence).getStopName().equals(lastStopName) || stopList.get(sequence).getStopName().equals("")) {
                         lastStopName = stopList.get(sequence).getStopName();
-                        pw.println(transitLine.getLineId() + ";"
-                                + transitLine.getLineName() + ";"
-                                + transitLine.getFromStop() + ";"
-                                + transitLine.getToStop() + ";"
-                                + transitLine.isBus() + ";"
-                                + transitLine.isTram() + ";"
-                                + transitLine.isSubway() + ";"
-                                + sequence + ";"
-                                + stopList.get(sequence).getStopId() + ";"
+                        pw.println(transitLine.getLineId() + csvSplitBy
+                                + transitLine.getLineName() + csvSplitBy
+                                + transitLine.getFromStop() + csvSplitBy
+                                + transitLine.getToStop() + csvSplitBy
+                                + transitLine.isBus() + csvSplitBy
+                                + transitLine.isTram() +csvSplitBy
+                                + transitLine.isSubway() + csvSplitBy
+                                + sequence + csvSplitBy
+                                + stopList.get(sequence).getStopId() + csvSplitBy
                                 + stopList.get(sequence).getStopName());
 
                     }

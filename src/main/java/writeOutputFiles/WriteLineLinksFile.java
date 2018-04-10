@@ -15,6 +15,7 @@ import java.util.Map;
  */
 public class WriteLineLinksFile {
 
+    private String csvSplitBy = ",";
 
     public void write(String outputFile, TransitDataContainer transitDataContainer) {
 
@@ -25,7 +26,7 @@ public class WriteLineLinksFile {
 
 
             PrintWriter pw = new PrintWriter(new FileWriter(outputFile, false));
-            pw.println("lineId; lineRef; from; to; bus; tram; subway; sequence; linkid");
+            pw.println("lineId,lineRef,from,to,bus,tram,subway,sequence,linkid");
 
 
             System.out.println("Writing output linelinks file for " + listOfLines.size() + " lines.");
@@ -35,14 +36,14 @@ public class WriteLineLinksFile {
                 Map<Integer, Long> linkList = transitLine.getLinkList();
                 try {
                     for (int sequence : linkList.keySet()) {
-                        pw.println(transitLine.getLineId() + ";"
-                                + transitLine.getLineName() + ";"
-                                + transitLine.getFromStop() + ";"
-                                + transitLine.getToStop() + ";"
-                                + transitLine.isBus() + ";"
-                                + transitLine.isTram() + ";"
-                                + transitLine.isSubway() + ";"
-                                + sequence + ";"
+                        pw.println(transitLine.getLineId() + csvSplitBy
+                                + transitLine.getLineName() + csvSplitBy
+                                + transitLine.getFromStop() + csvSplitBy
+                                + transitLine.getToStop() + csvSplitBy
+                                + transitLine.isBus() + csvSplitBy
+                                + transitLine.isTram() + csvSplitBy
+                                + transitLine.isSubway() + csvSplitBy
+                                + sequence + csvSplitBy
                                 + linkList.get(sequence));
 
                     }

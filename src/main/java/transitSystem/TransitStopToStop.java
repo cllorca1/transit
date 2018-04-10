@@ -43,4 +43,12 @@ public class TransitStopToStop {
     public void setNetworkLink(int networkLink) {
         this.networkLink = networkLink;
     }
+
+    public void setArrivalTime(int arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public void setDepartureTime(int departureTime) {
+        this.departureTime = departureTime;
+    }
 }

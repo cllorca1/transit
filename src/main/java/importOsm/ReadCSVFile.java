@@ -155,7 +155,8 @@ public class ReadCSVFile {
             boolean subway = Boolean.parseBoolean(row1[posSubway]);
             int sequenceNumber = Integer.parseInt(row1[posSeq]);
             boolean validity = Integer.parseInt(row1[posValidity]) != 1;
-
+            //boolean validity = true;
+            //todo validity is a temporary variable to find travel times in matsim for the lines without google maps data
 
             //this variable cleans the jumps in sequence number of the input file, if exist
             int reSequenceNumber = 0;
@@ -211,6 +212,7 @@ public class ReadCSVFile {
                     reSequenceNumber = 0;
                     validity = Integer.parseInt(currentRow[posValidity]) != 1;
 //                    stopId = Long.parseLong(currentRow[posStopId]);
+                    //validity = true;
 
                     TransitStop transitStop;
 
@@ -253,7 +255,7 @@ public class ReadCSVFile {
 
             br = new BufferedReader(new FileReader(fileName));
 
-            String[] header = br.readLine().split(csvSplitBy);
+            String[] header = br.readLine().split(",");
 
             int posLineId = TransitUtil.findPositionInArray("lineId", header);
             int posSeq = TransitUtil.findPositionInArray("sequence", header);
@@ -262,7 +264,7 @@ public class ReadCSVFile {
 
             int lines = 1;
             while ((line = br.readLine()) != null) {
-                String[] row = line.split(csvSplitBy);
+                String[] row = line.split(",");
                 rowMap.put(lines, row);
                 lines++;
             }

@@ -24,10 +24,7 @@ import org.matsim.core.router.util.TravelTime;
 import org.matsim.core.scenario.MutableScenario;
 import org.matsim.core.scenario.ScenarioUtils;
 import org.matsim.utils.leastcostpathtree.LeastCostPathTree;
-import transitSystem.TransitDataContainer;
-import transitSystem.TransitLine;
-import transitSystem.TransitStop;
-import transitSystem.TransitStopToStop;
+import transitSystem.*;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -44,11 +41,11 @@ public class TravelTimeMatsim {
     private double departureTime;
 
 
-    public TravelTimeMatsim(TransitDataContainer transitDataContainer){
+    public TravelTimeMatsim(TransitDataContainer transitDataContainer) {
         this.transitDataContainer = transitDataContainer;
     }
 
-    public void loadMatsim(String networkFile, String outputDirectory){
+    public void loadMatsim(String networkFile, String outputDirectory) {
 
         config = ConfigUtils.createConfig();
         config.network().setInputFile(networkFile);
@@ -64,7 +61,7 @@ public class TravelTimeMatsim {
         config.planCalcScore().addActivityParams(homeActivity);
         StrategyConfigGroup.StrategySettings strategySettings = new StrategyConfigGroup.StrategySettings();
         strategySettings.setStrategyName("ChangeExpBeta");
-        strategySettings.setWeight(0.8);
+        strategySettings.setWeight(1);
         config.strategy().addStrategySettings(strategySettings);
         controler = new Controler(scenario);
         controler.run();
@@ -77,7 +74,7 @@ public class TravelTimeMatsim {
         travelTimeDisutility = controler.getTravelDisutilityFactory().createTravelDisutility(travelTime);
 
         dijkstraTime = new DijkstraTree(network, travelTimeDisutility, travelTime);
-        departureTime = 8*3600;
+        departureTime = 8 * 60 * 60;
 
 
     }
@@ -90,7 +87,7 @@ public class TravelTimeMatsim {
         Plan plan = factory.createPlan();
         Coord coord1 = new Coord(transitDataContainer.getListOfStops().get(0).getX(), transitDataContainer.getListOfStops().get(0).getY());
         Activity activity = factory.createActivityFromCoord("things", coord1);
-        activity.setEndTime(8*3600);
+        activity.setEndTime(8 * 3600);
         plan.addActivity(activity);
         plan.addLeg(factory.createLeg(TransportMode.car));
         Coord coord2 = new Coord(transitDataContainer.getListOfStops().get(10).getX(), transitDataContainer.getListOfStops().get(10).getY());
@@ -102,16 +99,15 @@ public class TravelTimeMatsim {
         return population;
     }
 
-    public void getTravelTimes(){
-        for (TransitLine line : transitDataContainer.getListOfLines()){
-            if (!line.isValidity()){
-                getLineTravelTimes(line);
-                logger.info("Completed line " + line.getLineName() + " in MATSim");
+    public void getTravelTimes() {
+
+        transitDataContainer.getListOfLines().parallelStream().forEach(transitLine -> {
+            if (!transitLine.isValidity()) {
+                getLineTravelTimes(transitLine);
+                logger.info("Completed line " + transitLine.getLineName() + " in MATSim");
             }
+        });
 
-
-
-        }
 
     }
 
@@ -120,38 +116,40 @@ public class TravelTimeMatsim {
 
         Iterator<TransitStop> stopIterator = stopMap.values().iterator();
         TransitStop fromStop = stopIterator.next();
-        Coord fromStopCoord = new Coord(fromStop.getX(), fromStop.getY());
-        TransitStop toStop;
-        int departureTimeInSeconds = 8*60*60;
 
-        Map <Integer, TransitStopToStop> stopToStopList = new HashMap<>();
-        int seq =0;
-        while(stopIterator.hasNext()){
-            if (stopIterator.hasNext()){
-                toStop = stopIterator.next();
-                Coord toStopCoord = new Coord(fromStop.getX(), fromStop.getY());
-                int arrivalTimeInSeconds = (int) (calculateTimeBetweenStops(fromStopCoord, toStopCoord) + departureTimeInSeconds) ;
-                TransitStopToStop transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTimeInSeconds, departureTimeInSeconds);
-                stopToStopList.put(seq, transitStopToStop);
-                seq++;
-                departureTimeInSeconds = arrivalTimeInSeconds + 20;
-                fromStop = toStop;
-            }
+        TransitStop toStop;
+        int departureTimeInSeconds = 8 * 60 * 60;
+        Map<Integer, TransitStopToStop> stopToStopList = new HashMap<>();
+
+        TransitTrip transitTrip = new TransitTrip(line, departureTimeInSeconds, stopToStopList);
+        transitDataContainer.getListOfTrips().add(transitTrip);
+
+        int seq = 0;
+        while (stopIterator.hasNext()) {
+            Coord fromStopCoord = new Coord(fromStop.getX(), fromStop.getY());
+            toStop = stopIterator.next();
+            Coord toStopCoord = new Coord(toStop.getX(), toStop.getY());
+            int travelTimeBetweenStops = (int) calculateTimeBetweenStops(fromStopCoord, toStopCoord);
+            int arrivalTimeInSeconds = travelTimeBetweenStops + departureTimeInSeconds;
+
+            TransitStopToStop transitStopToStop = new TransitStopToStop(fromStop, toStop, arrivalTimeInSeconds, departureTimeInSeconds);
+            stopToStopList.put(seq, transitStopToStop);
+            seq++;
+            departureTimeInSeconds = arrivalTimeInSeconds + 20;
+            fromStop = toStop;
+
 
         }
-
 
     }
 
     private float calculateTimeBetweenStops(Coord fromStopCoord, Coord toStopCoord) {
 
-
         Node originNode = NetworkUtils.getNearestNode(network, fromStopCoord);
         Node destinationNode = NetworkUtils.getNearestNode(network, toStopCoord);
-
         dijkstraTime.calcLeastCostPathTree(originNode, departureTime);
 
-        return (float)(dijkstraTime.getTime(destinationNode) - departureTime);
+        return (float) (dijkstraTime.getTime(destinationNode) - departureTime);
     }
 
 

@@ -69,6 +69,15 @@ public class TravelSpeedChecker implements Checker {
 
                 double speed = distance / time * 3.6;
 
+                if (speed <= 0){
+                    //assign 50 km/h to correct negative or null speeds
+                    speed = 50 / 3.6 ;
+                    time = distance / speed;
+                    transitStopToStop.setDepartureTime(8*3600);
+                    transitStopToStop.setArrivalTime(8*3600 + (int) time);
+
+                }
+
                 pw.print(trip.getTransitLine().getLineId());
                 pw.print(",");
                 pw.print(seq);
