@@ -18,15 +18,18 @@ private TravelSpeedChecker travelSpeedChecker;
 private static Logger logger = Logger.getLogger(TransitDataChecker.class);
 private TransitDataContainer transitDataContainer;
 
-    public TransitDataChecker() {
+    public TransitDataChecker(String outputFolder) {
         bidirectionalChecker = new BidirectionalChecker();
         intersectionChecker = new IntersectionChecker();
         sinuosityChecker = new SinuosityChecker();
         stopOrderChecker = new StopOrderChecker();
         travelSpeedChecker = new TravelSpeedChecker();
 
-        stopOrderChecker.setReportFileName("./output/check/stopOrder.csv");
-        travelSpeedChecker.setReportFileName("./output/check/speedCheck.csv");
+
+
+
+        stopOrderChecker.setReportFileName(outputFolder + "/" + "stopOrder.csv");
+        travelSpeedChecker.setReportFileName(outputFolder + "/" + "speedCheck.csv");
 
     }
 

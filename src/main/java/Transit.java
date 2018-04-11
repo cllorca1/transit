@@ -211,7 +211,7 @@ public class Transit {
 
 
         if (check) {
-            TransitDataChecker transitDataChecker = new TransitDataChecker();
+            TransitDataChecker transitDataChecker = new TransitDataChecker(rb.getString("check.consistency.folder"));
             transitDataChecker.load(transitDataContainer);
             transitDataChecker.check();
         }
